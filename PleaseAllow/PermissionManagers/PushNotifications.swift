@@ -64,7 +64,7 @@ extension PushNotifications: RequestManager {
     
     @objc func softPermissionGranted() {
         softAskView?.hide { [weak self] in
-            self?.requestHardPermission()
+            self?.resultHandler?(.allowed, nil)
         }
     }
     
@@ -75,8 +75,6 @@ extension PushNotifications: RequestManager {
         }
     }
     
-    func requestHardPermission() {
-        UIApplication.shared.registerForRemoteNotifications()
-    }
+    func requestHardPermission() {}
 }
 

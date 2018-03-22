@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allow Location usage always</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow Location usage when in use</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Allow Contacts usage</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow Camera usage</string>
 	<key>NSPhotoLibraryUsageDescription</key>

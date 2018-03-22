@@ -46,7 +46,7 @@ open class PleaseAllow: NSObject {
         public struct location {
     
             /// Permission Manager for Always Location Permissions
-            public static var always   : PermissionManager = {
+            public static var always: PermissionManager = {
                 let location = Location()
                 location.locationType = .always
                 location.type = .locationAlways
@@ -81,8 +81,8 @@ extension PleaseAllow {
         PleaseAllow.Managers.contacts.request(handler: completion)
     }
 
-    public static func push(tracker: PleaseAllowTracker? = nil) {
-        PleaseAllow.Managers.push.request()
+    public static func push(tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
+        PleaseAllow.Managers.push.request(handler: completion)
     }
 
     public struct location {
