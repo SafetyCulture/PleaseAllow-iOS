@@ -1,5 +1,4 @@
 # PleaseAllow
-[![Build status](https://badge.buildkite.com/11962122aa0a34ea929ad70d1f9d65f0df6db6ab7f48f8217a.svg)](https://buildkite.com/safetyculture/pleaseallow-ios)
 
 ## Usage
 
