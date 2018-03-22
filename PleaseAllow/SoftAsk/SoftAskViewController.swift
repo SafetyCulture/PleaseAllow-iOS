@@ -11,7 +11,7 @@ import UIKit
 internal class SoftAskViewController: UIViewController {
     
     static func loadFromStoryboard() -> SoftAskViewController {
-        let storyboard = UIStoryboard(name: "SoftAsk", bundle: nil)
+        let storyboard = UIStoryboard(name: "SoftAsk", bundle: Bundle(for: SoftAskViewController.self))
         let viewController = storyboard.instantiateViewController(withIdentifier: "SoftAskViewController")
         return viewController as! SoftAskViewController
     }
@@ -31,7 +31,6 @@ internal class SoftAskViewController: UIViewController {
     
     @IBOutlet var titleLabel: UILabel! {
         didSet {
-            titleLabel.font = UIFont.systemFont(ofSize: 22)
             titleLabel.textColor = .darkGray
             titleLabel.textAlignment = .center
         }
@@ -39,29 +38,22 @@ internal class SoftAskViewController: UIViewController {
     
     @IBOutlet var descriptionLabel: UILabel! {
         didSet {
-            descriptionLabel.font = UIFont.preferredFont(forTextStyle: .body)
             descriptionLabel.numberOfLines = 0
             descriptionLabel.lineBreakMode = .byWordWrapping
         }
     }
     
-    @IBOutlet var buttonsContainer: UIView! {
-        didSet {
-            view.backgroundColor = .lightGray
-        }
-    }
+    @IBOutlet var buttonsContainer: UIView!
     
     @IBOutlet var allowButton: UIButton! {
         didSet {
             allowButton.backgroundColor = .white
-            allowButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         }
     }
     
     @IBOutlet var denyButton: UIButton! {
         didSet {
             denyButton.backgroundColor = .white
-            denyButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         }
     }
     
@@ -84,9 +76,5 @@ internal class SoftAskViewController: UIViewController {
     
     func setup() {
         layout()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

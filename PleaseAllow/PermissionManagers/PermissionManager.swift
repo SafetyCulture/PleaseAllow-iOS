@@ -81,11 +81,9 @@ extension PermissionManager {
      The completion to be called when the Baby Please is finished with the request
      */
     
-    internal mutating func request(softAsk: SoftAskView? = nil, alert: DeniedAlert? = nil, _ handler: PleaseAllowReply? = nil) {
+    internal mutating func request(handler: PleaseAllowReply? = nil) {
         tracker?.track(.beganRequest(type))
         resultHandler = handler
-        deniedAlert = alert
-        softAskView = softAsk
         
         guard isAvailable && canRequest else { return }
         

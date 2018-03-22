@@ -23,6 +23,7 @@
 		CE00A7F320632A0E001686CD /* SoftAskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7F220632A0E001686CD /* SoftAskView.swift */; };
 		CE00A7F620632AF6001686CD /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE00A7F520632AF5001686CD /* Contacts.framework */; };
 		CE00A7F820632B32001686CD /* CameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7F720632B32001686CD /* CameraTests.swift */; };
+		CEF643F32063371D000CAB6E /* PhotoLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF643F22063371D000CAB6E /* PhotoLibrary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		CE00A7F220632A0E001686CD /* SoftAskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftAskView.swift; sourceTree = "<group>"; };
 		CE00A7F520632AF5001686CD /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		CE00A7F720632B32001686CD /* CameraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTests.swift; sourceTree = "<group>"; };
+		CEF643F22063371D000CAB6E /* PhotoLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibrary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				CE00A7E0206323D9001686CD /* PermissionStatus.swift */,
 				CE00A7E2206323E7001686CD /* RequestManager.swift */,
 				CE00A7E4206323FF001686CD /* Camera.swift */,
+				CEF643F22063371D000CAB6E /* PhotoLibrary.swift */,
 			);
 			path = PermissionManagers;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				CE00A7EC206324BE001686CD /* PleaseAllowResult.swift in Sources */,
 				CE00A7E5206323FF001686CD /* Camera.swift in Sources */,
 				CE00A7DC20632356001686CD /* PleaseAllow.swift in Sources */,
+				CEF643F32063371D000CAB6E /* PhotoLibrary.swift in Sources */,
 				CE00A7E1206323D9001686CD /* PermissionStatus.swift in Sources */,
 				CE00A7EF2063252A001686CD /* SoftAskViewController.swift in Sources */,
 				CE00A7EA2063246E001686CD /* PleaseAllowTracker.swift in Sources */,

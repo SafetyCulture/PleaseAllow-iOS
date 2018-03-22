@@ -14,6 +14,10 @@ open class SoftAskView {
     private var type: PermissionManagerType?
     private var manager: PermissionManager?
     
+    public init() {
+        softAskViewController.loadView()
+    }
+    
     /// Backgorund Color for the Soft Ask View. Default is White
     open var backgroundColor: UIColor? {
         get {
@@ -79,7 +83,7 @@ open class SoftAskView {
             return softAskViewController.allowButton.titleLabel?.text
         }
         set {
-            softAskViewController.allowButton.setTitle(newValue, for: .normal)
+            softAskViewController.allowButton?.setTitle(newValue, for: .normal)
         }
     }
     
@@ -89,7 +93,7 @@ open class SoftAskView {
             return softAskViewController.denyButton.titleLabel?.text
         }
         set {
-            softAskViewController.denyButton.setTitle(newValue, for: .normal)
+            softAskViewController.denyButton?.setTitle(newValue, for: .normal)
         }
     }
     
@@ -192,8 +196,6 @@ open class SoftAskView {
             softAskViewController.denyButton.titleLabel?.font = newValue
         }
     }
-    
-    public init() {}
     
     private lazy var softAskViewController: SoftAskViewController = {
         return .loadFromStoryboard()

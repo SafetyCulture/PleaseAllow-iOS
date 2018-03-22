@@ -29,15 +29,15 @@ import Foundation
  */
 open class PleaseAllow: NSObject {
     
-    struct Managers {
+    public  struct Managers {
         /// Permission Manager for Camera Permissions
         public static var camera: PermissionManager = Camera()
         
         /// Permission Manager for Contacts Permissions
     //    public static var contacts: PermissionManager = Contacts()
     //
-    //    /// Permission Manager for Photo Library Permissions
-    //    public static var photoLibrary: PermissionManager = PhotoLibrary()
+        /// Permission Manager for Photo Library Permissions
+        public static var photoLibrary: PermissionManager = PhotoLibrary()
     //
     //    /// Permission Manager for Push Notification Permissions
     //    public static var push: PermissionManager = PushNotifications()
@@ -66,19 +66,15 @@ open class PleaseAllow: NSObject {
 
 extension PleaseAllow {
         
-    public static func camera(softAskView: SoftAskView? = nil, deniedAlert: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
+    public static func camera(tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
         PleaseAllow.Managers.camera.tracker = tracker
-        PleaseAllow.Managers.camera.request(softAsk: softAskView, alert: deniedAlert) { (reply, error) in
-            completion(reply, error)
-        }
+        PleaseAllow.Managers.camera.request(handler: completion)
     }
     
-//    public static func photoLibrary(softAskView: SoftAskView, deniedAlert: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
-//        BabyPlease.photoLibrary.tracker = tracker
-//        BabyPlease.photoLibrary.request(softAsk: softAskView, alert: deniedAlert) { (reply, error) in
-//            completion(reply, error)
-//        }
-//    }
+    public static func photoLibrary(tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
+        PleaseAllow.Managers.photoLibrary.tracker = tracker
+        PleaseAllow.Managers.photoLibrary.request(handler: completion)
+    }
 //
 //    public static func contacts(softAskView: SoftAskView, deniedAlert: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
 //        BabyPlease.contacts.tracker = tracker
