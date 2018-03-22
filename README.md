@@ -32,7 +32,7 @@ PleaseAllow.camera { whatBabySaid, eror in
 
 #### Asking Politely
 ```swift
-BabyPlease.Managers.contacts.softAskView = {
+PleaseAllow.Managers.contacts.softAskView = {
     let view = SoftAskView()
     view.cornerRadius = 20
     view.allowButtonTitle = "Allow"
