@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CE00A7CB206322D8001686CD /* PleaseAllow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE00A7C1206322D8001686CD /* PleaseAllow.framework */; };
-		CE00A7D0206322D8001686CD /* PleaseAllowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7CF206322D8001686CD /* PleaseAllowTests.swift */; };
 		CE00A7D2206322D8001686CD /* PleaseAllow.h in Headers */ = {isa = PBXBuildFile; fileRef = CE00A7C4206322D8001686CD /* PleaseAllow.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE00A7DC20632356001686CD /* PleaseAllow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7DB20632356001686CD /* PleaseAllow.swift */; };
 		CE00A7DF206323BF001686CD /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7DE206323BF001686CD /* PermissionManager.swift */; };
@@ -26,6 +25,9 @@
 		CE905C5D20635A7800F4C32F /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C5C20635A7800F4C32F /* Contacts.swift */; };
 		CE905C5F20635AAC00F4C32F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C5E20635AAC00F4C32F /* Location.swift */; };
 		CE905C6120635B5100F4C32F /* PushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C6020635B5100F4C32F /* PushNotifications.swift */; };
+		CE905C7720636A2400F4C32F /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C7620636A2400F4C32F /* ContactsTests.swift */; };
+		CE905C7920636A3D00F4C32F /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C7820636A3D00F4C32F /* LocationTests.swift */; };
+		CE905C7B20636A5F00F4C32F /* PhotoLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C7A20636A5F00F4C32F /* PhotoLibraryTests.swift */; };
 		CEF643F32063371D000CAB6E /* PhotoLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF643F22063371D000CAB6E /* PhotoLibrary.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +46,6 @@
 		CE00A7C4206322D8001686CD /* PleaseAllow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PleaseAllow.h; sourceTree = "<group>"; };
 		CE00A7C5206322D8001686CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE00A7CA206322D8001686CD /* PleaseAllowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PleaseAllowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE00A7CF206322D8001686CD /* PleaseAllowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleaseAllowTests.swift; sourceTree = "<group>"; };
 		CE00A7D1206322D8001686CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE00A7DB20632356001686CD /* PleaseAllow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleaseAllow.swift; sourceTree = "<group>"; };
 		CE00A7DE206323BF001686CD /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
@@ -62,6 +63,9 @@
 		CE905C5C20635A7800F4C32F /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		CE905C5E20635AAC00F4C32F /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		CE905C6020635B5100F4C32F /* PushNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotifications.swift; sourceTree = "<group>"; };
+		CE905C7620636A2400F4C32F /* ContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTests.swift; sourceTree = "<group>"; };
+		CE905C7820636A3D00F4C32F /* LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
+		CE905C7A20636A5F00F4C32F /* PhotoLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryTests.swift; sourceTree = "<group>"; };
 		CEF643F22063371D000CAB6E /* PhotoLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibrary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,9 +125,11 @@
 		CE00A7CE206322D8001686CD /* PleaseAllowTests */ = {
 			isa = PBXGroup;
 			children = (
-				CE00A7CF206322D8001686CD /* PleaseAllowTests.swift */,
 				CE00A7D1206322D8001686CD /* Info.plist */,
 				CE00A7F720632B32001686CD /* CameraTests.swift */,
+				CE905C7A20636A5F00F4C32F /* PhotoLibraryTests.swift */,
+				CE905C7620636A2400F4C32F /* ContactsTests.swift */,
+				CE905C7820636A3D00F4C32F /* LocationTests.swift */,
 			);
 			path = PleaseAllowTests;
 			sourceTree = "<group>";
@@ -303,8 +309,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE905C7B20636A5F00F4C32F /* PhotoLibraryTests.swift in Sources */,
+				CE905C7720636A2400F4C32F /* ContactsTests.swift in Sources */,
+				CE905C7920636A3D00F4C32F /* LocationTests.swift in Sources */,
 				CE00A7F820632B32001686CD /* CameraTests.swift in Sources */,
-				CE00A7D0206322D8001686CD /* PleaseAllowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

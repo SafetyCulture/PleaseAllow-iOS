@@ -1,0 +1,24 @@
+{
+    "projectProperties": {
+        "usesCarthage": false
+    },
+    "pipelineSteps": [{
+        "name": ":mag: Run Unit Tests",
+        "fastlaneLaneName": "test_framework",
+        "agentTargetingRules": [
+            "swift=true"
+        ],
+        "timeout": 40
+    }],
+    "fastLane": {
+        "lanes": [{
+            "name": "test_framework",
+            "description": "This will runs standard unit tests",
+            "scanProperties": {
+                "scheme": "PleaseAllow",
+                "clean": true,
+                "code_coverage": true
+            }
+        }]
+    }
+}
