@@ -74,7 +74,7 @@ extension PermissionManager {
     //MARK:- Request
     
     /**
-     The request method for `PermisdssionManager`
+     The request method for `PermisssionManager`
      
      - parameters:
      - handler:
