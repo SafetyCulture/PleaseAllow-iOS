@@ -10,6 +10,19 @@
 		CE00A7CB206322D8001686CD /* PleaseAllow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE00A7C1206322D8001686CD /* PleaseAllow.framework */; };
 		CE00A7D0206322D8001686CD /* PleaseAllowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7CF206322D8001686CD /* PleaseAllowTests.swift */; };
 		CE00A7D2206322D8001686CD /* PleaseAllow.h in Headers */ = {isa = PBXBuildFile; fileRef = CE00A7C4206322D8001686CD /* PleaseAllow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE00A7DC20632356001686CD /* PleaseAllow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7DB20632356001686CD /* PleaseAllow.swift */; };
+		CE00A7DF206323BF001686CD /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7DE206323BF001686CD /* PermissionManager.swift */; };
+		CE00A7E1206323D9001686CD /* PermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7E0206323D9001686CD /* PermissionStatus.swift */; };
+		CE00A7E3206323E7001686CD /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7E2206323E7001686CD /* RequestManager.swift */; };
+		CE00A7E5206323FF001686CD /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7E4206323FF001686CD /* Camera.swift */; };
+		CE00A7E72063241D001686CD /* PermissionManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7E62063241D001686CD /* PermissionManagerType.swift */; };
+		CE00A7EA2063246E001686CD /* PleaseAllowTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7E92063246E001686CD /* PleaseAllowTracker.swift */; };
+		CE00A7EC206324BE001686CD /* PleaseAllowResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7EB206324BE001686CD /* PleaseAllowResult.swift */; };
+		CE00A7EF2063252A001686CD /* SoftAskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7EE2063252A001686CD /* SoftAskViewController.swift */; };
+		CE00A7F1206325BE001686CD /* SoftAsk.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE00A7F0206325BE001686CD /* SoftAsk.storyboard */; };
+		CE00A7F320632A0E001686CD /* SoftAskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7F220632A0E001686CD /* SoftAskView.swift */; };
+		CE00A7F620632AF6001686CD /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE00A7F520632AF5001686CD /* Contacts.framework */; };
+		CE00A7F820632B32001686CD /* CameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7F720632B32001686CD /* CameraTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +42,19 @@
 		CE00A7CA206322D8001686CD /* PleaseAllowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PleaseAllowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE00A7CF206322D8001686CD /* PleaseAllowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleaseAllowTests.swift; sourceTree = "<group>"; };
 		CE00A7D1206322D8001686CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE00A7DB20632356001686CD /* PleaseAllow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleaseAllow.swift; sourceTree = "<group>"; };
+		CE00A7DE206323BF001686CD /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
+		CE00A7E0206323D9001686CD /* PermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionStatus.swift; sourceTree = "<group>"; };
+		CE00A7E2206323E7001686CD /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		CE00A7E4206323FF001686CD /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		CE00A7E62063241D001686CD /* PermissionManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManagerType.swift; sourceTree = "<group>"; };
+		CE00A7E92063246E001686CD /* PleaseAllowTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleaseAllowTracker.swift; sourceTree = "<group>"; };
+		CE00A7EB206324BE001686CD /* PleaseAllowResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleaseAllowResult.swift; sourceTree = "<group>"; };
+		CE00A7EE2063252A001686CD /* SoftAskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftAskViewController.swift; sourceTree = "<group>"; };
+		CE00A7F0206325BE001686CD /* SoftAsk.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SoftAsk.storyboard; sourceTree = "<group>"; };
+		CE00A7F220632A0E001686CD /* SoftAskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftAskView.swift; sourceTree = "<group>"; };
+		CE00A7F520632AF5001686CD /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		CE00A7F720632B32001686CD /* CameraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE00A7F620632AF6001686CD /* Contacts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +83,7 @@
 				CE00A7C3206322D8001686CD /* PleaseAllow */,
 				CE00A7CE206322D8001686CD /* PleaseAllowTests */,
 				CE00A7C2206322D8001686CD /* Products */,
+				CE00A7F420632AF5001686CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,8 +99,13 @@
 		CE00A7C3206322D8001686CD /* PleaseAllow */ = {
 			isa = PBXGroup;
 			children = (
+				CE00A7DB20632356001686CD /* PleaseAllow.swift */,
+				CE00A7EB206324BE001686CD /* PleaseAllowResult.swift */,
 				CE00A7C4206322D8001686CD /* PleaseAllow.h */,
 				CE00A7C5206322D8001686CD /* Info.plist */,
+				CE00A7DD206323B3001686CD /* PermissionManagers */,
+				CE00A7ED2063251F001686CD /* SoftAsk */,
+				CE00A7E820632459001686CD /* Tracking */,
 			);
 			path = PleaseAllow;
 			sourceTree = "<group>";
@@ -82,8 +115,47 @@
 			children = (
 				CE00A7CF206322D8001686CD /* PleaseAllowTests.swift */,
 				CE00A7D1206322D8001686CD /* Info.plist */,
+				CE00A7F720632B32001686CD /* CameraTests.swift */,
 			);
 			path = PleaseAllowTests;
+			sourceTree = "<group>";
+		};
+		CE00A7DD206323B3001686CD /* PermissionManagers */ = {
+			isa = PBXGroup;
+			children = (
+				CE00A7DE206323BF001686CD /* PermissionManager.swift */,
+				CE00A7E62063241D001686CD /* PermissionManagerType.swift */,
+				CE00A7E0206323D9001686CD /* PermissionStatus.swift */,
+				CE00A7E2206323E7001686CD /* RequestManager.swift */,
+				CE00A7E4206323FF001686CD /* Camera.swift */,
+			);
+			path = PermissionManagers;
+			sourceTree = "<group>";
+		};
+		CE00A7E820632459001686CD /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				CE00A7E92063246E001686CD /* PleaseAllowTracker.swift */,
+			);
+			path = Tracking;
+			sourceTree = "<group>";
+		};
+		CE00A7ED2063251F001686CD /* SoftAsk */ = {
+			isa = PBXGroup;
+			children = (
+				CE00A7EE2063252A001686CD /* SoftAskViewController.swift */,
+				CE00A7F220632A0E001686CD /* SoftAskView.swift */,
+				CE00A7F0206325BE001686CD /* SoftAsk.storyboard */,
+			);
+			path = SoftAsk;
+			sourceTree = "<group>";
+		};
+		CE00A7F420632AF5001686CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE00A7F520632AF5001686CD /* Contacts.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +220,7 @@
 				TargetAttributes = {
 					CE00A7C0206322D8001686CD = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					CE00A7C9206322D8001686CD = {
@@ -179,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE00A7F1206325BE001686CD /* SoftAsk.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +270,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE00A7E72063241D001686CD /* PermissionManagerType.swift in Sources */,
+				CE00A7DF206323BF001686CD /* PermissionManager.swift in Sources */,
+				CE00A7F320632A0E001686CD /* SoftAskView.swift in Sources */,
+				CE00A7EC206324BE001686CD /* PleaseAllowResult.swift in Sources */,
+				CE00A7E5206323FF001686CD /* Camera.swift in Sources */,
+				CE00A7DC20632356001686CD /* PleaseAllow.swift in Sources */,
+				CE00A7E1206323D9001686CD /* PermissionStatus.swift in Sources */,
+				CE00A7EF2063252A001686CD /* SoftAskViewController.swift in Sources */,
+				CE00A7EA2063246E001686CD /* PleaseAllowTracker.swift in Sources */,
+				CE00A7E3206323E7001686CD /* RequestManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE00A7F820632B32001686CD /* CameraTests.swift in Sources */,
 				CE00A7D0206322D8001686CD /* PleaseAllowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,6 +419,7 @@
 		CE00A7D6206322D8001686CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -342,10 +428,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PleaseAllow/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.safetyculture.PleaseAllow;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -354,6 +442,7 @@
 		CE00A7D7206322D8001686CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -362,6 +451,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PleaseAllow/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.safetyculture.PleaseAllow;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -374,6 +464,7 @@
 		CE00A7D9206322D8001686CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PleaseAllowTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -387,6 +478,7 @@
 		CE00A7DA206322D8001686CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PleaseAllowTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
