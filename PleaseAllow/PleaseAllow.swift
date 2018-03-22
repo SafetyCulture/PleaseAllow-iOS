@@ -66,7 +66,7 @@ open class PleaseAllow: NSObject {
 
 extension PleaseAllow {
         
-    public static func camera(softAskView: SoftAskView, deniedAlert: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
+    public static func camera(softAskView: SoftAskView? = nil, deniedAlert: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
         PleaseAllow.Managers.camera.tracker = tracker
         PleaseAllow.Managers.camera.request(softAsk: softAskView, alert: deniedAlert) { (reply, error) in
             completion(reply, error)
