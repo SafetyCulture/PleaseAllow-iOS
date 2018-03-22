@@ -21,9 +21,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LY7-Xn-kk2">
-                                <rect key="frame" x="44" y="0.0" width="724" height="375"/>
+                                <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VT5-qz-eRc">
-                                    <rect key="frame" x="0.0" y="0.0" width="724" height="375"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="light"/>
@@ -145,12 +145,12 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="YfU-qB-9xZ" secondAttribute="trailing" priority="999" constant="54" id="5Vj-Ro-k47"/>
-                            <constraint firstItem="LY7-Xn-kk2" firstAttribute="leading" secondItem="gC4-ky-odP" secondAttribute="leading" id="7gB-nh-oLz"/>
+                            <constraint firstItem="LY7-Xn-kk2" firstAttribute="leading" secondItem="IJN-AZ-Pmo" secondAttribute="leading" id="7gB-nh-oLz"/>
                             <constraint firstItem="YfU-qB-9xZ" firstAttribute="centerX" secondItem="IJN-AZ-Pmo" secondAttribute="centerX" id="BCf-8y-ESZ"/>
                             <constraint firstItem="gC4-ky-odP" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YfU-qB-9xZ" secondAttribute="bottom" constant="32" id="DfI-6a-1RT"/>
                             <constraint firstItem="YfU-qB-9xZ" firstAttribute="leading" secondItem="IJN-AZ-Pmo" secondAttribute="leading" priority="999" constant="54" id="EcH-v7-0EB"/>
                             <constraint firstItem="YfU-qB-9xZ" firstAttribute="centerY" secondItem="IJN-AZ-Pmo" secondAttribute="centerY" id="L2r-cC-dDv"/>
-                            <constraint firstItem="LY7-Xn-kk2" firstAttribute="trailing" secondItem="gC4-ky-odP" secondAttribute="trailing" id="a0W-31-jQl"/>
+                            <constraint firstItem="LY7-Xn-kk2" firstAttribute="trailing" secondItem="IJN-AZ-Pmo" secondAttribute="trailing" id="a0W-31-jQl"/>
                             <constraint firstItem="YfU-qB-9xZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gC4-ky-odP" secondAttribute="top" constant="32" id="h7q-d6-1KW"/>
                             <constraint firstAttribute="bottom" secondItem="LY7-Xn-kk2" secondAttribute="bottom" id="n89-Pl-Ulj"/>
                             <constraint firstItem="LY7-Xn-kk2" firstAttribute="top" secondItem="IJN-AZ-Pmo" secondAttribute="top" id="t9t-0g-6gN"/>
