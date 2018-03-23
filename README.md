@@ -4,7 +4,7 @@
 
 #### Location
 ```swift
-PleaseAllow.location.always { result, eror in
+PleaseAllow.location.always { result, error in
     switch result {
         case .allowed     : print("Authorized")
         case .softDenial  : print("Denied Soft")
@@ -17,7 +17,7 @@ PleaseAllow.location.always { result, eror in
 
 #### Camera
 ```swift
-PleaseAllow.camera { whatBabySaid, eror in
+PleaseAllow.camera { whatBabySaid, error in
     DispatchQueue.main.async {
         switch whatBabySaid {
             case .allowed     : print("Authorized")
@@ -46,7 +46,7 @@ PleaseAllow.Managers.contacts.softAskView = {
     return view
 }()
 
-PleaseAllow.contacts { result, eror in
+PleaseAllow.contacts { result, error in
     switch result {
         case .allowed     : print("Authorized")
         case .softDenial  : print("Denied Soft")
@@ -72,8 +72,8 @@ class PermissionTracker: PleaseAllowTracker {
 ```
 
 #### Provide an instance of the tracker to the permission request
-```
-PleaseAllow.photoLibrary(tracker: PermissionTracker()) { result, eror in
+```swift
+PleaseAllow.photoLibrary(tracker: PermissionTracker()) { result, error in
     switch result {
         case .allowed     : print("Authorized")
         case .softDenial  : print("Denied Soft")
