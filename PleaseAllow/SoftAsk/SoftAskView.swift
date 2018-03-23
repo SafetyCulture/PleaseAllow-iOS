@@ -8,13 +8,26 @@
 
 open class DeniedAlert: SoftAskView { }
 
+public enum SoftAskDisplay {
+    case modal
+    case fullScreen
+}
+
 
 open class SoftAskView {
     private var window: UIWindow?
     private var type: PermissionManagerType?
     private var manager: PermissionManager?
     
-    public init() {
+    
+    internal var softAskViewController: SoftAskViewController!
+    public init(_ display: SoftAskDisplay) {
+        switch display {
+        case .fullScreen:
+            softAskViewController = FullScreenSoftAskViewController.loadFromStoryboard()
+        case .modal:
+            softAskViewController = SoftAskViewController.loadFromStoryboard()
+        }
         softAskViewController.loadView()
     }
     
@@ -196,10 +209,6 @@ open class SoftAskView {
             softAskViewController.denyButton.titleLabel?.font = newValue
         }
     }
-    
-    private lazy var softAskViewController: SoftAskViewController = {
-        return .loadFromStoryboard()
-    }()
     
     private lazy var alertViewController: UIViewController = {
         return UIViewController()

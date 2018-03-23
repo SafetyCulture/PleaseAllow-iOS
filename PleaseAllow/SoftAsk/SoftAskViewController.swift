@@ -8,12 +8,22 @@
 
 import UIKit
 
-internal class SoftAskViewController: UIViewController {
+internal protocol StoryboardLoading: class {
+    static var identifier: String { get }
+}
+
+extension StoryboardLoading {
+    static func loadFromStoryboard() -> Self {
+        let storyboard = UIStoryboard(name: "SoftAsk", bundle: Bundle(for: Self.self))
+        let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
+        return viewController as! Self
+    }
+}
+
+internal class SoftAskViewController: UIViewController, StoryboardLoading {
     
-    static func loadFromStoryboard() -> SoftAskViewController {
-        let storyboard = UIStoryboard(name: "SoftAsk", bundle: Bundle(for: SoftAskViewController.self))
-        let viewController = storyboard.instantiateViewController(withIdentifier: "SoftAskViewController")
-        return viewController as! SoftAskViewController
+    class var identifier: String {
+        return "SoftAskViewController"
     }
     
     @IBOutlet var container: UIView! {
@@ -76,5 +86,11 @@ internal class SoftAskViewController: UIViewController {
     
     func setup() {
         layout()
+    }
+}
+
+internal class FullScreenSoftAskViewController: SoftAskViewController {
+    override class var identifier: String {
+        return "FullScreenSoftAskViewController"
     }
 }

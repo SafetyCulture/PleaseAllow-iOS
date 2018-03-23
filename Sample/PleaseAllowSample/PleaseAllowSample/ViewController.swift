@@ -55,8 +55,12 @@ class ViewController: UIViewController {
         PleaseAllow.push { result, error in
             guard !UIApplication.shared.isRegisteredForRemoteNotifications else { return }
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
-            UIApplication.shared.registerForRemoteNotifications()
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in
+                DispatchQueue.main.sync {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            })
+            
         }
     }
     
@@ -153,8 +157,9 @@ enum PermissionType {
     }
     
     var softAskView: SoftAskView {
-        let view = SoftAskView()
-        view.cornerRadius = 20
+        let view = SoftAskView(.fullScreen)
+        view.allowButtonBackgroundColor = .blue
+        view.allowButtonTitleColor = .white
         view.allowButtonTitle = allowTitle
         view.denyButtonTitle = denyTitle
         view.title = title
@@ -163,8 +168,7 @@ enum PermissionType {
     }
     
     var deniedView: DeniedAlert {
-        let view = DeniedAlert()
-        view.cornerRadius = 20
+        let view = DeniedAlert(.modal)
         view.allowButtonTitle = settings
         view.denyButtonTitle = cancel
         view.title = deniedTitle
