@@ -57,6 +57,9 @@ PleaseAllow.contacts { result, error in
 }
 ```
 
+![alt text](/Screenshots/Modal.png "")
+![alt text](/Screenshots/FullScreen.png "")
+
 ## Tracking
 
 Every action in the framework can be tracked by conforming to protocol `PleaseAllowTracker`. See example below.

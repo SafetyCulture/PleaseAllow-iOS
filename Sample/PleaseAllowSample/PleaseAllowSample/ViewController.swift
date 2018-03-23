@@ -107,7 +107,7 @@ class ViewController: UIViewController {
         case .locationAlways:
             return "Allow access to your Lcoation in order to add current location to your work."
         case .contacts:
-            return "Allow access to your Contacts in order to collaborate with others on your work."
+            return "Please allow access to your contacts to invite people."
         case .push:
             return "Allow us to send you Push Notifications to keep you updated."
         }
@@ -149,7 +149,7 @@ class ViewController: UIViewController {
     
     var softAskView: SoftAskView {
         let view = SoftAskView(.fullScreen)
-        view.allowButtonBackgroundColor = .blue
+        view.allowButtonBackgroundColor = view.denyButtonTitleColor
         view.allowButtonTitleColor = .white
         view.allowButtonTitle = allowTitle
         view.denyButtonTitle = denyTitle
