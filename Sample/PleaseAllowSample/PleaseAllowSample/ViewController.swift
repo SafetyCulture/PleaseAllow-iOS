@@ -24,21 +24,25 @@ class ViewController: UIViewController {
             print("\(result)")
         }
     }
+    
     @IBAction func allowContacts(_ sender: Any) {
         PermissionType.contacts.request { result, error in
             print("\(result)")
         }
     }
+    
     @IBAction func allowLocationWhenInUse(_ sender: Any) {
         PermissionType.locationWhenInUse.request { result, error in
             print("\(result)")
         }
     }
+    
     @IBAction func allowLocationAlways(_ sender: Any) {
         PermissionType.locationAlways.request { result, error in
             print("\(result)")
         }
     }
+    
     @IBAction func allowPushNotification(_ sender: Any) {
         PermissionType.push.request { result, error in
             guard !UIApplication.shared.isRegisteredForRemoteNotifications else { return }

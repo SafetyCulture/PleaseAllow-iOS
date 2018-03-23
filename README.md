@@ -30,11 +30,15 @@ PleaseAllow.camera { whatBabySaid, eror in
 }
 ```
 
-#### Asking Politely
+## Presenting a Soft Ask
+
+Display a Soft Ask before presenitng the default alert for a permission.
+Soft Ask can be presented either as a Modal or Full Screen. See example below.
+
+
 ```swift
 PleaseAllow.Managers.contacts.softAskView = {
-    let view = SoftAskView()
-    view.cornerRadius = 20
+    let view = SoftAskView(.fullScreen)
     view.allowButtonTitle = "Allow"
     view.denyButtonTitle = "Don't Allow"
     view.title = "Allow Contacts"
@@ -43,6 +47,33 @@ PleaseAllow.Managers.contacts.softAskView = {
 }()
 
 PleaseAllow.contacts { result, eror in
+    switch result {
+        case .allowed     : print("Authorized")
+        case .softDenial  : print("Denied Soft")
+        case .hardDenial  : print("Denied Hard")
+        case .restricted  : print("Restricted")
+        case .unavailable : print("Unavailable")
+    }
+}
+```
+
+## Tracking
+
+Every action in the framework can be tracked by conforming to protocol `PleaseAllowTracker`. See example below.
+
+#### Create a tracking class
+```swift
+class PermissionTracker: PleaseAllowTracker {
+    func track(_ action: PleaseAllow.Action) {
+        print(action.stringValue)
+        // Insert tracking code here
+    }
+}
+```
+
+#### Provide an instance of the tracker to the permission request
+```
+PleaseAllow.photoLibrary(tracker: PermissionTracker()) { result, eror in
     switch result {
         case .allowed     : print("Authorized")
         case .softDenial  : print("Denied Soft")
