@@ -14,53 +14,34 @@ class ViewController: UIViewController {
     
     
     @IBAction func allowCamera(_ sender: Any) {
-        PleaseAllow.Managers.camera.softAskView = PermissionType.camera.softAskView
-        PleaseAllow.Managers.camera.deniedAlert = PermissionType.camera.deniedView
-        PleaseAllow.camera { result, error in
-            print(result)
+        PermissionType.camera.request { result, error in
+            print("\(result)")
         }
     }
     
     @IBAction func allowPhotoLibrary(_ sender: Any) {
-        PleaseAllow.Managers.photoLibrary.softAskView = PermissionType.photoLibrary.softAskView
-        PleaseAllow.Managers.photoLibrary.deniedAlert = PermissionType.photoLibrary.deniedView
-        PleaseAllow.photoLibrary { result, error in
-            print(result)
+        PermissionType.photoLibrary.request { result, error in
+            print("\(result)")
         }
     }
     @IBAction func allowContacts(_ sender: Any) {
-        PleaseAllow.Managers.contacts.softAskView = PermissionType.contacts.softAskView
-        PleaseAllow.Managers.contacts.deniedAlert = PermissionType.contacts.deniedView
-        PleaseAllow.contacts { result, error in
-            print(result)
+        PermissionType.contacts.request { result, error in
+            print("\(result)")
         }
     }
     @IBAction func allowLocationWhenInUse(_ sender: Any) {
-        PleaseAllow.Managers.location.whenInUse.softAskView = PermissionType.locationWhenInUse.softAskView
-        PleaseAllow.Managers.location.whenInUse.deniedAlert = PermissionType.locationWhenInUse.deniedView
-        PleaseAllow.location.whenInUse { result, error in
-            print(result)
+        PermissionType.locationWhenInUse.request { result, error in
+            print("\(result)")
         }
     }
     @IBAction func allowLocationAlways(_ sender: Any) {
-        PleaseAllow.Managers.location.always.softAskView = PermissionType.locationAlways.softAskView
-        PleaseAllow.Managers.location.always.deniedAlert = PermissionType.locationAlways.deniedView
-        PleaseAllow.location.always { result, error in
-            print(result)
+        PermissionType.locationAlways.request { result, error in
+            print("\(result)")
         }
     }
     @IBAction func allowPushNotification(_ sender: Any) {
-        PleaseAllow.Managers.push.softAskView = PermissionType.push.softAskView
-        PleaseAllow.Managers.push.deniedAlert = PermissionType.push.deniedView
-        PleaseAllow.push { result, error in
-            guard !UIApplication.shared.isRegisteredForRemoteNotifications else { return }
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in
-                DispatchQueue.main.sync {
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
-            })
-            
+        PermissionType.push.request { result, error in
+            print("\(result)")
         }
     }
     
@@ -69,8 +50,8 @@ class ViewController: UIViewController {
     }
 }
 
-enum PermissionType {
-    case camera, photoLibrary, contacts, locationWhenInUse, locationAlways, push
+@objc enum PermissionType: Int {
+    case camera = 0, photoLibrary, contacts, locationWhenInUse, locationAlways, push
     
     var allowTitle: String {
         return "Allow"
@@ -174,5 +155,55 @@ enum PermissionType {
         view.title = deniedTitle
         view.description = deniedDescription
         return view
+    }
+    
+    func request(handler: @escaping PleaseAllowReply) {
+        switch self {
+        case .camera:
+            PleaseAllow.Managers.camera.softAskView = PermissionType.camera.softAskView
+            PleaseAllow.Managers.camera.deniedAlert = PermissionType.camera.deniedView
+            PleaseAllow.camera(completion: handler)
+        
+        case .photoLibrary:
+            PleaseAllow.Managers.photoLibrary.softAskView = PermissionType.photoLibrary.softAskView
+            PleaseAllow.Managers.photoLibrary.deniedAlert = PermissionType.photoLibrary.deniedView
+            PleaseAllow.photoLibrary(completion: handler)
+        
+        case .locationWhenInUse:
+            PleaseAllow.Managers.location.whenInUse.softAskView = PermissionType.locationWhenInUse.softAskView
+            PleaseAllow.Managers.location.whenInUse.deniedAlert = PermissionType.locationWhenInUse.deniedView
+            PleaseAllow.location.whenInUse(completion: handler)
+            
+        case .locationAlways:
+            PleaseAllow.Managers.location.always.softAskView = PermissionType.locationAlways.softAskView
+            PleaseAllow.Managers.location.always.deniedAlert = PermissionType.locationAlways.deniedView
+            PleaseAllow.location.always(completion: handler)
+            
+        case .contacts:
+            PleaseAllow.Managers.contacts.softAskView = PermissionType.contacts.softAskView
+            PleaseAllow.Managers.contacts.deniedAlert = PermissionType.contacts.deniedView
+            PleaseAllow.contacts(completion: handler)
+            
+        case .push:
+            PleaseAllow.Managers.push.softAskView = PermissionType.push.softAskView
+            PleaseAllow.Managers.push.deniedAlert = PermissionType.push.deniedView
+            PleaseAllow.push { result, error in
+                guard !UIApplication.shared.isRegisteredForRemoteNotifications else { return }
+                let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+                UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in
+                    DispatchQueue.main.sync {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
+                }
+            }
+        }
+    }
+}
+
+@objc
+class PermissionRequester: NSObject {
+    @objc
+    static func request(_ permission: PermissionType, handler: @escaping PleaseAllowReply) {
+        permission.request(handler: handler)
     }
 }
