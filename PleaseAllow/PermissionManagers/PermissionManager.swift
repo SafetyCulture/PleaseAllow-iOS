@@ -78,7 +78,7 @@ extension PermissionManager {
      
      - parameters:
      - handler:
-     The completion to be called when the Baby Please is finished with the request
+     The completion to be called when the request manager is finished with the request
      */
     
     internal mutating func request(handler: PleaseAllowReply? = nil) {
