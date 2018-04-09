@@ -8,6 +8,13 @@
 
 open class DeniedAlert: SoftAskView { }
 
+/**
+ 
+    View generator for a soft ask.
+ 
+ */
+
+
 open class SoftAskView {
     private var window: UIWindow?
     private var manager: PermissionManager?
