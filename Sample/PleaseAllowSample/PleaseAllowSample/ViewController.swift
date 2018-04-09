@@ -172,8 +172,8 @@ class ViewController: UIViewController {
         
         switch self {
         case .camera:
-            PleaseAllow.Managers.camera.softAskView = PermissionType.camera.softAskView
-            PleaseAllow.Managers.camera.deniedAlert = PermissionType.camera.deniedView
+            PleaseAllow.Managers.camera.softAskView = softAskView
+            PleaseAllow.Managers.camera.deniedAlert = deniedView
             PleaseAllow.camera(tracker: tracker, completion: handler)
         
         case .photoLibrary:

@@ -25,7 +25,7 @@ import Foundation
  }
  }
  ```
- 
+  
  */
 open class PleaseAllow: NSObject {
     

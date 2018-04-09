@@ -13,10 +13,8 @@ public enum SoftAskDisplay {
     case fullScreen
 }
 
-
 open class SoftAskView {
     private var window: UIWindow?
-    private var type: PermissionManagerType?
     private var manager: PermissionManager?
     
     
@@ -28,6 +26,8 @@ open class SoftAskView {
         case .modal:
             softAskViewController = SoftAskViewController.loadFromStoryboard()
         }
+        
+        softAskViewController.delegate = self
         softAskViewController.loadView()
     }
     
@@ -214,32 +214,8 @@ open class SoftAskView {
         return UIViewController()
     }()
     
-    internal func presentSoftAsk(for manager: PermissionManager) {
-        type = manager.type
-        guard let requestManager = manager as? RequestManager else { return }
-        
+    internal func present(for manager: PermissionManager) {
         self.manager = manager
-        
-        softAskViewController.allowButton.removeTarget(nil, action: nil, for: .allEvents)
-        softAskViewController.denyButton.removeTarget(nil, action: nil, for: .allEvents)
-        
-        softAskViewController.allowButton.addTarget(requestManager, action: #selector(requestManager.softPermissionGranted), for: .touchUpInside)
-        softAskViewController.denyButton.addTarget(requestManager, action: #selector(requestManager.softPermissionDenied), for: .touchUpInside)
-        show()
-    }
-    
-    internal func presentDeniedAlert(for manager: PermissionManager) {
-        guard self.window == nil else {
-            return
-        }
-        
-        self.manager = manager
-        
-        softAskViewController.allowButton.removeTarget(nil, action: nil, for: .allEvents)
-        softAskViewController.denyButton.removeTarget(nil, action: nil, for: .allEvents)
-        
-        softAskViewController.denyButton.addTarget(self, action: #selector(cancelRedirect), for: .touchUpInside)
-        softAskViewController.allowButton.addTarget(self, action: #selector(redirectToSettings), for: .touchUpInside)
         show()
     }
     
@@ -281,7 +257,7 @@ open class SoftAskView {
     @objc private func redirectToSettings() {
         hide {
             self.manager?.redirectToSettings()
-            if let type = self.type {
+            if let type = self.manager?.type {
                 self.manager?.tracker?.track(.redirectedToSettings(type))
             }
         }
@@ -289,9 +265,27 @@ open class SoftAskView {
     
     @objc private func cancelRedirect() {
         hide {
-            if let type = self.type {
+            if let type = self.manager?.type {
                 self.manager?.tracker?.track(.deniedAlertDismissed(type))
             }
+        }
+    }
+}
+
+extension SoftAskView {
+    enum Action {
+        case allow
+        case deny
+    }
+}
+
+extension SoftAskView: SoftAskViewControllerDelegate {
+    func softAskViewController(_ viewController: SoftAskViewController, didSelectAction action: SoftAskView.Action) {
+        if self is DeniedAlert {
+            action == .allow ? redirectToSettings() : cancelRedirect()
+        } else {
+            guard let requestManager = self.manager as? RequestManager else { return }
+            action == .allow ? requestManager.softPermissionGranted() : requestManager.softPermissionDenied()
         }
     }
 }

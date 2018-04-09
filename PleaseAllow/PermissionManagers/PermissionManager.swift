@@ -53,7 +53,7 @@ extension PermissionManager {
         case .denied:
             if let deniedAlert = deniedAlert {
                 tracker?.track(.deniedAlertPresented(type))
-                deniedAlert.presentDeniedAlert(for: self)
+                deniedAlert.present(for: self)
             }
             
             handler(.hardDenial, nil)
@@ -88,7 +88,7 @@ extension PermissionManager {
         guard isAvailable && canRequest else { return }
         
         guard softAskView == nil else {
-            softAskView?.presentSoftAsk(for: self)
+            softAskView?.present(for: self)
             tracker?.track(.softViewPresented(type))
             return
         }

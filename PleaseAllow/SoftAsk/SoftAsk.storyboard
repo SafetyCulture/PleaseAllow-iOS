@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -72,12 +72,18 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="denyTapped:" destination="Uuk-2d-Pkz" eventType="touchUpInside" id="B29-SC-WMA"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8G-IK-aEe">
                                                 <rect key="frame" x="134.33333333333337" y="1" width="132.66666666666663" height="43"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="allowTapped:" destination="Uuk-2d-Pkz" eventType="touchUpInside" id="xY9-mF-PNj"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -121,9 +127,9 @@
                                         <exclude reference="eMa-vC-ymy"/>
                                         <exclude reference="Bf0-le-wVq"/>
                                         <exclude reference="Mzi-xP-Ipa"/>
-                                        <exclude reference="hZX-nz-hHB"/>
                                         <exclude reference="Fms-SY-WNt"/>
                                         <exclude reference="iXc-dI-0cp"/>
+                                        <exclude reference="hZX-nz-hHB"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=compact">
@@ -133,12 +139,12 @@
                                         <include reference="Mzi-xP-Ipa"/>
                                         <exclude reference="qRy-2B-R9n"/>
                                         <exclude reference="vXg-bs-B6T"/>
-                                        <exclude reference="9t8-Mc-MwA"/>
-                                        <include reference="hZX-nz-hHB"/>
                                         <include reference="Fms-SY-WNt"/>
                                         <exclude reference="YP2-Du-kIS"/>
                                         <exclude reference="bI3-ff-7ZY"/>
                                         <include reference="iXc-dI-0cp"/>
+                                        <exclude reference="9t8-Mc-MwA"/>
+                                        <include reference="hZX-nz-hHB"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -228,6 +234,9 @@
                                                 <state key="normal" title="Button">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="allowTapped:" destination="gya-PX-o5n" eventType="touchUpInside" id="0Pd-eT-VcG"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnE-id-2c9">
                                                 <rect key="frame" x="24" y="66" width="327" height="50"/>
@@ -237,6 +246,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="denyTapped:" destination="gya-PX-o5n" eventType="touchUpInside" id="bFZ-J0-bba"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
