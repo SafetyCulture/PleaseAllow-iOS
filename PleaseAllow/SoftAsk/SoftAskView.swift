@@ -42,14 +42,14 @@ open class SoftAskView {
         self.window = window
         window.makeKeyAndVisible()
         
-        softAskViewController.container.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        softAskViewController.view.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         
         UIView.animate(withDuration: 0.24, delay: 0, options: .curveEaseOut, animations: {
             self.softAskViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         }, completion: nil)
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.softAskViewController.container.transform = .identity
+            self.softAskViewController.view.transform = .identity
         }, completion: nil)
     }
     

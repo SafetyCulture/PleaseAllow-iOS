@@ -32,6 +32,11 @@ internal class SoftAskViewController: UIViewController, StoryboardLoading {
     
     weak var delegate: SoftAskViewControllerDelegate?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        layout()
+    }
+    
     @IBOutlet var container: UIView! {
         didSet {
             container.backgroundColor = .white
