@@ -20,10 +20,21 @@ extension StoryboardLoading {
     }
 }
 
+internal protocol SoftAskViewControllerDelegate: class {
+    func softAskViewController(_ viewController: SoftAskViewController, didSelectAction action: SoftAskView.Action)
+}
+
 internal class SoftAskViewController: UIViewController, StoryboardLoading {
     
     class var identifier: String {
         return "SoftAskViewController"
+    }
+    
+    weak var delegate: SoftAskViewControllerDelegate?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        layout()
     }
     
     @IBOutlet var container: UIView! {
@@ -87,10 +98,24 @@ internal class SoftAskViewController: UIViewController, StoryboardLoading {
     func setup() {
         layout()
     }
+    
+    @IBAction func denyTapped(_ sender: UIButton) {
+        delegate?.softAskViewController(self, didSelectAction: .deny)
+    }
+    
+    @IBAction func allowTapped(_ sender: UIButton) {
+        delegate?.softAskViewController(self, didSelectAction: .allow)
+    }
 }
 
 internal class FullScreenSoftAskViewController: SoftAskViewController {
     override class var identifier: String {
         return "FullScreenSoftAskViewController"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        allowButton.layer.cornerRadius = 5
+        allowButton.layer.masksToBounds = true
     }
 }

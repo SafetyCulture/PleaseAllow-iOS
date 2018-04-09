@@ -13,7 +13,7 @@ import Foundation
  
  - parameters:
  - reply:
- type of `WhatBabySaid`.
+ type of `PleaseAllowReply`.
  - error:
  if an error occurs during the request.
  

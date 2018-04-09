@@ -53,7 +53,7 @@ extension PermissionManager {
         case .denied:
             if let deniedAlert = deniedAlert {
                 tracker?.track(.deniedAlertPresented(type))
-                deniedAlert.presentDeniedAlert(for: self)
+                deniedAlert.present(for: self)
             }
             
             handler(.hardDenial, nil)
@@ -78,7 +78,7 @@ extension PermissionManager {
      
      - parameters:
      - handler:
-     The completion to be called when the Baby Please is finished with the request
+     The completion to be called when the request manager is finished with the request
      */
     
     internal mutating func request(handler: PleaseAllowReply? = nil) {
@@ -88,7 +88,7 @@ extension PermissionManager {
         guard isAvailable && canRequest else { return }
         
         guard softAskView == nil else {
-            softAskView?.presentSoftAsk(for: self)
+            softAskView?.present(for: self)
             tracker?.track(.softViewPresented(type))
             return
         }

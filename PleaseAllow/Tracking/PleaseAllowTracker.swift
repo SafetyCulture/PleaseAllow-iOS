@@ -13,9 +13,9 @@ public protocol PleaseAllowTracker: class {
 extension PleaseAllow {
     
     /**
-     ## BabyPlease.Action ##
+     ## PleaseAllow.Action ##
      
-     Can be used to track every move Baby makes.
+     Can be used to track every move a manager makes.
      
      */
     public enum Action {
@@ -88,7 +88,7 @@ extension PleaseAllow {
             }
         }
         
-        ///Returns a string representation of each Action. This allows the *BabyPleaseAction* to be observerd in Objective-C.
+        ///Returns a string representation of each Action. This allows the *PleaeAllow.Action* to be observerd in Objective-C.
         public var stringValue: String {
             switch self {
             case .beganRequest(_):

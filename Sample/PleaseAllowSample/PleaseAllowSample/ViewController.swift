@@ -172,33 +172,33 @@ class ViewController: UIViewController {
         
         switch self {
         case .camera:
-            PleaseAllow.Managers.camera.softAskView = PermissionType.camera.softAskView
-            PleaseAllow.Managers.camera.deniedAlert = PermissionType.camera.deniedView
+            PleaseAllow.Managers.camera.softAskView = softAskView
+            PleaseAllow.Managers.camera.deniedAlert = deniedView
             PleaseAllow.camera(tracker: tracker, completion: handler)
         
         case .photoLibrary:
-            PleaseAllow.Managers.photoLibrary.softAskView = PermissionType.photoLibrary.softAskView
-            PleaseAllow.Managers.photoLibrary.deniedAlert = PermissionType.photoLibrary.deniedView
+            PleaseAllow.Managers.photoLibrary.softAskView = softAskView
+            PleaseAllow.Managers.photoLibrary.deniedAlert = deniedView
             PleaseAllow.photoLibrary(tracker: tracker, completion: handler)
         
         case .locationWhenInUse:
-            PleaseAllow.Managers.location.whenInUse.softAskView = PermissionType.locationWhenInUse.softAskView
-            PleaseAllow.Managers.location.whenInUse.deniedAlert = PermissionType.locationWhenInUse.deniedView
+            PleaseAllow.Managers.location.whenInUse.softAskView = softAskView
+            PleaseAllow.Managers.location.whenInUse.deniedAlert = deniedView
             PleaseAllow.location.whenInUse(tracker: tracker, completion: handler)
             
         case .locationAlways:
-            PleaseAllow.Managers.location.always.softAskView = PermissionType.locationAlways.softAskView
-            PleaseAllow.Managers.location.always.deniedAlert = PermissionType.locationAlways.deniedView
+            PleaseAllow.Managers.location.always.softAskView = softAskView
+            PleaseAllow.Managers.location.always.deniedAlert = deniedView
             PleaseAllow.location.always(tracker: tracker, completion: handler)
             
         case .contacts:
-            PleaseAllow.Managers.contacts.softAskView = PermissionType.contacts.softAskView
-            PleaseAllow.Managers.contacts.deniedAlert = PermissionType.contacts.deniedView
+            PleaseAllow.Managers.contacts.softAskView = softAskView
+            PleaseAllow.Managers.contacts.deniedAlert = deniedView
             PleaseAllow.contacts(tracker: tracker, completion: handler)
             
         case .push:
-            PleaseAllow.Managers.push.softAskView = PermissionType.push.softAskView
-            PleaseAllow.Managers.push.deniedAlert = PermissionType.push.deniedView
+            PleaseAllow.Managers.push.softAskView = softAskView
+            PleaseAllow.Managers.push.deniedAlert = deniedView
             PleaseAllow.push(tracker: tracker, completion: handler)
         }
     }

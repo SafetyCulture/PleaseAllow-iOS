@@ -15,17 +15,17 @@ import Foundation
  ### Usage: ###
  
  ```
- BabyPlease.allow.location.always { whatBabySaid, eror in
- switch whatBabySaid {
- case .allowed     : print("Authorized")
- case .softDenial  : print("Denied Soft")
- case .hardDenial  : print("Denied Hard")
- case .restricted  : print("Restricted")
- case .unavailable : print("Unavailable")
- }
+ PleaseAllow.location.always { result, eror in
+     switch result {
+     case .allowed     : print("Authorized")
+     case .softDenial  : print("Denied Soft")
+     case .hardDenial  : print("Denied Hard")
+     case .restricted  : print("Restricted")
+     case .unavailable : print("Unavailable")
+     }
  }
  ```
- 
+  
  */
 open class PleaseAllow: NSObject {
     

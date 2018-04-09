@@ -17,15 +17,13 @@ PleaseAllow.location.always { result, error in
 
 #### Camera
 ```swift
-PleaseAllow.camera { whatBabySaid, error in
-    DispatchQueue.main.async {
-        switch whatBabySaid {
-            case .allowed     : print("Authorized")
-            case .softDenial  : print("Denied Soft")
-            case .hardDenial  : print("Denied Hard")
-            case .restricted  : print("Restricted")
-            case .unavailable : print("Unavailable")
-        }
+PleaseAllow.camera { result, error in
+    switch result {
+        case .allowed     : print("Authorized")
+        case .softDenial  : print("Denied Soft")
+        case .hardDenial  : print("Denied Hard")
+        case .restricted  : print("Restricted")
+        case .unavailable : print("Unavailable")
     }
 }
 ```
