@@ -22,6 +22,7 @@
 		CE00A7F320632A0E001686CD /* SoftAskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7F220632A0E001686CD /* SoftAskView.swift */; };
 		CE00A7F620632AF6001686CD /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE00A7F520632AF5001686CD /* Contacts.framework */; };
 		CE00A7F820632B32001686CD /* CameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A7F720632B32001686CD /* CameraTests.swift */; };
+		CE1527D0207AFDEC0021A37E /* SoftAskView+Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1527CF207AFDEC0021A37E /* SoftAskView+Public.swift */; };
 		CE905C5D20635A7800F4C32F /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C5C20635A7800F4C32F /* Contacts.swift */; };
 		CE905C5F20635AAC00F4C32F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C5E20635AAC00F4C32F /* Location.swift */; };
 		CE905C6120635B5100F4C32F /* PushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C6020635B5100F4C32F /* PushNotifications.swift */; };
@@ -60,6 +61,7 @@
 		CE00A7F220632A0E001686CD /* SoftAskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftAskView.swift; sourceTree = "<group>"; };
 		CE00A7F520632AF5001686CD /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		CE00A7F720632B32001686CD /* CameraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTests.swift; sourceTree = "<group>"; };
+		CE1527CF207AFDEC0021A37E /* SoftAskView+Public.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoftAskView+Public.swift"; sourceTree = "<group>"; };
 		CE905C5C20635A7800F4C32F /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		CE905C5E20635AAC00F4C32F /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		CE905C6020635B5100F4C32F /* PushNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotifications.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				CE00A7EE2063252A001686CD /* SoftAskViewController.swift */,
 				CE00A7F220632A0E001686CD /* SoftAskView.swift */,
+				CE1527CF207AFDEC0021A37E /* SoftAskView+Public.swift */,
 				CE00A7F0206325BE001686CD /* SoftAsk.storyboard */,
 			);
 			path = SoftAsk;
@@ -298,6 +301,7 @@
 				CE905C5F20635AAC00F4C32F /* Location.swift in Sources */,
 				CEF643F32063371D000CAB6E /* PhotoLibrary.swift in Sources */,
 				CE00A7E1206323D9001686CD /* PermissionStatus.swift in Sources */,
+				CE1527D0207AFDEC0021A37E /* SoftAskView+Public.swift in Sources */,
 				CE905C5D20635A7800F4C32F /* Contacts.swift in Sources */,
 				CE00A7EF2063252A001686CD /* SoftAskViewController.swift in Sources */,
 				CE00A7EA2063246E001686CD /* PleaseAllowTracker.swift in Sources */,

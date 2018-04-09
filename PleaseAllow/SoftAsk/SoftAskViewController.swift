@@ -108,9 +108,8 @@ internal class FullScreenSoftAskViewController: SoftAskViewController {
         return "FullScreenSoftAskViewController"
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("Full screen did load")
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         allowButton.layer.cornerRadius = 5
         allowButton.layer.masksToBounds = true
     }
