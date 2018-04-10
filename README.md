@@ -57,16 +57,10 @@ Please.allow.contacts(softAskView: softAskView) { result, error in
 
 ![alt text](/Screenshots/SoftAskView.png "")
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 
 ## Presenting a Denied Alert
 
 Display a Denied Alert if the permission has previously been denied. Denied alert can redirect user to App Settings.
-<<<<<<< Updated upstream
 `DeniedAlert` is a subclass of `SoftAskView` and can be formatted in the same way. See example below.
 
 
@@ -98,13 +92,9 @@ Please.allow.contacts(softAskView: softAskView, deniedAlert: deniedAlert) { resu
 }
 ```
 
-<<<<<<< Updated upstream
-=======
 ![alt text](/Screenshots/DeniedAlert.png "")
 
 
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 ## Tracking
 
 Every action in the framework can be tracked by conforming to protocol `PleaseAllowTracker`. See example below.
