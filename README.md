@@ -35,7 +35,7 @@ Soft Ask can be presented either as a Modal or Full Screen. See example below.
 
 
 ```swift
-let softAskView = {
+let softAskView: SoftAskView = {
     let view = SoftAskView(.fullScreen)
     view.allowButtonTitle = "Allow"
     view.denyButtonTitle = "Don't Allow"
@@ -62,11 +62,11 @@ Please.allow.contacts(softAskView: softAskView) { result, error in
 ## Presenting a Denied Alert
 
 Display a Denied Alert if the permission has previously been denied. Denied alert can redirect user to App Settings.
-DeniedAlert is a subclass if SoftAskView and can be formatted in the same way.
+`DeniedAlert` is a subclass of `SoftAskView` and can be formatted in the same way. See example below.
 
 
 ```swift
-let deniedAlert = {
+let deniedAlert: DeniedAlert = {
     let view = DeniedAlert(.modal)
     view.allowButtonTitle = "Settings"
     view.denyButtonTitle = "Cancel"
