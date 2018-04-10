@@ -141,7 +141,7 @@ class ViewController: UIViewController {
         case .locationAlways:
             return "Open settings and allow access to your Lcoation in order to add current location to your work."
         case .contacts:
-            return "Open settings and allow access to your Contacts in order to collaborate with others on your work."
+            return "Contact Permission has been denied. Please open Settings and allow access to your contacts to invite people."
         case .push:
             return "Open settings and allow us to send you Push Notifications to keep you updated."
         }
