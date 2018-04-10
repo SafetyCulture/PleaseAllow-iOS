@@ -168,26 +168,26 @@ class ViewController: UIViewController {
     }
     
     func request(handler: @escaping Please.Reply) {
-//        let tracker = PermissionTracker()
+        let tracker = PermissionTracker()
         
         switch self {
         case .camera:
-            Please.allow.camera(softAskView: softAskView, deniedView: deniedView, completion: handler)
+            Please.allow.camera(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
         
         case .photoLibrary:
-            Please.allow.photoLibrary(softAskView: softAskView, deniedView: deniedView, completion: handler)
+            Please.allow.photoLibrary(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
         
         case .locationWhenInUse:
-            Please.allow.location.whenInUse(softAskView: softAskView, deniedView: deniedView, completion: handler)
+            Please.allow.location.whenInUse(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
             
         case .locationAlways:
-            Please.allow.location.always(softAskView: softAskView, deniedView: deniedView, completion: handler)
+            Please.allow.location.always(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
             
         case .contacts:
-            Please.allow.contacts(softAskView: softAskView, deniedView: deniedView, completion: handler)
+            Please.allow.contacts(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
             
         case .push:
-            Please.allow.push(softAskView: softAskView, deniedView: deniedView, completion: handler)
+            Please.allow.push(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
         }
     }
 }
