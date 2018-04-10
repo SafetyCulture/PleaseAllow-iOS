@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- A *humorous* take for requesting iOS Permissions.
+ An iOS permissions framework with built-in soft ask.
  
  ### Usage: ###
  
@@ -30,22 +30,22 @@ import Foundation
 open class PleaseAllow: NSObject {
     
     public  struct Managers {
-        /// Permission Manager for Camera Permissions
+        /// Permission Manager for Camera
         public static var camera: PermissionManager = Camera()
         
-        /// Permission Manager for Contacts Permissions
+        /// Permission Manager for Contacts
         public static var contacts: PermissionManager = Contacts()
     
-        /// Permission Manager for Photo Library Permissions
+        /// Permission Manager for Photo Library
         public static var photoLibrary: PermissionManager = PhotoLibrary()
     
-        /// Permission Manager for Push Notification Permissions
+        /// Permission Manager for Push Notification
         public static var push: PermissionManager = PushNotifications()
     
-        /// Contains Permission Managers for Location Permissions
+        /// Contains Permission Managers for Location
         public struct location {
     
-            /// Permission Manager for Always Location Permissions
+            /// Permission Manager for Always Location
             public static var always: PermissionManager = {
                 let location = Location()
                 location.locationType = .always
@@ -53,7 +53,7 @@ open class PleaseAllow: NSObject {
                 return location
             }()
     
-            /// Permission Manager for When In Use Location Permissions
+            /// Permission Manager for When In Use Location
             public static var whenInUse: PermissionManager = {
                 let location = Location()
                 location.locationType = .whenInUse

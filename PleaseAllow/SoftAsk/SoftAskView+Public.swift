@@ -50,7 +50,7 @@ extension SoftAskView {
         }
     }
     
-    // Image for Soft Ask View.
+    /// Image for Soft Ask View.
     open var image: UIImage? {
         get {
             return softAskViewController.imageView.image
@@ -60,6 +60,7 @@ extension SoftAskView {
         }
     }
     
+    /// Image tint for Soft Ask Vuew.
     open var imageTint: UIColor! {
         get {
             return softAskViewController.imageView.tintColor
