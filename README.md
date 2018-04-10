@@ -66,13 +66,11 @@ Display a Denied Alert if the permission has previously been denied. Denied aler
 
 ```swift
 let deniedAlert: DeniedAlert = {
-=======
 DeniedAlert is a subclass if SoftAskView and can be formatted in the same way.
 
 
 ```swift
 let deniedAlert = {
->>>>>>> Stashed changes
     let view = DeniedAlert(.modal)
     view.allowButtonTitle = "Settings"
     view.denyButtonTitle = "Cancel"
