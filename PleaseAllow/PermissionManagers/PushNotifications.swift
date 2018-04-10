@@ -23,7 +23,7 @@ internal class PushNotifications: PermissionManager {
     
     //MARK:- Result Handler
     
-    var resultHandler: PleaseAllowReply?
+    var resultHandler: Please.Reply?
     
     //MARK:- Availability
     
