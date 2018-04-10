@@ -7,10 +7,10 @@
 //
 
 public protocol PleaseAllowTracker: class {
-    func track(_ action: PleaseAllow.Action)
+    func track(_ action: Please.Action)
 }
 
-extension PleaseAllow {
+extension Please {
     
     /**
      ## PleaseAllow.Action ##

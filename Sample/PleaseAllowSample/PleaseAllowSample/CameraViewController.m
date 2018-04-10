@@ -17,7 +17,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [PermissionRequester request:PermissionTypeCamera handler:^(PleaseAllowResult result, NSError * error) {
+    [PermissionRequester request:PermissionTypeCamera handler:^(Result result, NSError * error) {
         NSLog(@"%@", error.localizedDescription);
         NSLog(@"%ld", (long)result);
     }];

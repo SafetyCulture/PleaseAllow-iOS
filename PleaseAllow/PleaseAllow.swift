@@ -16,85 +16,88 @@ import Foundation
  
  ```
  PleaseAllow.location.always { result, eror in
-     switch result {
-     case .allowed     : print("Authorized")
-     case .softDenial  : print("Denied Soft")
-     case .hardDenial  : print("Denied Hard")
-     case .restricted  : print("Restricted")
-     case .unavailable : print("Unavailable")
+    switch result {
+    case .allowed:
+        print("Authorized")
+    case .softDenial:
+        print("Denied Soft")
+    case .hardDenial:
+        print("Denied Hard")
+    case .restricted:
+        print("Restricted")
+    case .unavailable:
+        print("Unavailable")
      }
  }
  ```
   
  */
-open class PleaseAllow: NSObject {
+open class Please: NSObject {
+    internal var activeManager: PermissionManager!
     
-    public  struct Managers {
-        /// Permission Manager for Camera
-        public static var camera: PermissionManager = Camera()
-        
-        /// Permission Manager for Contacts
-        public static var contacts: PermissionManager = Contacts()
+    public static let allow = Please()
+    public var location = LocationPlease()
+}
+
+extension Please {
     
-        /// Permission Manager for Photo Library
-        public static var photoLibrary: PermissionManager = PhotoLibrary()
+    /// Requests for Camera Permission
+    public func camera(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping Please.Reply) {
+        activeManager = Camera()
+        request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
+    }
     
-        /// Permission Manager for Push Notification
-        public static var push: PermissionManager = PushNotifications()
-    
-        /// Contains Permission Managers for Location
-        public struct location {
-    
-            /// Permission Manager for Always Location
-            public static var always: PermissionManager = {
+    /// Requests for Photo Library Permission
+    public func photoLibrary(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping Please.Reply) {
+        activeManager = PhotoLibrary()
+        request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
+    }
+
+    /// Requests for Contacts Permission
+    public func contacts(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping Please.Reply) {
+        activeManager = Contacts()
+        request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
+    }
+
+    /// Requests for Push Notification Permissions. Note: Does not present the System Permission alert. Soft Ask will return `.allowed` or `.softDenial`
+    public func push(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping Please.Reply) {
+        activeManager = PushNotifications()
+        request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
+    }
+
+    /// Contains the Always & When In Use Permission Managers for location permissions.
+    public struct LocationPlease {
+
+        /// Requests for When In Use Lcoation Permission
+        public func whenInUse(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping Please.Reply) {
+            Please.allow.activeManager = {
+                let location = Location()
+                location.softAskView = softAskView
+                location.locationType = .whenInUse
+                location.type = .locationWhenInUse
+                return location
+            }()
+            Please.allow.request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
+        }
+
+        /// Requests for Always Location Permission. Note: Will return `.notDetermined` if 'When In Use location' is authorized.
+        public func always(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping Please.Reply) {
+            Please.allow.activeManager = {
                 let location = Location()
                 location.locationType = .always
                 location.type = .locationAlways
                 return location
             }()
-    
-            /// Permission Manager for When In Use Location
-            public static var whenInUse: PermissionManager = {
-                let location = Location()
-                location.locationType = .whenInUse
-                location.type = .locationWhenInUse
-                return location
-            }()
+            Please.allow.request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
         }
     }
 }
 
-extension PleaseAllow {
-        
-    public static func camera(tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
-        PleaseAllow.Managers.camera.tracker = tracker
-        PleaseAllow.Managers.camera.request(handler: completion)
-    }
-    
-    public static func photoLibrary(tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
-        PleaseAllow.Managers.photoLibrary.tracker = tracker
-        PleaseAllow.Managers.photoLibrary.request(handler: completion)
-    }
-
-    public static func contacts(tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
-        PleaseAllow.Managers.contacts.tracker = tracker
-        PleaseAllow.Managers.contacts.request(handler: completion)
-    }
-
-    public static func push(tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
-        PleaseAllow.Managers.push.request(handler: completion)
-    }
-
-    public struct location {
-
-        public static func whenInUse(tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
-            PleaseAllow.Managers.location.whenInUse.tracker = tracker
-            PleaseAllow.Managers.location.whenInUse.request(handler: completion)
-        }
-
-        public static func always(tracker: PleaseAllowTracker? = nil, completion: @escaping PleaseAllowReply) {
-            PleaseAllow.Managers.location.always.tracker = tracker
-            PleaseAllow.Managers.location.always.request(handler: completion)
-        }
+extension Please {
+    fileprivate func request(softAskView: SoftAskView?, deniedView: DeniedAlert?, tracker: PleaseAllowTracker?, completion: @escaping Please.Reply) {
+        activeManager.softAskView = softAskView
+        activeManager.deniedAlert = deniedView
+        activeManager.tracker = tracker
+        activeManager.request(handler: completion)
     }
 }

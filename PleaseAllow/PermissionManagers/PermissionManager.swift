@@ -33,7 +33,7 @@ public protocol PermissionManager {
     var deniedAlert     : DeniedAlert?     { get set }
     
     /// The completion for the request method
-    var resultHandler   : PleaseAllowReply?   { get set }
+    var resultHandler   : Please.Reply?   { get set }
     
     var tracker         : PleaseAllowTracker? { get set }
 }
@@ -81,7 +81,7 @@ extension PermissionManager {
      The completion to be called when the request manager is finished with the request
      */
     
-    internal mutating func request(handler: PleaseAllowReply? = nil) {
+    internal mutating func request(handler: Please.Reply? = nil) {
         tracker?.track(.beganRequest(type))
         resultHandler = handler
         

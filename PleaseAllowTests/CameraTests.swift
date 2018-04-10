@@ -9,7 +9,7 @@
 import XCTest
 @testable import PleaseAllow
 
-let emptyHandler: PleaseAllowReply = { _, _ in }
+let emptyHandler: Please.Reply = { _, _ in }
 
 class CameraTests: XCTestCase {
     

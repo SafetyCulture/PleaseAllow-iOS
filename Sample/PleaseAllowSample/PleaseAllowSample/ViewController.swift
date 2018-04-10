@@ -167,45 +167,33 @@ class ViewController: UIViewController {
         return view
     }
     
-    func request(handler: @escaping PleaseAllowReply) {
+    func request(handler: @escaping Please.Reply) {
         let tracker = PermissionTracker()
         
         switch self {
         case .camera:
-            PleaseAllow.Managers.camera.softAskView = softAskView
-            PleaseAllow.Managers.camera.deniedAlert = deniedView
-            PleaseAllow.camera(tracker: tracker, completion: handler)
+            Please.allow.camera(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
         
         case .photoLibrary:
-            PleaseAllow.Managers.photoLibrary.softAskView = softAskView
-            PleaseAllow.Managers.photoLibrary.deniedAlert = deniedView
-            PleaseAllow.photoLibrary(tracker: tracker, completion: handler)
+            Please.allow.photoLibrary(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
         
         case .locationWhenInUse:
-            PleaseAllow.Managers.location.whenInUse.softAskView = softAskView
-            PleaseAllow.Managers.location.whenInUse.deniedAlert = deniedView
-            PleaseAllow.location.whenInUse(tracker: tracker, completion: handler)
+            Please.allow.location.whenInUse(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
             
         case .locationAlways:
-            PleaseAllow.Managers.location.always.softAskView = softAskView
-            PleaseAllow.Managers.location.always.deniedAlert = deniedView
-            PleaseAllow.location.always(tracker: tracker, completion: handler)
+            Please.allow.location.always(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
             
         case .contacts:
-            PleaseAllow.Managers.contacts.softAskView = softAskView
-            PleaseAllow.Managers.contacts.deniedAlert = deniedView
-            PleaseAllow.contacts(tracker: tracker, completion: handler)
+            Please.allow.contacts(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
             
         case .push:
-            PleaseAllow.Managers.push.softAskView = softAskView
-            PleaseAllow.Managers.push.deniedAlert = deniedView
-            PleaseAllow.push(tracker: tracker, completion: handler)
+            Please.allow.push(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
         }
     }
 }
 
 class PermissionTracker: PleaseAllowTracker {
-    func track(_ action: PleaseAllow.Action) {
+    func track(_ action: Please.Action) {
         print(action.stringValue)
     }
 }
@@ -213,7 +201,7 @@ class PermissionTracker: PleaseAllowTracker {
 @objc
 class PermissionRequester: NSObject {
     @objc
-    static func request(_ permission: PermissionType, handler: @escaping PleaseAllowReply) {
+    static func request(_ permission: PermissionType, handler: @escaping Please.Reply) {
         permission.request(handler: handler)
     }
 }
