@@ -6,7 +6,7 @@
 //  Copyright © 2018 Gagandeep Singh. All rights reserved.
 //
 
-protocol PleaseAllowTracker {
+public protocol PleaseAllowTracker {
     func track(_ action: Please.Action)
 }
 
