@@ -14,37 +14,37 @@ class ViewController: UIViewController {
     
     
     @IBAction func allowCamera(_ sender: Any) {
-        PermissionType.camera.request { result, error in
+        Permission.camera.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowPhotoLibrary(_ sender: Any) {
-        PermissionType.photoLibrary.request { result, error in
+        Permission.photoLibrary.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowContacts(_ sender: Any) {
-        PermissionType.contacts.request { result, error in
+        Permission.contacts.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowLocationWhenInUse(_ sender: Any) {
-        PermissionType.locationWhenInUse.request { result, error in
+        Permission.locationWhenInUse.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowLocationAlways(_ sender: Any) {
-        PermissionType.locationAlways.request { result, error in
+        Permission.locationAlways.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowPushNotification(_ sender: Any) {
-        PermissionType.push.request { result, error in
+        Permission.push.request { result, error in
             guard !UIApplication.shared.isRegisteredForRemoteNotifications else { return }
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     }
 }
 
-@objc enum PermissionType: Int {
+@objc enum Permission: Int {
     case camera = 0, photoLibrary, contacts, locationWhenInUse, locationAlways, push
     
     var allowTitle: String {
@@ -201,7 +201,7 @@ class PermissionTracker: PleaseAllowTracker {
 @objc
 class PermissionRequester: NSObject {
     @objc
-    static func request(_ permission: PermissionType, handler: @escaping Please.Reply) {
+    static func request(_ permission: Permission, handler: @escaping Please.Reply) {
         permission.request(handler: handler)
     }
 }

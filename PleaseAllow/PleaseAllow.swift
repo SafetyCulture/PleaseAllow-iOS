@@ -33,33 +33,33 @@ import Foundation
   
  */
 open class Please: NSObject {
-    internal var activeManager: PermissionManager!
-    
+    /// Shared Instance to be used for all permission requests.
     public static let allow = Please()
     public var location = LocationPlease()
+    internal var activeManager: PermissionManager!
 }
 
 extension Please {
     
-    /// Requests for Camera Permission
+    /// Requests for Camera Permission/
     public func camera(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping Please.Reply) {
         activeManager = Camera()
         request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
     }
     
-    /// Requests for Photo Library Permission
+    /// Requests for Photo Library Permission/
     public func photoLibrary(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping Please.Reply) {
         activeManager = PhotoLibrary()
         request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
     }
 
-    /// Requests for Contacts Permission
+    /// Requests for Contacts Permission/
     public func contacts(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping Please.Reply) {
         activeManager = Contacts()
         request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
     }
 
-    /// Requests for Push Notification Permissions. Note: Does not present the System Permission alert. Soft Ask will return `.allowed` or `.softDenial`
+    /// Requests for Push Notification Permissions. Note: Does not present the System Permission alert. Soft Ask will return `.allowed` or `.softDenial`/
     public func push(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping Please.Reply) {
         activeManager = PushNotifications()
         request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
@@ -68,7 +68,7 @@ extension Please {
     /// Contains the Always & When In Use Permission Managers for location permissions.
     public struct LocationPlease {
 
-        /// Requests for When In Use Lcoation Permission
+        /// Requests for When In Use Lcoation Permission/
         public func whenInUse(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, tracker: PleaseAllowTracker? = nil, completion: @escaping Please.Reply) {
             Please.allow.activeManager = {
                 let location = Location()
