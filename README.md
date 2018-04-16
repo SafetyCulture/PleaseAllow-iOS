@@ -121,3 +121,10 @@ Please.allow.photoLibrary(softAskView: softAskView, deniedAlert: deniedAlert, tr
     }
 }
 ```
+
+## Supported Permissions
+- Camera
+- Photo Library
+- Contacts
+- Push Notifications
+- Location
