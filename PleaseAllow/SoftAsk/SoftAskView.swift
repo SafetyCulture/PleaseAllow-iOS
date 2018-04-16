@@ -76,16 +76,16 @@ open class SoftAskView {
     @objc private func redirectToSettings() {
         hide {
             self.manager?.redirectToSettings()
-            if let type = self.manager?.type {
-                self.manager?.tracker?.track(.redirectedToSettings(type))
+            if let manager = self.manager {
+                manager.eventListener?.pleaseAllowPermissionManager(manager, didPerformAction: .redirectedToSettings)
             }
         }
     }
     
     @objc private func cancelRedirect() {
         hide {
-            if let type = self.manager?.type {
-                self.manager?.tracker?.track(.deniedAlertDismissed(type))
+            if let manager = self.manager {
+                manager.eventListener?.pleaseAllowPermissionManager(manager, didPerformAction: .deniedAlertDismissed)
             }
         }
     }

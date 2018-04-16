@@ -168,33 +168,33 @@ class ViewController: UIViewController {
     }
     
     func request(handler: @escaping Please.Reply) {
-        let tracker = PermissionTracker()
+        let eventListener = PermissioneventListener()
         
         switch self {
         case .camera:
-            Please.allow.camera(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+            Please.allow.camera(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
         
         case .photoLibrary:
-            Please.allow.photoLibrary(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+            Please.allow.photoLibrary(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
         
         case .locationWhenInUse:
-            Please.allow.location.whenInUse(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+            Please.allow.location.whenInUse(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
             
         case .locationAlways:
-            Please.allow.location.always(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+            Please.allow.location.always(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
             
         case .contacts:
-            Please.allow.contacts(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+            Please.allow.contacts(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
             
         case .push:
-            Please.allow.push(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+            Please.allow.push(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
         }
     }
 }
 
-class PermissionTracker: PleaseAllowTracker {
-    func track(_ action: Please.Action) {
-        print(action.stringValue)
+class PermissioneventListener: PleaseAllowEventListener {
+    func pleaseAllowPermissionManager(_ manager: PermissionManager, didPerformAction action: Please.Action) {
+        print(action.rawValue)
     }
 }
 

@@ -6,8 +6,8 @@
 //  Copyright © 2018 Gagandeep Singh. All rights reserved.
 //
 
-public protocol PleaseAllowTracker {
-    func track(_ action: Please.Action)
+public protocol PleaseAllowEventListener {
+    func pleaseAllowPermissionManager(_ manager: PermissionManager, didPerformAction action: Please.Action)
 }
 
 extension Please {
@@ -18,74 +18,40 @@ extension Please {
      Can be used to track every move a manager makes.
      
      */
-    public enum Action {
+    public enum Action: String {
         
         /// Called when the *request` method is first called on a Permission Manager
-        case beganRequest(PermissionManagerType)
+        case beganRequest
         
         /// Called when a requested permission is already authorised.
-        case alreadyAuthorized(PermissionManagerType)
+        case alreadyAuthorized
         
         /// Called when the *SoftAskView` is presented for a Permission Manager.
-        case softViewPresented(PermissionManagerType)
+        case softAskViewPresented
         
         /// Called when the Deny button is tapped on the *SoftAskView* for a Permission Manager.
-        case softAskDenied(PermissionManagerType)
+        case softAskDenied
         
         /// Called when the Allow button is tapped on the *SoftAskView* for a Permission Manager.
-        case softAskAllowed(PermissionManagerType)
+        case softAskAllowed
         
         /// Called when the iOS permission alert is presented for a Permission Manager.
-        case hardAskPresented(PermissionManagerType)
+        case hardAskPresented
         
         /// Called when the iOS permission is Allowed for a Permission Manager.
-        case hardAskAllowed(PermissionManagerType)
+        case hardAskAllowed
         
         /// Called when the iOS permission is Denied for a Permission Manager.
-        case hardAskDenied(PermissionManagerType)
+        case hardAskDenied
         
         /// Called when the *DeniedAlert8 is presented for a Permission Manager.
-        case deniedAlertPresented(PermissionManagerType)
+        case deniedAlertPresented
         
         /// Called when the Cancel button is tapped on the *DeniedAlert* for a Permission Manager.
-        case deniedAlertDismissed(PermissionManagerType)
+        case deniedAlertDismissed
         
         
         /// Called when the Settings button is tapped on the *DeniedAlert* for a Permission Manager.
-        case redirectedToSettings(PermissionManagerType)
-        
-        /// Called when an error occurs during the request for a Permission Manager.
-        case error(PermissionManagerType, Error?)
-        
-        
-        /// Returns the *PermissionManagerType* for the current Action.
-        public var permissionManagerType: PermissionManagerType {
-            switch self {
-            case .beganRequest(let type):
-                return type
-            case .alreadyAuthorized(let type):
-                return type
-            case .softViewPresented(let type):
-                return type
-            case .softAskDenied(let type):
-                return type
-            case .softAskAllowed(let type):
-                return type
-            case .hardAskPresented(let type):
-                return type
-            case .hardAskAllowed(let type):
-                return type
-            case .hardAskDenied(let type):
-                return type
-            case .deniedAlertPresented(let type):
-                return type
-            case .deniedAlertDismissed(let type):
-                return type
-            case .redirectedToSettings(let type):
-                return type
-            case .error(let type, _):
-                return type
-            }
-        }
+        case redirectedToSettings
     }
 }

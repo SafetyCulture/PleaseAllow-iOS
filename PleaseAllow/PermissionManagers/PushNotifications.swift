@@ -57,7 +57,7 @@ internal class PushNotifications: PermissionManager {
     
     var deniedAlert: DeniedAlert?
     
-    var tracker: PleaseAllowTracker?
+    var eventListener: PleaseAllowEventListener?
 }
 
 extension PushNotifications: RequestManager {
