@@ -87,35 +87,5 @@ extension Please {
                 return type
             }
         }
-        
-        ///Returns a string representation of each Action. This allows the *PleaeAllow.Action* to be observerd in Objective-C.
-        public var stringValue: String {
-            switch self {
-            case .beganRequest(_):
-                return "beganRequest"
-            case .alreadyAuthorized(_):
-                return "alreadyAuthorized"
-            case .softViewPresented(_):
-                return "softViewPresented"
-            case .softAskDenied(_):
-                return "softAskDenied"
-            case .softAskAllowed(_):
-                return "softAskAllowed"
-            case .hardAskPresented(_):
-                return "hardAskPresented"
-            case .hardAskAllowed(_):
-                return "hardAskAllowed"
-            case .hardAskDenied(_):
-                return "hardAskDenied"
-            case .deniedAlertPresented(_):
-                return "deniedAlertPresented"
-            case .deniedAlertDismissed(_):
-                return "deniedAlertDismissed"
-            case .redirectedToSettings(_):
-                return "redirectedToSettings"
-            case .error(_, _):
-                return "error"
-            }
-        }
     }
 }

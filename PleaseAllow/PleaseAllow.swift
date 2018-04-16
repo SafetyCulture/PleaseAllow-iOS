@@ -74,7 +74,6 @@ extension Please {
                 let location = Location()
                 location.softAskView = softAskView
                 location.locationType = .whenInUse
-                location.type = .locationWhenInUse
                 return location
             }()
             Please.allow.request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
@@ -85,7 +84,6 @@ extension Please {
             Please.allow.activeManager = {
                 let location = Location()
                 location.locationType = .always
-                location.type = .locationAlways
                 return location
             }()
             Please.allow.request(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: completion)
