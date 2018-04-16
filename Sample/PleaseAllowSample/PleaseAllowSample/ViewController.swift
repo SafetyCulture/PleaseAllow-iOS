@@ -14,43 +14,53 @@ class ViewController: UIViewController {
     
     
     @IBAction func allowCamera(_ sender: Any) {
+        print(Please.shareStatus(for: .camera).rawValue)
         Permission.camera.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowPhotoLibrary(_ sender: Any) {
+        print(Please.shareStatus(for: .photoLibrary).rawValue)
         Permission.photoLibrary.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowContacts(_ sender: Any) {
+        print(Please.shareStatus(for: .contacts).rawValue)
         Permission.contacts.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowLocationWhenInUse(_ sender: Any) {
+        print(Please.shareStatus(for: .locationWhenInUse).rawValue)
         Permission.locationWhenInUse.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowLocationAlways(_ sender: Any) {
+        print(Please.shareStatus(for: .locationAlways).rawValue)
         Permission.locationAlways.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowPushNotification(_ sender: Any) {
+        print(Please.shareStatus(for: .pushNotifications).rawValue)
         Permission.push.request { result, error in
-            guard !UIApplication.shared.isRegisteredForRemoteNotifications else { return }
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in
-                DispatchQueue.main.sync {
-                    UIApplication.shared.registerForRemoteNotifications()
+            switch result {
+            case .allowed where !UIApplication.shared.isRegisteredForRemoteNotifications:
+                let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+                UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in
+                    DispatchQueue.main.sync {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
                 }
+            default:
+                break
             }
         }
     }

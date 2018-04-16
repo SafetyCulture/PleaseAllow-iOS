@@ -37,6 +37,30 @@ open class Please: NSObject {
     public static let allow = Please()
     public var location = LocationPlease()
     internal var activeManager: PermissionManager!
+    
+    public static func shareStatus(for managerType: PermissionManagerType) -> PermissionStatus {
+        var manager: PermissionManager!
+        switch managerType {
+        case .camera:
+            manager = Camera()
+        case .photoLibrary:
+            manager = PhotoLibrary()
+        case .contacts:
+            manager = Contacts()
+        case .pushNotifications:
+            manager = PushNotifications()
+        case .locationWhenInUse:
+            let location = Location()
+            location.locationType = .whenInUse
+            manager = location
+        case .locationAlways:
+            let location = Location()
+            location.locationType = .always
+            manager = location
+        }
+        
+        return manager.status
+    }
 }
 
 extension Please {

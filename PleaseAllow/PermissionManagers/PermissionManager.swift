@@ -82,11 +82,10 @@ extension PermissionManager {
      */
     
     internal mutating func request(handler: Please.Reply? = nil) {
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .beganRequest)
         resultHandler = handler
-        
         guard isAvailable && canRequest else { return }
         
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .beganRequest)
         guard softAskView == nil else {
             softAskView?.present(for: self)
             eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskViewPresented)
