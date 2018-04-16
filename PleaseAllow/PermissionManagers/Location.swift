@@ -18,7 +18,7 @@ internal class Location: NSObject, PermissionManager {
     
     //MARK:- Type
     
-    var type: PermissionManagerType = .location
+    var type: PermissionManagerType = .locationWhenInUse
     
     //MARK:- Initializer
     

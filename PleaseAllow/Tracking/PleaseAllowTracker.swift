@@ -50,7 +50,6 @@ extension Please {
         /// Called when the Cancel button is tapped on the *DeniedAlert* for a Permission Manager.
         case deniedAlertDismissed
         
-        
         /// Called when the Settings button is tapped on the *DeniedAlert* for a Permission Manager.
         case redirectedToSettings
     }
