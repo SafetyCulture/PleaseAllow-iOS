@@ -1,0 +1,42 @@
+# Mac OS X
+.DS_Store
+*.swp
+*~.nib
+build/
+*.pbxuser
+*.perspective
+*.perspectivev3
+*xcuserdata
+*.xccheckout
+*.mode1v3
+*.mode2v3
+*.moved-aside
+
+# New in Xcode 7!
+*xcshareddata/xcbaselines
+*xcshareddata/*.xcscmblueprint
+
+# Ignored frameworks
+Reveal.framework
+/iAuditor/iAuditor/External/Crashlytics/Crashlytics.framework/run
+/iAuditor/iAuditor/External/Crashlytics/Crashlytics.framework/Versions/A/Crashlytics
+/iAuditor/iAuditor/External/Crashlytics/Crashlytics.framework/Versions/A/Resources/Info.plist
+DerivedData/
+
+# Developer Provisioning
+DebugProvisioning.xcconfig
+
+# AppCode
+.idea
+
+# Git
+*.orig
+
+# Carthage
+iAuditor/Carthage
+
+# Appium
+iAuditor/e2e-Tests/*.pyc
+iAuditor/e2e-Tests/elements/*.pyc
+
+/iAuditor.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
