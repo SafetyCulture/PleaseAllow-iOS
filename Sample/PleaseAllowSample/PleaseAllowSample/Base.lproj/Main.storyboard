@@ -81,11 +81,11 @@
                                         <rect key="frame" x="40" y="663.33333333333337" width="295" height="108.66666666666663"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40162852112676056" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Push Notifications">
+                                        <state key="normal" title="Remote Notifications">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="allowPushNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QAS-Jr-cPX"/>
+                                            <action selector="allowRemoteNotifications:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E4F-FU-L2x"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bX3-gQ-0Jc">

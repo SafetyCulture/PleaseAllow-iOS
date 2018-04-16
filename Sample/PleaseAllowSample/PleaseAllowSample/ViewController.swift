@@ -48,9 +48,9 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func allowPushNotification(_ sender: Any) {
-        print(Please.shareStatus(for: .pushNotifications).rawValue)
-        Permission.push.request { result, error in
+    @IBAction func allowRemoteNotifications(_ sender: Any) {
+        print(Please.shareStatus(for: .remoteNotifications).rawValue)
+        Permission.remoteNotifications.request { result, error in
             switch result {
             case .allowed where !UIApplication.shared.isRegisteredForRemoteNotifications:
                 let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
 }
 
 @objc enum Permission: Int {
-    case camera = 0, photoLibrary, contacts, locationWhenInUse, locationAlways, push
+    case camera = 0, photoLibrary, contacts, locationWhenInUse, locationAlways, remoteNotifications
     
     var allowTitle: String {
         return "Allow"
@@ -101,8 +101,8 @@ class ViewController: UIViewController {
             return "Allow Location"
         case .contacts:
             return "Allow Contacts"
-        case .push:
-            return "Allow Push Notifications"
+        case .remoteNotifications:
+            return "Allow Remote Notifications"
         }
     }
     
@@ -118,8 +118,8 @@ class ViewController: UIViewController {
             return "Allow access to your Lcoation in order to add current location to your work."
         case .contacts:
             return "Please allow access to your contacts to invite people."
-        case .push:
-            return "Allow us to send you Push Notifications to keep you updated."
+        case .remoteNotifications:
+            return "Allow us to send you Remote Notifications to keep you updated."
         }
     }
     
@@ -135,8 +135,8 @@ class ViewController: UIViewController {
             return "Location Denied"
         case .contacts:
             return "Contacts Denied"
-        case .push:
-            return "Push Notifications Denied"
+        case .remoteNotifications:
+            return "Remote Notifications Denied"
         }
     }
     
@@ -152,8 +152,8 @@ class ViewController: UIViewController {
             return "Open settings and allow access to your Lcoation in order to add current location to your work."
         case .contacts:
             return "Contact Permission has been denied. Please open Settings and allow access to your contacts to invite people."
-        case .push:
-            return "Open settings and allow us to send you Push Notifications to keep you updated."
+        case .remoteNotifications:
+            return "Open settings and allow us to send you Remote Notifications to keep you updated."
         }
     }
     
@@ -196,8 +196,8 @@ class ViewController: UIViewController {
         case .contacts:
             Please.allow.contacts(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
             
-        case .push:
-            Please.allow.push(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
+        case .remoteNotifications:
+            Please.allow.remoteNotifications(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
         }
     }
 }
