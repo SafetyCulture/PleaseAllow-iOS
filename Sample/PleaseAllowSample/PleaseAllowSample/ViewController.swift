@@ -14,43 +14,37 @@ class ViewController: UIViewController {
     
     
     @IBAction func allowCamera(_ sender: Any) {
-        print(Please.shareStatus(for: .camera).rawValue)
         Permission.camera.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowPhotoLibrary(_ sender: Any) {
-        print(Please.shareStatus(for: .photoLibrary).rawValue)
         Permission.photoLibrary.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowContacts(_ sender: Any) {
-        print(Please.shareStatus(for: .contacts).rawValue)
         Permission.contacts.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowLocationWhenInUse(_ sender: Any) {
-        print(Please.shareStatus(for: .locationWhenInUse).rawValue)
         Permission.locationWhenInUse.request { result, error in
             print("\(result)")
         }
     }
     
     @IBAction func allowLocationAlways(_ sender: Any) {
-        print(Please.shareStatus(for: .locationAlways).rawValue)
         Permission.locationAlways.request { result, error in
             print("\(result)")
         }
     }
     
-    @IBAction func allowRemoteNotifications(_ sender: Any) {
-        print(Please.shareStatus(for: .remoteNotifications).rawValue)
-        Permission.remoteNotifications.request { result, error in
+    @IBAction func allowNotifications(_ sender: Any) {
+        Permission.notifications.request { result, error in
             switch result {
             case .allowed where !UIApplication.shared.isRegisteredForRemoteNotifications:
                 let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
@@ -71,7 +65,24 @@ class ViewController: UIViewController {
 }
 
 @objc enum Permission: Int {
-    case camera = 0, photoLibrary, contacts, locationWhenInUse, locationAlways, remoteNotifications
+    case camera = 0, photoLibrary, contacts, locationWhenInUse, locationAlways, notifications
+    
+    var status: PermissionStatus {
+        switch self {
+        case .camera:
+            return Please.shareStatus(for: .camera)
+        case .photoLibrary:
+            return Please.shareStatus(for: .photoLibrary)
+        case .locationWhenInUse:
+            return Please.shareStatus(for: .locationWhenInUse)
+        case .locationAlways:
+            return Please.shareStatus(for: .locationAlways)
+        case .contacts:
+            return Please.shareStatus(for: .contacts)
+        case .notifications:
+            return Please.shareStatus(for: .notifications)
+        }
+    }
     
     var allowTitle: String {
         return "Allow"
@@ -101,8 +112,8 @@ class ViewController: UIViewController {
             return "Allow Location"
         case .contacts:
             return "Allow Contacts"
-        case .remoteNotifications:
-            return "Allow Remote Notifications"
+        case .notifications:
+            return "Allow Notifications"
         }
     }
     
@@ -118,8 +129,8 @@ class ViewController: UIViewController {
             return "Allow access to your Lcoation in order to add current location to your work."
         case .contacts:
             return "Please allow access to your contacts to invite people."
-        case .remoteNotifications:
-            return "Allow us to send you Remote Notifications to keep you updated."
+        case .notifications:
+            return "Allow us to send you Notifications to keep you updated."
         }
     }
     
@@ -135,8 +146,8 @@ class ViewController: UIViewController {
             return "Location Denied"
         case .contacts:
             return "Contacts Denied"
-        case .remoteNotifications:
-            return "Remote Notifications Denied"
+        case .notifications:
+            return "Notifications Denied"
         }
     }
     
@@ -152,8 +163,8 @@ class ViewController: UIViewController {
             return "Open settings and allow access to your Lcoation in order to add current location to your work."
         case .contacts:
             return "Contact Permission has been denied. Please open Settings and allow access to your contacts to invite people."
-        case .remoteNotifications:
-            return "Open settings and allow us to send you Remote Notifications to keep you updated."
+        case .notifications:
+            return "Open settings and allow us to send you Notifications to keep you updated."
         }
     }
     
@@ -196,8 +207,8 @@ class ViewController: UIViewController {
         case .contacts:
             Please.allow.contacts(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
             
-        case .remoteNotifications:
-            Please.allow.remoteNotifications(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
+        case .notifications:
+            Please.allow.notifications(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
         }
     }
 }

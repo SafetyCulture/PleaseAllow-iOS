@@ -15,7 +15,7 @@ import Foundation
     case photoLibrary
     case locationWhenInUse
     case locationAlways
-    case remoteNotifications
+    case notifications
     
     /// A string representation of each *ManagerType*
     public var name: String {
@@ -25,7 +25,7 @@ import Foundation
         case .photoLibrary: return "Photo Library"
         case .locationWhenInUse: return "Location When In Use"
         case .locationAlways: return "Location Always"
-        case .remoteNotifications: return "Remote Notifications"
+        case .notifications: return "Notifications"
         }
     }
 }

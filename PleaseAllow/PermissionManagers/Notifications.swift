@@ -1,5 +1,5 @@
 //
-//  RemoteNotifications.swift
+//  Notifications.swift
 //  PleaseAllow
 //
 //  Created by Gagandeep Singh on 22/3/18.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-internal class RemoteNotifications: PermissionManager {
+internal class Notifications: PermissionManager {
     
     //MARK:- Type
     
-    var type: PermissionManagerType = .remoteNotifications
+    var type: PermissionManagerType = .notifications
     
     //MARK:- Initializer
     
@@ -60,7 +60,7 @@ internal class RemoteNotifications: PermissionManager {
     var eventListener: PleaseAllowEventListener?
 }
 
-extension RemoteNotifications: RequestManager {
+extension Notifications: RequestManager {
     
     @objc func softPermissionGranted() {
         softAskView?.hide { [weak self] in

@@ -47,8 +47,8 @@ open class Please: NSObject {
             manager = PhotoLibrary()
         case .contacts:
             manager = Contacts()
-        case .remoteNotifications:
-            manager = RemoteNotifications()
+        case .notifications:
+            manager = Notifications()
         case .locationWhenInUse:
             let location = Location()
             location.locationType = .whenInUse
@@ -83,9 +83,9 @@ extension Please {
         request(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: completion)
     }
 
-    /// Requests for Remote Notification Permissions. Note: Does not present the System Permission alert. Soft Ask will return `.allowed` or `.softDenial`/
-    public func remoteNotifications(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, eventListener: PleaseAllowEventListener? = nil, completion: @escaping Please.Reply) {
-        activeManager = RemoteNotifications()
+    /// Requests for Notification Permissions. Note: Does not present the System Permission alert. Soft Ask will return `.allowed` or `.softDenial`/
+    public func notifications(softAskView: SoftAskView? = nil, deniedView: DeniedAlert? = nil, eventListener: PleaseAllowEventListener? = nil, completion: @escaping Please.Reply) {
+        activeManager = Notifications()
         request(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: completion)
     }
 
