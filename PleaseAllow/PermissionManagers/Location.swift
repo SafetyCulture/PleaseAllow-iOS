@@ -18,7 +18,7 @@ internal class Location: NSObject, PermissionManager {
     
     //MARK:- Type
     
-    var type: PermissionManagerType = .location
+    var type: PermissionManagerType = .locationWhenInUse
     
     //MARK:- Initializer
     
@@ -96,20 +96,20 @@ internal class Location: NSObject, PermissionManager {
     
     internal var manager: CLLocationManager?
     
-    var tracker: PleaseAllowTracker?
+    var eventListener: PleaseAllowEventListener?
 }
 
 extension Location: RequestManager {
     
     @objc func softPermissionGranted() {
-        tracker?.track(.softAskAllowed(type))
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)
         softAskView?.hide { [weak self] in
             self?.requestHardPermission()
         }
     }
     
     @objc func softPermissionDenied() {
-        tracker?.track(.softAskDenied(type))
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskDenied)
         softAskView?.hide { [weak self] in
             guard let handler = self?.resultHandler else { return }
             handler(.softDenial, nil)
@@ -121,7 +121,7 @@ extension Location: RequestManager {
         manager?.delegate = self
         guard let manager = self.manager else { return }
         
-        tracker?.track(.hardAskPresented(type))
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskPresented)
         
         switch locationType {
         case .always:
@@ -143,15 +143,15 @@ extension Location: CLLocationManagerDelegate {
             
         case .authorizedWhenInUse:
             if locationType == .whenInUse {
-                tracker?.track(.hardAskAllowed(self.type))
+                eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskAllowed)
                 handler(.allowed, nil)
             } else {
-                tracker?.track(.hardAskDenied(self.type))
+                eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskDenied)
                 handler(.hardDenial, nil)
             }
             
         case .denied:
-            tracker?.track(.hardAskDenied(self.type))
+            eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskDenied)
             handler(.hardDenial, nil)
         default:
             break;

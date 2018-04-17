@@ -60,20 +60,20 @@ internal class Contacts: PermissionManager {
     
     var contactStore: CNContactStore?
     
-    var tracker: PleaseAllowTracker?
+    var eventListener: PleaseAllowEventListener?
 }
 
 extension Contacts: RequestManager {
     
     @objc func softPermissionGranted() {
-        tracker?.track(.softAskAllowed(type))
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)
         softAskView?.hide { [weak self] in
             self?.requestHardPermission()
         }
     }
     
     @objc func softPermissionDenied() {
-        tracker?.track(.softAskDenied(type))
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskDenied)
         softAskView?.hide { [weak self] in
             guard let handler = self?.resultHandler else { return }
             handler(.softDenial, nil)
@@ -83,7 +83,7 @@ extension Contacts: RequestManager {
     func requestHardPermission() {
         guard let handler = resultHandler else { return }
         
-        tracker?.track(.hardAskPresented(type))
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskPresented)
         
         contactStore = CNContactStore()
         guard let contactStore = self.contactStore else { return }
@@ -91,18 +91,17 @@ extension Contacts: RequestManager {
         contactStore.requestAccess(for: .contacts) { granted, error in
             DispatchQueue.main.async {
                 guard error == nil else {
-                    self.tracker?.track(.error(self.type, error))
                     handler(.hardDenial, error)
                     return
                 }
                 
                 if granted {
-                    self.tracker?.track(.hardAskAllowed(self.type))
+                    self.eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskAllowed)
                     self.cnAuthorizationStatus = .authorized
                     handler(.allowed, nil)
                     
                 } else {
-                    self.tracker?.track(.hardAskDenied(self.type))
+                    self.eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskDenied)
                     self.cnAuthorizationStatus = .denied
                     handler(.hardDenial, nil)
                 }

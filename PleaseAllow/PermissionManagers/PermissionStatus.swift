@@ -9,11 +9,10 @@
 import Foundation
 
 /// Common status types for all Permission Managers
-public enum PermissionStatus: NSInteger {
+public enum PermissionStatus: String {
     case notDetermined
     case authorized
     case denied
     case restricted
     case unavailable
 }
-

@@ -62,20 +62,20 @@ internal class PhotoLibrary: PermissionManager {
     //MARK:- Denied Alert
     var deniedAlert: DeniedAlert?
     
-    var tracker: PleaseAllowTracker?
+    var eventListener: PleaseAllowEventListener?
 }
 
 extension PhotoLibrary: RequestManager {
     
     @objc func softPermissionGranted() {
-        tracker?.track(.softAskAllowed(type))
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)
         softAskView?.hide { [weak self] in
             self?.requestHardPermission()
         }
     }
     
     @objc func softPermissionDenied() {
-        tracker?.track(.softAskDenied(type))
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskDenied)
         softAskView?.hide { [weak self] in
             guard let handler = self?.resultHandler else { return }
             handler(.softDenial, nil)
@@ -85,17 +85,17 @@ extension PhotoLibrary: RequestManager {
     func requestHardPermission() {
         guard let handler = resultHandler else { return }
         
-        tracker?.track(.hardAskPresented(type))
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskPresented)
         
         PHPhotoLibrary.requestAuthorization { status in
             self.phAuthorizationStatus = status
             DispatchQueue.main.async {
                 switch status {
                 case .authorized:
-                    self.tracker?.track(.hardAskAllowed(self.type))
+                    self.eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskAllowed)
                     handler(.allowed, nil)
                 case .denied:
-                    self.tracker?.track(.hardAskDenied(self.type))
+                    self.eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskDenied)
                     handler(.hardDenial, nil)
                 default:
                     break;

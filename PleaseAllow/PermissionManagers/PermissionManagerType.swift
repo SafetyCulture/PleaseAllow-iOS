@@ -9,12 +9,13 @@
 import Foundation
 
 /// Types of Permission Managers
-public enum PermissionManagerType: String {
+@objc public enum PermissionManagerType: Int {
     case camera
     case contacts
     case photoLibrary
-    case location
-    case pushNotifications
+    case locationWhenInUse
+    case locationAlways
+    case notifications
     
     /// A string representation of each *ManagerType*
     public var name: String {
@@ -22,9 +23,9 @@ public enum PermissionManagerType: String {
         case .camera: return "Camera"
         case .contacts: return "Contacts"
         case .photoLibrary: return "Photo Library"
-        case .location: return "Location"
-        case .pushNotifications: return "Push Notifications"
+        case .locationWhenInUse: return "Location When In Use"
+        case .locationAlways: return "Location Always"
+        case .notifications: return "Notifications"
         }
     }
 }
-

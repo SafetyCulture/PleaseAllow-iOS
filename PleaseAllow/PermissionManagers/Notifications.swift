@@ -1,5 +1,5 @@
 //
-//  PushNotifications.swift
+//  Notifications.swift
 //  PleaseAllow
 //
 //  Created by Gagandeep Singh on 22/3/18.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-internal class PushNotifications: PermissionManager {
+internal class Notifications: PermissionManager {
     
     //MARK:- Type
     
-    var type: PermissionManagerType = .pushNotifications
+    var type: PermissionManagerType = .notifications
     
     //MARK:- Initializer
     
@@ -57,10 +57,10 @@ internal class PushNotifications: PermissionManager {
     
     var deniedAlert: DeniedAlert?
     
-    var tracker: PleaseAllowTracker?
+    var eventListener: PleaseAllowEventListener?
 }
 
-extension PushNotifications: RequestManager {
+extension Notifications: RequestManager {
     
     @objc func softPermissionGranted() {
         softAskView?.hide { [weak self] in

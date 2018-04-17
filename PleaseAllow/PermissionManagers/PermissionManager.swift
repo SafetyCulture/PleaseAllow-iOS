@@ -35,7 +35,7 @@ public protocol PermissionManager {
     /// The completion for the request method
     var resultHandler   : Please.Reply?   { get set }
     
-    var tracker         : PleaseAllowTracker? { get set }
+    var eventListener   : PleaseAllowEventListener? { get set }
 }
 
 extension PermissionManager {
@@ -47,12 +47,12 @@ extension PermissionManager {
         
         switch status {
         case .authorized:
-            tracker?.track(.alreadyAuthorized(type))
+            eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .alreadyAuthorized)
             handler(.allowed, nil)
             
         case .denied:
             if let deniedAlert = deniedAlert {
-                tracker?.track(.deniedAlertPresented(type))
+                eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .deniedAlertPresented)
                 deniedAlert.present(for: self)
             }
             
@@ -82,18 +82,17 @@ extension PermissionManager {
      */
     
     internal mutating func request(handler: Please.Reply? = nil) {
-        tracker?.track(.beganRequest(type))
         resultHandler = handler
-        
         guard isAvailable && canRequest else { return }
         
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .beganRequest)
         guard softAskView == nil else {
             softAskView?.present(for: self)
-            tracker?.track(.softViewPresented(type))
+            eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskViewPresented)
             return
         }
         
-        tracker?.track(.hardAskPresented(type))
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskPresented)
         guard let requestManager = self as? RequestManager else { return }
         requestManager.requestHardPermission()
     }

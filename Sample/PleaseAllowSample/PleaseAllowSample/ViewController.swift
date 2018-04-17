@@ -43,14 +43,18 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func allowPushNotification(_ sender: Any) {
-        Permission.push.request { result, error in
-            guard !UIApplication.shared.isRegisteredForRemoteNotifications else { return }
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in
-                DispatchQueue.main.sync {
-                    UIApplication.shared.registerForRemoteNotifications()
+    @IBAction func allowNotifications(_ sender: Any) {
+        Permission.notifications.request { result, error in
+            switch result {
+            case .allowed where !UIApplication.shared.isRegisteredForRemoteNotifications:
+                let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+                UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in
+                    DispatchQueue.main.sync {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
                 }
+            default:
+                break
             }
         }
     }
@@ -61,7 +65,24 @@ class ViewController: UIViewController {
 }
 
 @objc enum Permission: Int {
-    case camera = 0, photoLibrary, contacts, locationWhenInUse, locationAlways, push
+    case camera = 0, photoLibrary, contacts, locationWhenInUse, locationAlways, notifications
+    
+    var status: PermissionStatus {
+        switch self {
+        case .camera:
+            return Please.shareStatus(for: .camera)
+        case .photoLibrary:
+            return Please.shareStatus(for: .photoLibrary)
+        case .locationWhenInUse:
+            return Please.shareStatus(for: .locationWhenInUse)
+        case .locationAlways:
+            return Please.shareStatus(for: .locationAlways)
+        case .contacts:
+            return Please.shareStatus(for: .contacts)
+        case .notifications:
+            return Please.shareStatus(for: .notifications)
+        }
+    }
     
     var allowTitle: String {
         return "Allow"
@@ -91,8 +112,8 @@ class ViewController: UIViewController {
             return "Allow Location"
         case .contacts:
             return "Allow Contacts"
-        case .push:
-            return "Allow Push Notifications"
+        case .notifications:
+            return "Allow Notifications"
         }
     }
     
@@ -108,8 +129,8 @@ class ViewController: UIViewController {
             return "Allow access to your Lcoation in order to add current location to your work."
         case .contacts:
             return "Please allow access to your contacts to invite people."
-        case .push:
-            return "Allow us to send you Push Notifications to keep you updated."
+        case .notifications:
+            return "Allow us to send you Notifications to keep you updated."
         }
     }
     
@@ -125,8 +146,8 @@ class ViewController: UIViewController {
             return "Location Denied"
         case .contacts:
             return "Contacts Denied"
-        case .push:
-            return "Push Notifications Denied"
+        case .notifications:
+            return "Notifications Denied"
         }
     }
     
@@ -142,8 +163,8 @@ class ViewController: UIViewController {
             return "Open settings and allow access to your Lcoation in order to add current location to your work."
         case .contacts:
             return "Contact Permission has been denied. Please open Settings and allow access to your contacts to invite people."
-        case .push:
-            return "Open settings and allow us to send you Push Notifications to keep you updated."
+        case .notifications:
+            return "Open settings and allow us to send you Notifications to keep you updated."
         }
     }
     
@@ -168,33 +189,33 @@ class ViewController: UIViewController {
     }
     
     func request(handler: @escaping Please.Reply) {
-        let tracker = PermissionTracker()
+        let eventListener = PermissioneventListener()
         
         switch self {
         case .camera:
-            Please.allow.camera(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+            Please.allow.camera(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
         
         case .photoLibrary:
-            Please.allow.photoLibrary(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+            Please.allow.photoLibrary(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
         
         case .locationWhenInUse:
-            Please.allow.location.whenInUse(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+            Please.allow.location.whenInUse(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
             
         case .locationAlways:
-            Please.allow.location.always(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+            Please.allow.location.always(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
             
         case .contacts:
-            Please.allow.contacts(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+            Please.allow.contacts(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
             
-        case .push:
-            Please.allow.push(softAskView: softAskView, deniedView: deniedView, tracker: tracker, completion: handler)
+        case .notifications:
+            Please.allow.notifications(softAskView: softAskView, deniedView: deniedView, eventListener: eventListener, completion: handler)
         }
     }
 }
 
-class PermissionTracker: PleaseAllowTracker {
-    func track(_ action: Please.Action) {
-        print(action.stringValue)
+class PermissioneventListener: PleaseAllowEventListener {
+    func pleaseAllowPermissionManager(_ manager: PermissionManager, didPerformAction action: Please.Action) {
+        print(action.rawValue)
     }
 }
 

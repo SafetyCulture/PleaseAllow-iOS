@@ -25,7 +25,7 @@
 		CE1527D0207AFDEC0021A37E /* SoftAskView+Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1527CF207AFDEC0021A37E /* SoftAskView+Public.swift */; };
 		CE905C5D20635A7800F4C32F /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C5C20635A7800F4C32F /* Contacts.swift */; };
 		CE905C5F20635AAC00F4C32F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C5E20635AAC00F4C32F /* Location.swift */; };
-		CE905C6120635B5100F4C32F /* PushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C6020635B5100F4C32F /* PushNotifications.swift */; };
+		CE905C6120635B5100F4C32F /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C6020635B5100F4C32F /* Notifications.swift */; };
 		CE905C7720636A2400F4C32F /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C7620636A2400F4C32F /* ContactsTests.swift */; };
 		CE905C7920636A3D00F4C32F /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C7820636A3D00F4C32F /* LocationTests.swift */; };
 		CE905C7B20636A5F00F4C32F /* PhotoLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE905C7A20636A5F00F4C32F /* PhotoLibraryTests.swift */; };
@@ -64,7 +64,7 @@
 		CE1527CF207AFDEC0021A37E /* SoftAskView+Public.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoftAskView+Public.swift"; sourceTree = "<group>"; };
 		CE905C5C20635A7800F4C32F /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		CE905C5E20635AAC00F4C32F /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		CE905C6020635B5100F4C32F /* PushNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotifications.swift; sourceTree = "<group>"; };
+		CE905C6020635B5100F4C32F /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		CE905C7620636A2400F4C32F /* ContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTests.swift; sourceTree = "<group>"; };
 		CE905C7820636A3D00F4C32F /* LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		CE905C7A20636A5F00F4C32F /* PhotoLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryTests.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 				CEF643F22063371D000CAB6E /* PhotoLibrary.swift */,
 				CE905C5C20635A7800F4C32F /* Contacts.swift */,
 				CE905C5E20635AAC00F4C32F /* Location.swift */,
-				CE905C6020635B5100F4C32F /* PushNotifications.swift */,
+				CE905C6020635B5100F4C32F /* Notifications.swift */,
 			);
 			path = PermissionManagers;
 			sourceTree = "<group>";
@@ -291,7 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE905C6120635B5100F4C32F /* PushNotifications.swift in Sources */,
+				CE905C6120635B5100F4C32F /* Notifications.swift in Sources */,
 				CE00A7E72063241D001686CD /* PermissionManagerType.swift in Sources */,
 				CE00A7DF206323BF001686CD /* PermissionManager.swift in Sources */,
 				CE00A7F320632A0E001686CD /* SoftAskView.swift in Sources */,
