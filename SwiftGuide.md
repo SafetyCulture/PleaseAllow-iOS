@@ -11,15 +11,13 @@ func transformVariable(with variable: SomeVariable, completion: (TransformedVari
 }
 ```
 
-#### Don't
 ```swift
+// Don't
 transformVariable(myVar, completion: { (transformed) in
     bouce(transformed)
 })
-```
 
-#### Do
-```swift
+// Do
 transformVariable(myVar) { transformed in
     bouce(transformed)
 }
