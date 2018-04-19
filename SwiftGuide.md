@@ -1,24 +1,62 @@
 # Swift Guidlines
 
+**Preferred**
+```swift
+
+```
+
+**Not Prferred**
+```swift
+
+```
+
+
+
 ### Commandments
 
-1. Use Parentheses only if necessary
+#### 1. Use (Parentheses) only if necessary
 
 ```swift
-func transformVariable(with variable: SomeVariable, completion: (TransformedVariable) ->  Void)) {
+func transformVariable(_ variable: SomeVariable, completion: (TransformedVariable) ->  Void)) {
     let result: TransformedVariable = variable.transformed
     completion(result)
 }
 ```
 
+**Preferred**
 ```swift
-// Don't
+transformVariable(myVar) { transformed in
+bouce(transformed)
+}
+```
+
+**Not Preferred**
+```swift
 transformVariable(myVar, completion: { (transformed) in
     bouce(transformed)
 })
+```
 
-// Do
-transformVariable(myVar) { transformed in
-    bouce(transformed)
+
+#### 2. Make Functions as human readable as possible  
+**Preferred**
+```swift
+// Declaration
+func extractRecord(with id: ID, from array: Array) -> Record {
+// Return record
 }
+
+// Call
+let record = extractRecord(with: someRecordID, from: someArray)
+```
+
+**Not Prferred**
+```swift
+// Declaration
+func extractRecordWithID(id: ID, fromArray array: Array) -> Record {
+// Return record
+}
+
+// Call
+let record = extractRecordWithID(id: someRecordID, fromArray: someArray)
 ```
