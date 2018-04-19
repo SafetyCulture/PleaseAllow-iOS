@@ -41,22 +41,18 @@ transformVariable(myVar, completion: { (transformed) in
 #### 2. Make Functions as human readable as possible  
 **Preferred**
 ```swift
-// Declaration
 func extractRecord(with id: ID, from array: Array) -> Record {
 // Return record
 }
 
-// Call
 let record = extractRecord(with: someRecordID, from: someArray)
 ```
 
 **Not Prferred**
 ```swift
-// Declaration
 func extractRecordWithID(id: ID, fromArray array: Array) -> Record {
 // Return record
 }
 
-// Call
 let record = extractRecordWithID(id: someRecordID, fromArray: someArray)
 ```
