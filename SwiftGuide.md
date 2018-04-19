@@ -1,17 +1,5 @@
 # Swift Guidlines
 
-**Preferred**
-```swift
-
-```
-
-**Not Prferred**
-```swift
-
-```
-
-
-
 ### Commandments
 
 #### 1. Use (Parentheses) only if necessary
@@ -26,7 +14,7 @@ func transformVariable(_ variable: SomeVariable, completion: (TransformedVariabl
 **Preferred**
 ```swift
 transformVariable(myVar) { transformed in
-bouce(transformed)
+    bouce(transformed)
 }
 ```
 
@@ -41,18 +29,33 @@ transformVariable(myVar, completion: { (transformed) in
 #### 2. Make Functions as human readable as possible  
 **Preferred**
 ```swift
-func extractRecord(with id: ID, from array: Array) -> Record {
-// Return record
+func extractRecord(with id: ID, from dataSource: DataSource) -> Record? {
+    let records = dataSource.records
+    return records.first { $0.id == ID }
 }
 
-let record = extractRecord(with: someRecordID, from: someArray)
+let record = extractRecord(with: recordID, from: dataSource)
 ```
 
-**Not Prferred**
+**Not Preferred**
 ```swift
-func extractRecordWithID(id: ID, fromArray array: Array) -> Record {
-// Return record
+func extractRecordWithID(id: ID, fromDataSource dataSource: DataSource) -> Record? {
+    let records = dataSource.records
+    return records.first { $0.id == ID }
 }
 
-let record = extractRecordWithID(id: someRecordID, fromArray: someArray)
+let record = extractRecordWithID(id: recordID, fromDataSource: dataSource)
 ```
+
+
+**Preferred**
+```swift
+
+```
+
+**Not Preferred**
+```swift
+
+```
+
+
