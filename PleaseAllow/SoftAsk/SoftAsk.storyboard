@@ -33,22 +33,21 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IdW-8I-Hah">
                                         <rect key="frame" x="54" y="54" width="135" height="134.66666666666666"/>
-                                        <color key="backgroundColor" red="0.90196078430000004" green="0.91764705879999997" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="IdW-8I-Hah" secondAttribute="height" id="LWV-dp-Y0W"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8qz-bs-2OW">
-                                        <rect key="frame" x="213" y="96.333333333333343" width="235" height="50"/>
+                                        <rect key="frame" x="213" y="96.333333333333343" width="235" height="50.333333333333343"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg3-tk-mSd">
-                                                <rect key="frame" x="0.0" y="0.0" width="235" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg3-tk-mSd">
+                                                <rect key="frame" x="0.0" y="0.0" width="235" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g05-Uq-M8d">
-                                                <rect key="frame" x="0.0" y="36" width="235" height="14"/>
+                                                <rect key="frame" x="0.0" y="36.333333333333314" width="235" height="14"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -127,9 +126,9 @@
                                         <exclude reference="eMa-vC-ymy"/>
                                         <exclude reference="Bf0-le-wVq"/>
                                         <exclude reference="Mzi-xP-Ipa"/>
+                                        <exclude reference="hZX-nz-hHB"/>
                                         <exclude reference="Fms-SY-WNt"/>
                                         <exclude reference="iXc-dI-0cp"/>
-                                        <exclude reference="hZX-nz-hHB"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=compact">
@@ -139,12 +138,12 @@
                                         <include reference="Mzi-xP-Ipa"/>
                                         <exclude reference="qRy-2B-R9n"/>
                                         <exclude reference="vXg-bs-B6T"/>
+                                        <exclude reference="9t8-Mc-MwA"/>
+                                        <include reference="hZX-nz-hHB"/>
                                         <include reference="Fms-SY-WNt"/>
                                         <exclude reference="YP2-Du-kIS"/>
                                         <exclude reference="bI3-ff-7ZY"/>
                                         <include reference="iXc-dI-0cp"/>
-                                        <exclude reference="9t8-Mc-MwA"/>
-                                        <include reference="hZX-nz-hHB"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -237,23 +236,22 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AGc-K1-i4L">
                                                 <rect key="frame" x="0.0" y="0.0" width="168.66666666666666" height="168"/>
-                                                <color key="backgroundColor" red="0.90196078430000004" green="0.91764705879999997" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="750" constant="200" id="Con-yp-E2C"/>
                                                     <constraint firstAttribute="width" secondItem="AGc-K1-i4L" secondAttribute="height" multiplier="1:1" id="TyR-mq-Txo"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyy-Eo-9j9">
-                                                <rect key="frame" x="192.66666666666671" y="58.666666666666671" width="483.33333333333326" height="51"/>
+                                                <rect key="frame" x="192.66666666666671" y="59" width="483.33333333333326" height="50.333333333333343"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSo-Xo-QGb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="483.33333333333331" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSo-Xo-QGb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="483.33333333333331" height="20.333333333333332"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iY6-mM-eZy">
-                                                        <rect key="frame" x="0.0" y="37" width="483.33333333333331" height="14"/>
+                                                        <rect key="frame" x="0.0" y="36.333333333333329" width="483.33333333333331" height="14"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
