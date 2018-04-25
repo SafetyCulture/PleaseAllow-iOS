@@ -117,5 +117,8 @@ internal class FullScreenSoftAskViewController: SoftAskViewController {
         super.viewWillAppear(animated)
         allowButton.layer.cornerRadius = 5
         allowButton.layer.masksToBounds = true
+        
+        denyButton.layer.cornerRadius = 5
+        denyButton.layer.masksToBounds = true
     }
 }
