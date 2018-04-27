@@ -42,10 +42,14 @@ internal class Notifications: PermissionManager {
     fileprivate var remoteNotificationsStatus: Bool
     
     var status: PermissionStatus {
-        let status = testing ? remoteNotificationsStatus : UIApplication.shared.isRegisteredForRemoteNotifications
+        let authorized: Bool = !(UIApplication.shared.currentUserNotificationSettings?.types.isEmpty ?? true)
+        let status = testing ? remoteNotificationsStatus : authorized
+        
         switch status {
-        case true: return .authorized
-        default  : return .notDetermined
+        case true:
+            return .authorized
+        default  :
+            return .notDetermined
         }
     }
     
