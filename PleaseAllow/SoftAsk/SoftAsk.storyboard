@@ -38,16 +38,16 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8qz-bs-2OW">
-                                        <rect key="frame" x="32" y="230.99999999999997" width="203" height="50.333333333333343"/>
+                                        <rect key="frame" x="16" y="230.99999999999997" width="235" height="50.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg3-tk-mSd">
-                                                <rect key="frame" x="0.0" y="0.0" width="203" height="20.333333333333332"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="235" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g05-Uq-M8d">
-                                                <rect key="frame" x="0.0" y="36.333333333333371" width="203" height="14"/>
+                                                <rect key="frame" x="0.0" y="36.333333333333371" width="235" height="14"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -103,14 +103,14 @@
                                 <constraints>
                                     <constraint firstItem="BTB-yu-BS4" firstAttribute="top" secondItem="8qz-bs-2OW" secondAttribute="bottom" constant="54" id="9t8-Mc-MwA"/>
                                     <constraint firstItem="IdW-8I-Hah" firstAttribute="height" secondItem="YfU-qB-9xZ" secondAttribute="height" multiplier="0.5" id="Bf0-le-wVq"/>
-                                    <constraint firstAttribute="trailing" secondItem="8qz-bs-2OW" secondAttribute="trailing" constant="32" id="ErN-iw-Yhh"/>
+                                    <constraint firstAttribute="trailing" secondItem="8qz-bs-2OW" secondAttribute="trailing" constant="16" id="ErN-iw-Yhh"/>
                                     <constraint firstItem="8qz-bs-2OW" firstAttribute="leading" secondItem="IdW-8I-Hah" secondAttribute="trailing" constant="24" id="Fms-SY-WNt"/>
                                     <constraint firstAttribute="bottom" secondItem="BTB-yu-BS4" secondAttribute="bottom" id="JhD-Nh-5OB"/>
                                     <constraint firstItem="IdW-8I-Hah" firstAttribute="leading" secondItem="YfU-qB-9xZ" secondAttribute="leading" constant="54" id="Mzi-xP-Ipa"/>
                                     <constraint firstItem="IdW-8I-Hah" firstAttribute="top" secondItem="YfU-qB-9xZ" secondAttribute="top" constant="54" id="Sn6-YV-Y5y"/>
                                     <constraint firstAttribute="trailing" secondItem="BTB-yu-BS4" secondAttribute="trailing" id="WgI-u7-EJd"/>
                                     <constraint firstItem="8qz-bs-2OW" firstAttribute="top" secondItem="IdW-8I-Hah" secondAttribute="bottom" constant="44" id="YP2-Du-kIS"/>
-                                    <constraint firstItem="8qz-bs-2OW" firstAttribute="leading" secondItem="YfU-qB-9xZ" secondAttribute="leading" constant="32" id="bI3-ff-7ZY"/>
+                                    <constraint firstItem="8qz-bs-2OW" firstAttribute="leading" secondItem="YfU-qB-9xZ" secondAttribute="leading" constant="16" id="bI3-ff-7ZY"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="eMa-vC-ymy"/>
                                     <constraint firstItem="BTB-yu-BS4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IdW-8I-Hah" secondAttribute="bottom" constant="32" id="hZX-nz-hHB"/>
                                     <constraint firstItem="8qz-bs-2OW" firstAttribute="centerY" secondItem="IdW-8I-Hah" secondAttribute="centerY" id="iXc-dI-0cp"/>
@@ -126,9 +126,9 @@
                                         <exclude reference="eMa-vC-ymy"/>
                                         <exclude reference="Bf0-le-wVq"/>
                                         <exclude reference="Mzi-xP-Ipa"/>
-                                        <exclude reference="hZX-nz-hHB"/>
                                         <exclude reference="Fms-SY-WNt"/>
                                         <exclude reference="iXc-dI-0cp"/>
+                                        <exclude reference="hZX-nz-hHB"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=compact">
@@ -138,12 +138,12 @@
                                         <include reference="Mzi-xP-Ipa"/>
                                         <exclude reference="qRy-2B-R9n"/>
                                         <exclude reference="vXg-bs-B6T"/>
-                                        <exclude reference="9t8-Mc-MwA"/>
-                                        <include reference="hZX-nz-hHB"/>
                                         <include reference="Fms-SY-WNt"/>
                                         <exclude reference="YP2-Du-kIS"/>
                                         <exclude reference="bI3-ff-7ZY"/>
                                         <include reference="iXc-dI-0cp"/>
+                                        <exclude reference="9t8-Mc-MwA"/>
+                                        <include reference="hZX-nz-hHB"/>
                                     </mask>
                                 </variation>
                             </view>

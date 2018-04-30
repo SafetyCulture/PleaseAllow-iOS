@@ -67,12 +67,14 @@ internal class Notifications: PermissionManager {
 extension Notifications: RequestManager {
     
     @objc func softPermissionGranted() {
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)
         softAskView?.hide { [weak self] in
             self?.resultHandler?(.allowed, nil)
         }
     }
     
     @objc func softPermissionDenied() {
+        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskDenied)
         softAskView?.hide { [weak self] in
             guard let handler = self?.resultHandler else { return }
             handler(.softDenial, nil)
