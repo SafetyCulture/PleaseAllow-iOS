@@ -164,6 +164,7 @@
                     </view>
                     <connections>
                         <outlet property="allowButton" destination="W8G-IK-aEe" id="hg2-7j-kRn"/>
+                        <outlet property="blurView" destination="LY7-Xn-kk2" id="hVi-hs-Ob6"/>
                         <outlet property="buttonsContainer" destination="BTB-yu-BS4" id="Q9Z-8q-Krr"/>
                         <outlet property="container" destination="YfU-qB-9xZ" id="aHI-aA-q32"/>
                         <outlet property="denyButton" destination="2bt-8v-bEI" id="KjM-9Z-iIk"/>

@@ -181,6 +181,7 @@ class ViewController: UIViewController {
     
     var deniedView: DeniedAlert {
         let view = DeniedAlert(.modal)
+        view.shouldBlurBackground = false
         view.allowButtonTitle = settings
         view.denyButtonTitle = cancel
         view.title = deniedTitle

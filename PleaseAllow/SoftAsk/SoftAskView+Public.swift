@@ -20,6 +20,15 @@ extension SoftAskView {
         case deny
     }
     
+    open var shouldBlurBackground: Bool {
+        get {
+            return softAskViewController.blurView.alpha == 1
+        }
+        set {
+            softAskViewController.toggleBlurView(shouldBlur: newValue)
+        }
+    }
+    
     /// Backgorund Color for the Soft Ask View. Default is White
     open var backgroundColor: UIColor? {
         get {

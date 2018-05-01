@@ -37,6 +37,8 @@ internal class SoftAskViewController: UIViewController, StoryboardLoading {
         layout()
     }
     
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    
     @IBOutlet var container: UIView! {
         didSet {
             container.backgroundColor = .white
@@ -105,6 +107,18 @@ internal class SoftAskViewController: UIViewController, StoryboardLoading {
     
     @IBAction func allowTapped(_ sender: UIButton) {
         delegate?.softAskViewController(self, didSelectAction: .allow)
+    }
+    
+    internal func toggleBlurView(shouldBlur: Bool) {
+        switch shouldBlur {
+        case true:
+            blurView.alpha = 1
+            view.alpha = 0
+            
+        case false:
+            blurView.alpha = 0
+            view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        }
     }
 }
 
