@@ -14,9 +14,9 @@ open class DeniedAlert: SoftAskView { }
  
  */
 
+private var sharedWindow: UIWindow?
 
 open class SoftAskView {
-    private var window: UIWindow?
     private var manager: PermissionManager?
     
     internal var softAskViewController: SoftAskViewController!
@@ -39,14 +39,14 @@ open class SoftAskView {
     }
     
     internal func show() {
-        guard self.window == nil else {
+        guard sharedWindow == nil else {
             return
         }
         
         let window = UIWindow(frame:UIScreen.main.bounds)
         window.windowLevel = UIWindowLevelAlert
         window.rootViewController = softAskViewController
-        self.window = window
+        sharedWindow = window
         window.makeKeyAndVisible()
         
         softAskViewController.view.alpha = 0
@@ -62,11 +62,13 @@ open class SoftAskView {
     }
     
     @objc internal func hide(_ completion: (() -> ())? = nil) {
-        guard let window = self.window else {
+        guard let window = sharedWindow else {
             return
         }
+        
         window.resignKey()
-        self.window = nil
+        sharedWindow = nil
+        
         UIView.animate(withDuration: 0.24, delay: 0, options: .curveEaseOut, animations: {
             self.softAskViewController.view.alpha = 0
         }, completion: { _ in
