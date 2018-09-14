@@ -99,7 +99,7 @@ extension PermissionManager {
     
     func redirectToSettings() {
         resultHandler?(.redirectedToSettings, nil)
-        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.openURL(url)
         }
     }

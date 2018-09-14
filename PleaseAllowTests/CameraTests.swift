@@ -41,7 +41,7 @@ class CameraTests: XCTestCase {
         var camera = Camera(.authorized, true)
         let exp = expectation(description: "Expectation")
         camera.request { (result, error) in
-            XCTAssertEqual(result, PleaseAllowResult.allowed)
+            XCTAssertEqual(result, Please.Result.allowed)
             exp.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)
@@ -51,7 +51,7 @@ class CameraTests: XCTestCase {
         var camera = Camera(.restricted, true)
         let exp = expectation(description: "Expectation")
         camera.request { (result, error) in
-            XCTAssertEqual(result, PleaseAllowResult.restricted)
+            XCTAssertEqual(result, Please.Result.restricted)
             exp.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)
@@ -61,7 +61,7 @@ class CameraTests: XCTestCase {
         var camera = Camera(.denied, true)
         let exp = expectation(description: "Expectation")
         camera.request { (result, error) in
-            XCTAssertEqual(result, PleaseAllowResult.hardDenial)
+            XCTAssertEqual(result, Please.Result.hardDenial)
             exp.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)

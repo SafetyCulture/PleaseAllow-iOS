@@ -44,7 +44,7 @@ open class SoftAskView {
         }
         
         let window = UIWindow(frame:UIScreen.main.bounds)
-        window.windowLevel = UIWindowLevelAlert
+        window.windowLevel = .alert
         window.rootViewController = softAskViewController
         sharedWindow = window
         window.makeKeyAndVisible()
