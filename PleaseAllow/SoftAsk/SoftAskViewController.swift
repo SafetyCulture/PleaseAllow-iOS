@@ -112,11 +112,11 @@ internal class SoftAskViewController: UIViewController, StoryboardLoading {
     internal func toggleBlurView(shouldBlur: Bool) {
         switch shouldBlur {
         case true:
-            blurView.alpha = 1
+            blurView?.alpha = 1
             view.alpha = 0
             
         case false:
-            blurView.alpha = 0
+            blurView?.alpha = 0
             view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         }
     }
