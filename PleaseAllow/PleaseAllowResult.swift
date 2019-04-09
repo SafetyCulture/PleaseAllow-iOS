@@ -21,12 +21,12 @@ extension Please {
      
      - returns: void
      */
-    public typealias Reply = (_ reply: PleaseResult, _ error: Error?) -> ()
+    public typealias Reply = (_ reply: Please.Result, _ error: Error?) -> ()
 
     /**
      Returned in the Completion handler of the request for a Permission
      */
-    @objc public enum PleaseResult: NSInteger {
+    @objc public enum Result: NSInteger {
         
         /// Returned when the user authorises usage for the requested permission.
         case allowed
