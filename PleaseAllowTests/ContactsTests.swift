@@ -39,7 +39,7 @@ class ContactsTests: XCTestCase {
         var contacts = Contacts(.authorized, true)
         let exp = expectation(description: "Expectation")
         contacts.request { (result, error) in
-            XCTAssertEqual(result, PleaseAllowResult.allowed)
+            XCTAssertEqual(result, Please.Result.allowed)
             exp.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)
@@ -49,7 +49,7 @@ class ContactsTests: XCTestCase {
         var contacts = Contacts(.restricted, true)
         let exp = expectation(description: "Expectation")
         contacts.request { (result, error) in
-            XCTAssertEqual(result, PleaseAllowResult.restricted)
+            XCTAssertEqual(result, Please.Result.restricted)
             exp.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)
@@ -59,7 +59,7 @@ class ContactsTests: XCTestCase {
         var contacts = Contacts(.denied, true)
         let exp = expectation(description: "Expectation")
         contacts.request { (result, error) in
-            XCTAssertEqual(result, PleaseAllowResult.hardDenial)
+            XCTAssertEqual(result, Please.Result.hardDenial)
             exp.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)

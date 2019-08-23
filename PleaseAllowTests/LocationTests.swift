@@ -46,7 +46,7 @@ class locationTests: XCTestCase {
         location.locationType = .whenInUse
         let exp = expectation(description: "Expectation")
         location.request { (result, error) in
-            XCTAssertEqual(result, PleaseAllowResult.allowed)
+            XCTAssertEqual(result, Please.Result.allowed)
             exp.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)
@@ -57,7 +57,7 @@ class locationTests: XCTestCase {
         location.locationType = .whenInUse
         let exp = expectation(description: "Expectation")
         location.request { (result, error) in
-            XCTAssertEqual(result, PleaseAllowResult.allowed)
+            XCTAssertEqual(result, Please.Result.allowed)
             exp.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)
@@ -67,7 +67,7 @@ class locationTests: XCTestCase {
         var location = Location(.restricted, true)
         let exp = expectation(description: "Expectation")
         location.request { (result, error) in
-            XCTAssertEqual(result, PleaseAllowResult.restricted)
+            XCTAssertEqual(result, Please.Result.restricted)
             exp.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)
@@ -77,7 +77,7 @@ class locationTests: XCTestCase {
         var location = Location(.denied, true)
         let exp = expectation(description: "Expectation")
         location.request { (result, error) in
-            XCTAssertEqual(result, PleaseAllowResult.hardDenial)
+            XCTAssertEqual(result, Please.Result.hardDenial)
             exp.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)
