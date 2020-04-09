@@ -169,7 +169,7 @@ class ViewController: UIViewController {
     }
     
     var softAskView: SoftAskView {
-        let view = SoftAskView(.fullScreen)
+        let view = SoftAskView(.modal)
         view.allowButtonBackgroundColor = view.denyButtonTitleColor
         view.allowButtonTitleColor = .white
         view.allowButtonTitle = allowTitle
