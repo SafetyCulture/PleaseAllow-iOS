@@ -6,7 +6,7 @@
 //  Copyright © 2018 Gagandeep Singh. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import AVFoundation
 
 internal class Camera: PermissionManager {
@@ -51,7 +51,7 @@ internal class Camera: PermissionManager {
         case .authorized    : return .authorized
         case .denied        : return .denied
         case .restricted    : return .restricted
-        case .notDetermined : return .notDetermined
+        default: return .notDetermined
         }
     }
     

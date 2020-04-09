@@ -64,7 +64,7 @@ internal class Location: NSObject, PermissionManager {
         case .authorizedAlways:    return .authorized
         case .denied:              return .denied
         case .restricted:          return .restricted
-        case .notDetermined:       return .notDetermined
+        default: return .notDetermined
         }
     }
     

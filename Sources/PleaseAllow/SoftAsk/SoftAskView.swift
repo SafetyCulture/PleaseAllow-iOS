@@ -6,6 +6,8 @@
 //  Copyright © 2018 Gagandeep Singh. All rights reserved.
 //
 
+import UIKit
+
 open class DeniedAlert: SoftAskView { }
 
 /**

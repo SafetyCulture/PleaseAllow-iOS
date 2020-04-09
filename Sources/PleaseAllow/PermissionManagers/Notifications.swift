@@ -6,7 +6,7 @@
 //  Copyright © 2018 Gagandeep Singh. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 internal class Notifications: PermissionManager {
     

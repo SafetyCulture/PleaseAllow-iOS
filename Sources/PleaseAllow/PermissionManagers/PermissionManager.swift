@@ -6,7 +6,7 @@
 //  Copyright © 2018 Gagandeep Singh. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Common Protocol for all Permissions
 public protocol PermissionManager {

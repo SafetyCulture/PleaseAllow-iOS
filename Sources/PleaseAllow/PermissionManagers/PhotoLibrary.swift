@@ -1,24 +1,24 @@
 //
-//  Contacts.swift
+//  PhotoLibrary.swift
 //  PleaseAllow
 //
 //  Created by Gagandeep Singh on 22/3/18.
 //  Copyright © 2018 Gagandeep Singh. All rights reserved.
 //
 
-import Foundation
-import Contacts
+import UIKit
+import Photos
 
-internal class Contacts: PermissionManager {
+internal class PhotoLibrary: PermissionManager {
     
     //MARK:- Type
     
-    var type: PermissionManagerType = .contacts
+    var type: PermissionManagerType = .photoLibrary
     
     //MARK:- Initializer
     
-    internal init(_ status: CNAuthorizationStatus? = nil, _ testing: Bool = false) {
-        cnAuthorizationStatus = status ?? CNContactStore.authorizationStatus(for: .contacts)
+    internal init(_ status: PHAuthorizationStatus? = nil, _ testing: Bool = false) {
+        phAuthorizationStatus = status ?? PHPhotoLibrary.authorizationStatus()
         self.testing = testing
     }
     
@@ -28,7 +28,14 @@ internal class Contacts: PermissionManager {
     
     //MARK:- Availability
     
-    var isAvailable: Bool = true
+    var isAvailable: Bool {
+        guard let handler = resultHandler else { return false }
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+            handler(.unavailable, nil)
+            return false
+        }
+        return true
+    }
     
     //MARK:- Testing
     
@@ -36,15 +43,15 @@ internal class Contacts: PermissionManager {
     
     //MARK:- Status
     
-    fileprivate var cnAuthorizationStatus: CNAuthorizationStatus
+    fileprivate var phAuthorizationStatus: PHAuthorizationStatus
     
     var status: PermissionStatus {
-        let status = testing ? cnAuthorizationStatus : CNContactStore.authorizationStatus(for: .contacts)
+        let status = testing ? phAuthorizationStatus : PHPhotoLibrary.authorizationStatus()
         switch status {
         case .authorized:    return .authorized
         case .denied:        return .denied
         case .restricted:    return .restricted
-        case .notDetermined: return .notDetermined
+        default: return .notDetermined
         }
     }
     
@@ -53,17 +60,12 @@ internal class Contacts: PermissionManager {
     var softAskView: SoftAskView?
     
     //MARK:- Denied Alert
-    
     var deniedAlert: DeniedAlert?
-    
-    //MARK:- Contact Store
-    
-    var contactStore: CNContactStore?
     
     var eventListener: PleaseAllowEventListener?
 }
 
-extension Contacts: RequestManager {
+extension PhotoLibrary: RequestManager {
     
     @objc func softPermissionGranted() {
         eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)
@@ -85,25 +87,18 @@ extension Contacts: RequestManager {
         
         eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskPresented)
         
-        contactStore = CNContactStore()
-        guard let contactStore = self.contactStore else { return }
-        
-        contactStore.requestAccess(for: .contacts) { granted, error in
+        PHPhotoLibrary.requestAuthorization { status in
+            self.phAuthorizationStatus = status
             DispatchQueue.main.async {
-                guard error == nil else {
-                    handler(.hardDenial, error)
-                    return
-                }
-                
-                if granted {
+                switch status {
+                case .authorized:
                     self.eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskAllowed)
-                    self.cnAuthorizationStatus = .authorized
                     handler(.allowed, nil)
-                    
-                } else {
+                case .denied:
                     self.eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskDenied)
-                    self.cnAuthorizationStatus = .denied
                     handler(.hardDenial, nil)
+                default:
+                    break;
                 }
             }
         }
