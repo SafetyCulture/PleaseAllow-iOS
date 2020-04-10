@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "PleaseAllow",
+        "repositoryURL": "https://github.com/SafetyCulture/PleaseAllow-iOS",
+        "state": {
+          "branch": "swift-package",
+          "revision": "50a38e2b320b009ef82145dbb011c60fb15e5dfd",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
