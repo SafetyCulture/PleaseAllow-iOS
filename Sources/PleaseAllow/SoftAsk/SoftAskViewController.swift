@@ -27,7 +27,7 @@ extension UIColor {
         if #available(iOS 13.0, *) {
             return .label
         } else {
-            return .darkGray
+            return .black
         }
     }()
     
