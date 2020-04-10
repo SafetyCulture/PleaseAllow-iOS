@@ -33,11 +33,10 @@ open class SoftAskView {
         case .fullScreen:
             softAskViewController = FullScreenSoftAskViewController.loadFromStoryboard()
         case .modal:
-            softAskViewController = SoftAskViewController.loadFromStoryboard()
+            softAskViewController = SoftAskViewController()
         }
         
         softAskViewController.delegate = self
-        softAskViewController.loadView()
     }
     
     internal func show() {
