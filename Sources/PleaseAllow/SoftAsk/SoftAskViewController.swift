@@ -63,7 +63,7 @@ extension StoryboardLoading {
 }
 
 internal protocol SoftAskViewControllerDelegate: class {
-    func softAskViewController(_ viewController: SoftAskViewController, didSelectAction action: SoftAskView.Action)
+    func softAskViewController(_ viewController: SoftAskViewController, didPerform action: SoftAskView.Action)
 }
 
 internal class SoftAskViewController: UIViewController
@@ -213,12 +213,12 @@ internal class SoftAskViewController: UIViewController
     
     @objc
     private func denyTapped(_ sender: UIButton) {
-        delegate?.softAskViewController(self, didSelectAction: .deny)
+        delegate?.softAskViewController(self, didPerform: .deny)
     }
     
     @objc
     private func allowTapped(_ sender: UIButton) {
-        delegate?.softAskViewController(self, didSelectAction: .allow)
+        delegate?.softAskViewController(self, didPerform: .allow)
     }
     
     internal func toggleBlurView(shouldBlur: Bool) {
@@ -232,19 +232,4 @@ internal class SoftAskViewController: UIViewController
             view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         }
     }
-}
-
-internal class FullScreenSoftAskViewController: SoftAskViewController, StoryboardLoading {
-    class var identifier: String {
-        return "FullScreenSoftAskViewController"
-    }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        allowButton.layer.cornerRadius = 5
-//        allowButton.layer.masksToBounds = true
-//
-//        denyButton.layer.cornerRadius = 5
-//        denyButton.layer.masksToBounds = true
-//    }
 }

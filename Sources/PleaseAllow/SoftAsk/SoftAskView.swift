@@ -21,22 +21,15 @@ private var sharedWindow: UIWindow?
 open class SoftAskView {
     private var manager: PermissionManager?
     
-    internal var softAskViewController: SoftAskViewController!
+    let viewController: SoftAskViewController = .init()
     
     internal func present(for manager: PermissionManager) {
         self.manager = manager
         show()
     }
     
-    public init(_ display: DisplayType) {
-        switch display {
-        case .fullScreen:
-            softAskViewController = FullScreenSoftAskViewController.loadFromStoryboard()
-        case .modal:
-            softAskViewController = SoftAskViewController()
-        }
-        
-        softAskViewController.delegate = self
+    public init() {
+        viewController.delegate = self
     }
     
     internal func show() {
@@ -46,19 +39,19 @@ open class SoftAskView {
         
         let window = UIWindow(frame:UIScreen.main.bounds)
         window.windowLevel = UIWindow.Level.alert
-        window.rootViewController = softAskViewController
+        window.rootViewController = viewController
         sharedWindow = window
         window.makeKeyAndVisible()
         
-        softAskViewController.view.alpha = 0
-        softAskViewController.container.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        viewController.view.alpha = 0
+        viewController.container.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         
         UIView.animate(withDuration: 0.18, delay: 0, options: .curveEaseOut, animations: {
-            self.softAskViewController.view.alpha = 1
+            self.viewController.view.alpha = 1
         }, completion: nil)
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.softAskViewController.container.transform = .identity
+            self.viewController.container.transform = .identity
         }, completion: nil)
     }
     
@@ -71,7 +64,7 @@ open class SoftAskView {
         sharedWindow = nil
         
         UIView.animate(withDuration: 0.24, delay: 0, options: .curveEaseOut, animations: {
-            self.softAskViewController.view.alpha = 0
+            self.viewController.view.alpha = 0
         }, completion: { _ in
             completion?()
         })
@@ -96,7 +89,7 @@ open class SoftAskView {
 }
 
 extension SoftAskView: SoftAskViewControllerDelegate {
-    func softAskViewController(_ viewController: SoftAskViewController, didSelectAction action: SoftAskView.Action) {
+    func softAskViewController(_ viewController: SoftAskViewController, didPerform action: Action) {
         if self is DeniedAlert {
             action == .allow ? redirectToSettings() : cancelRedirect()
         } else {
