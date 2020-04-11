@@ -9,7 +9,7 @@
 extension UIColor {
     static let primaryBackground: UIColor = {
         if #available(iOS 13.0, *) {
-            return .secondarySystemBackground
+            return .systemBackground
         } else {
             return .white
         }
@@ -54,20 +54,11 @@ internal protocol StoryboardLoading: class {
     static var identifier: String { get }
 }
 
-extension StoryboardLoading {
-    static func loadFromStoryboard() -> Self {
-        let storyboard = UIStoryboard(name: "SoftAsk", bundle: Bundle(for: Self.self))
-        let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
-        return viewController as! Self
-    }
-}
-
 internal protocol SoftAskViewControllerDelegate: class {
     func softAskViewController(_ viewController: SoftAskViewController, didPerform action: SoftAskView.Action)
 }
 
-internal class SoftAskViewController: UIViewController
-{
+internal class SoftAskViewController: UIViewController {
     weak var delegate: SoftAskViewControllerDelegate?
     
     let blurView: UIVisualEffectView = {
@@ -83,12 +74,10 @@ internal class SoftAskViewController: UIViewController
         return view
     }()
     
-    let container: UIView = {
-        let view = UIView(frame: .zero)
+    let container: RoundShadowView = {
+        let view = RoundShadowView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .primaryBackground
-        view.layer.masksToBounds = true
-        view.layer.cornerRadius = 16
         return view
     }()
     
@@ -102,33 +91,31 @@ internal class SoftAskViewController: UIViewController
     let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .title3)
         label.textColor = .primaryText
         label.textAlignment = .center
-        label.setContentHuggingPriority(.required, for: .vertical)
-        label.setContentCompressionResistancePriority(.required, for: .vertical)
         return label
     }()
     
     let descriptionLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .callout)
         label.textColor = .secondaryText
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
-        label.setContentHuggingPriority(.defaultLow, for: .vertical)
-        label.setContentCompressionResistancePriority(.required, for: .vertical)
         return label
     }()
      
     let buttonsContainer: UIView = {
         let view = UIView(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .secondaryBackground
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    lazy var allowButton: UIButton = {
+    let allowButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .primaryBackground
@@ -138,7 +125,7 @@ internal class SoftAskViewController: UIViewController
         return button
     }()
     
-    lazy var denyButton: UIButton = {
+    let denyButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .primaryBackground
@@ -148,28 +135,31 @@ internal class SoftAskViewController: UIViewController
         return button
     }()
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         view.addSubview(blurView)
         view.addSubview(container)
-        container.addSubview(imageView)
-        container.addSubview(titleLabel)
-        container.addSubview(descriptionLabel)
-        container.addSubview(buttonsContainer)
+        container.addSubviews(imageView, titleLabel, descriptionLabel, buttonsContainer)
         
         buttonsContainer.addSubview(allowButton)
         buttonsContainer.addSubview(denyButton)
         
+        let containerLeading = container.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 24)
+        let containerTrailing =  container.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -24)
+        containerLeading.priority = .defaultHigh
+        containerTrailing.priority = .defaultHigh
+
         NSLayoutConstraint.activate([
             blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             blurView.topAnchor.constraint(equalTo: view.topAnchor),
             blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
+        
+            containerLeading,
+            containerTrailing,
             container.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             container.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            container.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 24),
-            container.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -24),
             container.widthAnchor.constraint(lessThanOrEqualToConstant: 320),
             
             imageView.topAnchor.constraint(equalTo: container.topAnchor, constant: 48),
@@ -188,7 +178,7 @@ internal class SoftAskViewController: UIViewController
             buttonsContainer.leadingAnchor.constraint(equalTo: container.leadingAnchor),
             buttonsContainer.trailingAnchor.constraint(equalTo: container.trailingAnchor),
             buttonsContainer.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-            buttonsContainer.heightAnchor.constraint(equalToConstant: 44),
+            buttonsContainer.heightAnchor.constraint(equalToConstant: 54),
             
             denyButton.topAnchor.constraint(equalTo: buttonsContainer.topAnchor, constant: 1),
             denyButton.leadingAnchor.constraint(equalTo: buttonsContainer.leadingAnchor),
@@ -199,25 +189,14 @@ internal class SoftAskViewController: UIViewController
             allowButton.trailingAnchor.constraint(equalTo: buttonsContainer.trailingAnchor),
             allowButton.bottomAnchor.constraint(equalTo: buttonsContainer.bottomAnchor),
             allowButton.widthAnchor.constraint(equalTo: denyButton.widthAnchor, multiplier: 1)
-            
         ])
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    @objc
-    private func denyTapped(_ sender: UIButton) {
+    @IBAction func denyTapped(_ sender: UIButton) {
         delegate?.softAskViewController(self, didPerform: .deny)
     }
     
-    @objc
-    private func allowTapped(_ sender: UIButton) {
+    @IBAction func allowTapped(_ sender: UIButton) {
         delegate?.softAskViewController(self, didPerform: .allow)
     }
     
@@ -231,5 +210,48 @@ internal class SoftAskViewController: UIViewController
             blurView.alpha = 0
             view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         }
+    }
+}
+
+class RoundShadowView: UIView {
+    private lazy var container: UIView = {
+        let view = UIView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = cornerRadius
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(container)
+        NSLayoutConstraint.activate([
+            container.leadingAnchor.constraint(equalTo: leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: trailingAnchor),
+            container.topAnchor.constraint(equalTo: topAnchor),
+            container.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var backgroundColor: UIColor? {
+        get { return container.backgroundColor }
+        set { container.backgroundColor = newValue }
+    }
+    
+    func addSubviews(_ views: UIView...) {
+        views.forEach(container.addSubview)
+    }
+    
+    private let cornerRadius: CGFloat = 16.0
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.1
+        layer.shadowRadius = 8
     }
 }

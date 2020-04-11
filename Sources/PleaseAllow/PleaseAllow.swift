@@ -32,6 +32,114 @@ import Foundation
  ```
   
  */
+
+public protocol PermissionContext {
+    var softAskView: SoftAskView? { get }
+    var deniedAlert: DeniedAlert? { get }
+}
+
+public protocol PermissionRequester: PermissionContext {
+    var permissionType: PermissionManagerType { get }
+}
+
+public extension PermissionRequester {
+    func request(handler: @escaping Please.Reply) {
+        switch permissionType {
+        case .camera:
+            Please.allow.camera(softAskView: softAskView, deniedView: nil, eventListener: nil, completion: handler)
+        case .photoLibrary:
+            Please.allow.photoLibrary(softAskView: softAskView, deniedView: nil, eventListener: nil, completion: handler)
+        case .contacts:
+            Please.allow.contacts(softAskView: softAskView, deniedView: nil, eventListener: nil, completion: handler)
+        case .locationWhenInUse:
+            Please.allow.location.whenInUse(softAskView: softAskView, deniedView: nil, eventListener: nil, completion: handler)
+        case .locationAlways:
+            Please.allow.location.always(softAskView: softAskView, deniedView: nil, eventListener: nil, completion: handler)
+        case .notifications:
+            Please.allow.notifications(softAskView: softAskView, deniedView: nil, eventListener: nil, completion: handler)
+        }
+    }
+}
+
+public struct Permission {
+    public struct Camera: PermissionRequester {
+        public let softAskView: SoftAskView?
+        public let deniedAlert: DeniedAlert?
+        
+        public init (softAskView: SoftAskView?, deniedAlert: DeniedAlert?) {
+            self.softAskView = softAskView
+            self.deniedAlert = deniedAlert
+        }
+        
+        public var permissionType: PermissionManagerType { .camera }
+
+        public static let `default` = Permission.Camera(softAskView: .init(title: "Allow Camera"), deniedAlert: nil)
+    }
+    
+    public struct PhotoLibrary: PermissionRequester {
+        public let softAskView: SoftAskView?
+        public let deniedAlert: DeniedAlert?
+        
+        public init (softAskView: SoftAskView?, deniedAlert: DeniedAlert?) {
+            self.softAskView = softAskView
+            self.deniedAlert = deniedAlert
+        }
+        
+        public var permissionType: PermissionManagerType { .photoLibrary }
+
+        public static let `default` = Permission.PhotoLibrary(softAskView: .init(title: "Allow Photo Library"), deniedAlert: nil)
+    }
+    
+    public struct Contacts: PermissionRequester {
+        public let softAskView: SoftAskView?
+        public let deniedAlert: DeniedAlert?
+        
+        public init (softAskView: SoftAskView?, deniedAlert: DeniedAlert?) {
+            self.softAskView = softAskView
+            self.deniedAlert = deniedAlert
+        }
+        
+        public var permissionType: PermissionManagerType { .contacts }
+
+        public static let `default` = Permission.Contacts(softAskView: .init(title: "Allow Contact"), deniedAlert: nil)
+    }
+    
+    public struct Location: PermissionRequester {
+        public let requestType: LocationRequestType
+        public let softAskView: SoftAskView?
+        public let deniedAlert: DeniedAlert?
+        
+        public init (requestType: LocationRequestType, softAskView: SoftAskView?, deniedAlert: DeniedAlert?) {
+            self.requestType = requestType
+            self.softAskView = softAskView
+            self.deniedAlert = deniedAlert
+        }
+        
+        public var permissionType: PermissionManagerType {
+            switch requestType {
+            case .whenInUse: return .locationWhenInUse
+            case .always: return .locationAlways
+            }
+        }
+
+        public static let `default` = Permission.Location(requestType: .whenInUse, softAskView: .init(title: "Allow Contact"), deniedAlert: nil)
+    }
+    
+    public struct Notifications: PermissionRequester {
+        public let softAskView: SoftAskView?
+        public let deniedAlert: DeniedAlert?
+        
+        public init (softAskView: SoftAskView?, deniedAlert: DeniedAlert?) {
+            self.softAskView = softAskView
+            self.deniedAlert = deniedAlert
+        }
+        
+        public var permissionType: PermissionManagerType { .notifications }
+
+        public static let `default` = Permission.Notifications(softAskView: .init(title: "Allow Notifications"), deniedAlert: nil)
+    }
+}
+
 open class Please: NSObject {
     /// Shared Instance to be used for all permission requests.
     public static let allow = Please()

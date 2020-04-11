@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class DeniedAlert: SoftAskView { }
+public class DeniedAlert: SoftAskView { }
 
 /**
  
@@ -19,17 +19,48 @@ open class DeniedAlert: SoftAskView { }
 private var sharedWindow: UIWindow?
 
 open class SoftAskView {
+    
+    
+    internal enum Action {
+        case allow
+        case deny
+    }
+    
     private var manager: PermissionManager?
     
-    let viewController: SoftAskViewController = .init()
+    internal var softAskViewController: SoftAskViewController!
     
     internal func present(for manager: PermissionManager) {
         self.manager = manager
         show()
     }
     
-    public init() {
-        viewController.delegate = self
+    public struct Button {
+        let title: String
+        let font: UIFont
+        
+        public init(title: String, font: UIFont = .preferredFont(forTextStyle: .body)) {
+            self.title = title
+            self.font = font
+        }
+    }
+    
+    public init(
+        title: String,
+        description: String = "",
+        image: UIImage? = nil,
+        allowButton: Button = .init(title: "Allow"),
+        denyButton: Button = .init(title: "Don't Allow")
+    ) {
+        softAskViewController = SoftAskViewController()
+        softAskViewController.titleLabel.text = title
+        softAskViewController.descriptionLabel.text = description
+        softAskViewController.imageView.image = image
+        softAskViewController.allowButton.setTitle(allowButton.title, for: .normal)
+        softAskViewController.allowButton.titleLabel?.font = allowButton.font
+        softAskViewController.denyButton.setTitle(denyButton.title, for: .normal)
+        softAskViewController.denyButton.titleLabel?.font = denyButton.font
+        softAskViewController.delegate = self 
     }
     
     internal func show() {
@@ -39,19 +70,19 @@ open class SoftAskView {
         
         let window = UIWindow(frame:UIScreen.main.bounds)
         window.windowLevel = UIWindow.Level.alert
-        window.rootViewController = viewController
+        window.rootViewController = softAskViewController
         sharedWindow = window
         window.makeKeyAndVisible()
         
-        viewController.view.alpha = 0
-        viewController.container.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        softAskViewController.view.alpha = 0
+        softAskViewController.container.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         
         UIView.animate(withDuration: 0.18, delay: 0, options: .curveEaseOut, animations: {
-            self.viewController.view.alpha = 1
+            self.softAskViewController.view.alpha = 1
         }, completion: nil)
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.viewController.container.transform = .identity
+            self.softAskViewController.container.transform = .identity
         }, completion: nil)
     }
     
@@ -64,7 +95,7 @@ open class SoftAskView {
         sharedWindow = nil
         
         UIView.animate(withDuration: 0.24, delay: 0, options: .curveEaseOut, animations: {
-            self.viewController.view.alpha = 0
+            self.softAskViewController.view.alpha = 0
         }, completion: { _ in
             completion?()
         })
@@ -98,3 +129,4 @@ extension SoftAskView: SoftAskViewControllerDelegate {
         }
     }
 }
+
