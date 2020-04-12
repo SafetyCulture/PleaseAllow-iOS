@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal class Notifications: PermissionManager {
+internal class NotificationsManager: PermissionManager {
     
     //MARK:- Type
     
@@ -60,7 +60,7 @@ internal class Notifications: PermissionManager {
     var eventListener: PleaseAllowEventListener?
 }
 
-extension Notifications: RequestManager {
+extension NotificationsManager: RequestManager {
     
     @objc func softPermissionGranted() {
         eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)

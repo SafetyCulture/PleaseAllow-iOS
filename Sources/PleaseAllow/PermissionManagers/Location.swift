@@ -14,7 +14,7 @@ import CoreLocation
     case whenInUse
 }
 
-internal class Location: NSObject, PermissionManager {
+internal class LocationManager: NSObject, PermissionManager {
     
     //MARK:- Type
     
@@ -80,17 +80,6 @@ internal class Location: NSObject, PermissionManager {
     
     internal var locationType: LocationRequestType = .whenInUse
     
-    internal static var always: Location {
-        let location = Location()
-        location.locationType = .always
-        return location
-    }
-    
-    internal static var whenInUse: Location {
-        let location = Location()
-        location.locationType = .whenInUse
-        return location
-    }
     
     //MARK:- Location Manager
     
@@ -99,7 +88,7 @@ internal class Location: NSObject, PermissionManager {
     var eventListener: PleaseAllowEventListener?
 }
 
-extension Location: RequestManager {
+extension LocationManager: RequestManager {
     
     @objc func softPermissionGranted() {
         eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)
@@ -132,7 +121,7 @@ extension Location: RequestManager {
     }
 }
 
-extension Location: CLLocationManagerDelegate {
+extension LocationManager: CLLocationManagerDelegate {
     
     internal func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         clAuthorizationStatus = status

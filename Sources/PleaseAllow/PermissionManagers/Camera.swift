@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-internal class Camera: PermissionManager {
+internal class CameraManager: PermissionManager {
     
     //MARK:- Type
     
@@ -66,7 +66,7 @@ internal class Camera: PermissionManager {
     var eventListener: PleaseAllowEventListener?
 }
 
-extension Camera: RequestManager {
+extension CameraManager: RequestManager {
     @objc func softPermissionGranted() {
         eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)
         softAskView?.hide { [weak self] in

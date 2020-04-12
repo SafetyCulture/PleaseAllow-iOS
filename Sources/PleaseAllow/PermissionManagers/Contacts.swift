@@ -9,7 +9,7 @@
 import UIKit
 import Contacts
 
-internal class Contacts: PermissionManager {
+internal class ContactsManager: PermissionManager {
     
     //MARK:- Type
     
@@ -63,7 +63,7 @@ internal class Contacts: PermissionManager {
     var eventListener: PleaseAllowEventListener?
 }
 
-extension Contacts: RequestManager {
+extension ContactsManager: RequestManager {
     
     @objc func softPermissionGranted() {
         eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)

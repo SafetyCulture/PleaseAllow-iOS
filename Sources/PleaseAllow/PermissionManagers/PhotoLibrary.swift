@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-internal class PhotoLibrary: PermissionManager {
+internal class PhotoLibraryManager: PermissionManager {
     
     //MARK:- Type
     
@@ -65,7 +65,7 @@ internal class PhotoLibrary: PermissionManager {
     var eventListener: PleaseAllowEventListener?
 }
 
-extension PhotoLibrary: RequestManager {
+extension PhotoLibraryManager: RequestManager {
     
     @objc func softPermissionGranted() {
         eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)
