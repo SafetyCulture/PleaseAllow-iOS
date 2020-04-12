@@ -115,7 +115,7 @@ open class SoftAskView {
         hide {
             self.manager?.redirectToSettings()
             if let manager = self.manager {
-                manager.eventListener?.pleaseAllowPermissionManager(manager, didPerformAction: .redirectedToSettings)
+                manager.eventListener?.pleaseAllowPermissionManager(manager, didPerform: .redirectedToSettings)
             }
         }
     }
@@ -123,7 +123,7 @@ open class SoftAskView {
     @objc private func cancelRedirect() {
         hide {
             if let manager = self.manager {
-                manager.eventListener?.pleaseAllowPermissionManager(manager, didPerformAction: .deniedAlertDismissed)
+                manager.eventListener?.pleaseAllowPermissionManager(manager, didPerform: .deniedAlertDismissed)
             }
         }
     }

@@ -47,12 +47,12 @@ extension PermissionManager {
         
         switch status {
         case .authorized:
-            eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .alreadyAuthorized)
+            eventListener?.pleaseAllowPermissionManager(self, didPerform: .alreadyAuthorized)
             handler(.allowed, nil)
             
         case .denied:
             if let deniedAlert = deniedAlert {
-                eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .deniedAlertPresented)
+                eventListener?.pleaseAllowPermissionManager(self, didPerform: .deniedAlertPresented)
                 deniedAlert.present(for: self)
             }
             
@@ -85,14 +85,14 @@ extension PermissionManager {
         resultHandler = handler
         guard isAvailable && canRequest else { return }
         
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .beganRequest)
+        eventListener?.pleaseAllowPermissionManager(self, didPerform: .beganRequest)
         guard softAskView == nil else {
             softAskView?.present(for: self)
-            eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskViewPresented)
+            eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskViewPresented)
             return
         }
         
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskPresented)
+        eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskPresented)
         guard let requestManager = self as? RequestManager else { return }
         requestManager.requestHardPermission()
     }

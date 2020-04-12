@@ -91,14 +91,14 @@ internal class LocationManager: NSObject, PermissionManager {
 extension LocationManager: RequestManager {
     
     @objc func softPermissionGranted() {
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)
+        eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskAllowed)
         softAskView?.hide { [weak self] in
             self?.requestHardPermission()
         }
     }
     
     @objc func softPermissionDenied() {
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskDenied)
+        eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskDenied)
         softAskView?.hide { [weak self] in
             guard let handler = self?.resultHandler else { return }
             handler(.softDenial, nil)
@@ -110,7 +110,7 @@ extension LocationManager: RequestManager {
         manager?.delegate = self
         guard let manager = self.manager else { return }
         
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskPresented)
+        eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskPresented)
         
         switch locationType {
         case .always:
@@ -132,15 +132,15 @@ extension LocationManager: CLLocationManagerDelegate {
             
         case .authorizedWhenInUse:
             if locationType == .whenInUse {
-                eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskAllowed)
+                eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskAllowed)
                 handler(.allowed, nil)
             } else {
-                eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskDenied)
+                eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskDenied)
                 handler(.hardDenial, nil)
             }
             
         case .denied:
-            eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskDenied)
+            eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskDenied)
             handler(.hardDenial, nil)
         default:
             break;

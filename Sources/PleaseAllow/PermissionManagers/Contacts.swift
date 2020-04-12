@@ -66,14 +66,14 @@ internal class ContactsManager: PermissionManager {
 extension ContactsManager: RequestManager {
     
     @objc func softPermissionGranted() {
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)
+        eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskAllowed)
         softAskView?.hide { [weak self] in
             self?.requestHardPermission()
         }
     }
     
     @objc func softPermissionDenied() {
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskDenied)
+        eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskDenied)
         softAskView?.hide { [weak self] in
             guard let handler = self?.resultHandler else { return }
             handler(.softDenial, nil)
@@ -83,7 +83,7 @@ extension ContactsManager: RequestManager {
     func requestHardPermission() {
         guard let handler = resultHandler else { return }
         
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskPresented)
+        eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskPresented)
         
         contactStore = CNContactStore()
         guard let contactStore = self.contactStore else { return }
@@ -96,12 +96,12 @@ extension ContactsManager: RequestManager {
                 }
                 
                 if granted {
-                    self.eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskAllowed)
+                    self.eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskAllowed)
                     self.cnAuthorizationStatus = .authorized
                     handler(.allowed, nil)
                     
                 } else {
-                    self.eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskDenied)
+                    self.eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskDenied)
                     self.cnAuthorizationStatus = .denied
                     handler(.hardDenial, nil)
                 }

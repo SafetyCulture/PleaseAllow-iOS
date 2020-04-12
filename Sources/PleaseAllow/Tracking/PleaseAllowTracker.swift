@@ -7,7 +7,7 @@
 //
 
 public protocol PleaseAllowEventListener {
-    func pleaseAllowPermissionManager(_ manager: PermissionManager, didPerformAction action: Please.Action)
+    func pleaseAllowPermissionManager(_ manager: PermissionManager, didPerform action: Please.Action)
 }
 
 extension Please {

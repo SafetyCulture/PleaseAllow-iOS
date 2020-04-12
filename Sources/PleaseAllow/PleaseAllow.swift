@@ -114,8 +114,9 @@ open class Please: NSObject {
 }
 
 extension Please {
-    public static func allow(_ type: PermissionRequestType, handler: @escaping Please.Reply) {
+    public static func allow(_ type: PermissionRequestType, eventListener: PleaseAllowEventListener? = nil, handler: @escaping Please.Reply) {
         var manager = type.manager
+        manager.eventListener = eventListener
         manager.request(handler: handler)
     }
 }
@@ -141,8 +142,6 @@ extension Please {
             self.softAskView = softAskView
             self.deniedAlert = deniedAlert
         }
-        
-        public var permissionType: PermissionManagerType { .photoLibrary }
 
         public static let `default` = PhotoLibrary(softAskView: .init(title: "Allow Photo Library"), deniedAlert: nil)
     }
@@ -155,8 +154,6 @@ extension Please {
             self.softAskView = softAskView
             self.deniedAlert = deniedAlert
         }
-        
-        public var permissionType: PermissionManagerType { .contacts }
 
         public static let `default` = Contacts(softAskView: .init(title: "Allow Contact"), deniedAlert: nil)
     }
@@ -183,8 +180,6 @@ extension Please {
             self.softAskView = softAskView
             self.deniedAlert = deniedAlert
         }
-        
-        public var permissionType: PermissionManagerType { .notifications }
 
         public static let `default` = Notifications(softAskView: .init(title: "Allow Notifications"), deniedAlert: nil)
     }

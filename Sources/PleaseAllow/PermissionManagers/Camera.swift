@@ -68,14 +68,14 @@ internal class CameraManager: PermissionManager {
 
 extension CameraManager: RequestManager {
     @objc func softPermissionGranted() {
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskAllowed)
+        eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskAllowed)
         softAskView?.hide { [weak self] in
             self?.requestHardPermission()
         }
     }
     
     @objc func softPermissionDenied() {
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .softAskDenied)
+        eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskDenied)
         softAskView?.hide { [weak self] in
             guard let handler = self?.resultHandler else { return }
             handler(.softDenial, nil)
@@ -85,17 +85,17 @@ extension CameraManager: RequestManager {
     func requestHardPermission() {
         guard let handler = resultHandler else { return }
         
-        eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskPresented)
+        eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskPresented)
         
         AVCaptureDevice.requestAccess(for: .video) { granted in
             DispatchQueue.main.async {
                 if granted {
-                    self.eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskAllowed)
+                    self.eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskAllowed)
                     self.avAuthorizationStatus = .authorized
                     handler(.allowed, nil)
                     
                 } else {
-                    self.eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .hardAskDenied)
+                    self.eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskDenied)
                     self.avAuthorizationStatus = .denied
                     handler(.hardDenial, nil)
                 }
