@@ -127,7 +127,7 @@ extension SoftAsk {
 }
 
 public extension SoftAsk {
-    public struct Button {
+    struct Button {
         let title: String
         let font: UIFont
         

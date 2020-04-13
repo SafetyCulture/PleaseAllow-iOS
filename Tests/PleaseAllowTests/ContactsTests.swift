@@ -12,33 +12,33 @@ import XCTest
 class ContactsTests: XCTestCase {
     
     func testThatWeCanRequestIfContactsIsNotDetermined() {
-        let contacts = Contacts(.notDetermined, true)
+        let contacts = ContactsManager(.notDetermined, true)
         contacts.resultHandler = emptyHandler
         XCTAssertTrue(contacts.canRequest)
     }
     
     func testThatWeCannotRequestIfContactsIsRestricted() {
-        let contacts = Contacts(.restricted, true)
+        let contacts = ContactsManager(.restricted, true)
         contacts.resultHandler = emptyHandler
         XCTAssertFalse(contacts.canRequest)
     }
     
     func testThatWeCannotRequestIfContactsPermissionWasDenied() {
-        let contacts = Contacts(.denied, true)
+        let contacts = ContactsManager(.denied, true)
         contacts.resultHandler = emptyHandler
         XCTAssertFalse(contacts.canRequest)
     }
     
     func testThatWeCannotRequestIfContactsPermissionIsAlreadyAuthorized() {
-        let contacts = Contacts(.authorized, true)
+        let contacts = ContactsManager(.authorized, true)
         contacts.resultHandler = emptyHandler
         XCTAssertFalse(contacts.canRequest)
     }
     
     func testThatContactsReturnsAuthorizedCorrectly() {
-        var contacts = Contacts(.authorized, true)
+        var contacts = ContactsManager(.authorized, true)
         let exp = expectation(description: "Expectation")
-        contacts.request { (result, error) in
+        contacts.request { result in
             XCTAssertEqual(result, Please.Result.allowed)
             exp.fulfill()
         }
@@ -46,9 +46,9 @@ class ContactsTests: XCTestCase {
     }
     
     func testThatContactsReturnsRestrictedCorrectly() {
-        var contacts = Contacts(.restricted, true)
+        var contacts = ContactsManager(.restricted, true)
         let exp = expectation(description: "Expectation")
-        contacts.request { (result, error) in
+        contacts.request { result in
             XCTAssertEqual(result, Please.Result.restricted)
             exp.fulfill()
         }
@@ -56,9 +56,9 @@ class ContactsTests: XCTestCase {
     }
     
     func testThatContactsReturnsDeniedCorrectly() {
-        var contacts = Contacts(.denied, true)
+        var contacts = ContactsManager(.denied, true)
         let exp = expectation(description: "Expectation")
-        contacts.request { (result, error) in
+        contacts.request { result in
             XCTAssertEqual(result, Please.Result.hardDenial)
             exp.fulfill()
         }

@@ -12,40 +12,40 @@ import XCTest
 class locationTests: XCTestCase {
     
     func testThatWeCanRequestIfLocationIsNotDetermined() {
-        let location = Location(.notDetermined, true)
+        let location = LocationManager(.notDetermined, true)
         location.resultHandler = emptyHandler
         XCTAssertTrue(location.canRequest)
     }
     
     func testThatWeCannotRequestIfLocationIsRestricted() {
-        let location = Location(.restricted, true)
+        let location = LocationManager(.restricted, true)
         location.resultHandler = emptyHandler
         XCTAssertFalse(location.canRequest)
     }
     
     func testThatWeCannotRequestIfLocationPermissionWasDenied() {
-        let location = Location(.denied, true)
+        let location = LocationManager(.denied, true)
         location.resultHandler = emptyHandler
         XCTAssertFalse(location.canRequest)
     }
     
     func testThatWeCannotRequestIfLocationPermissionIsAuthorizedWhenInUse() {
-        let location = Location(.authorizedWhenInUse, true)
+        let location = LocationManager(.authorizedWhenInUse, true)
         location.resultHandler = emptyHandler
         XCTAssertFalse(location.canRequest)
     }
     
     func testThatWeCannotRequestIfLocationPermissionIsAuthorizedAlways() {
-        let location = Location(.authorizedAlways, true)
+        let location = LocationManager(.authorizedAlways, true)
         location.resultHandler = emptyHandler
         XCTAssertFalse(location.canRequest)
     }
     
     func testThatLocationReturnsAuthorizedCorrectlyForWhenInUse() {
-        var location = Location(.authorizedWhenInUse, true)
+        var location = LocationManager(.authorizedWhenInUse, true)
         location.locationType = .whenInUse
         let exp = expectation(description: "Expectation")
-        location.request { (result, error) in
+        location.request { result in
             XCTAssertEqual(result, Please.Result.allowed)
             exp.fulfill()
         }
@@ -53,10 +53,10 @@ class locationTests: XCTestCase {
     }
     
     func testThatLocationReturnsAuthorizedCorrectlyForAlways() {
-        var location = Location(.authorizedAlways, true)
+        var location = LocationManager(.authorizedAlways, true)
         location.locationType = .whenInUse
         let exp = expectation(description: "Expectation")
-        location.request { (result, error) in
+        location.request { result in
             XCTAssertEqual(result, Please.Result.allowed)
             exp.fulfill()
         }
@@ -64,9 +64,9 @@ class locationTests: XCTestCase {
     }
     
     func testThatLocationReturnsRestrictedCorrectly() {
-        var location = Location(.restricted, true)
+        var location = LocationManager(.restricted, true)
         let exp = expectation(description: "Expectation")
-        location.request { (result, error) in
+        location.request { result in
             XCTAssertEqual(result, Please.Result.restricted)
             exp.fulfill()
         }
@@ -74,9 +74,9 @@ class locationTests: XCTestCase {
     }
     
     func testThatLocationReturnsDeniedCorrectly() {
-        var location = Location(.denied, true)
+        var location = LocationManager(.denied, true)
         let exp = expectation(description: "Expectation")
-        location.request { (result, error) in
+        location.request { result in
             XCTAssertEqual(result, Please.Result.hardDenial)
             exp.fulfill()
         }

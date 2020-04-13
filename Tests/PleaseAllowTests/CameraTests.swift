@@ -9,38 +9,38 @@
 import XCTest
 @testable import PleaseAllow
 
-let emptyHandler: Please.Reply = { _, _ in }
+let emptyHandler: Please.Reply = { _ in }
 
 class CameraTests: XCTestCase {
     
     func testThatWeCanRequestIfCameraIsNotDetermined() {
-        let camera = Camera(.notDetermined, true)
+        let camera = CameraManager(.notDetermined, true)
         camera.resultHandler = emptyHandler
         XCTAssertTrue(camera.canRequest)
     }
     
     func testThatWeCannotRequestIfCameraIsRestricted() {
-        let camera = Camera(.restricted, true)
+        let camera = CameraManager(.restricted, true)
         camera.resultHandler = emptyHandler
         XCTAssertFalse(camera.canRequest)
     }
     
     func testThatWeCannotRequestIfCameraPermissionWasDenied() {
-        let camera = Camera(.denied, true)
+        let camera = CameraManager(.denied, true)
         camera.resultHandler = emptyHandler
         XCTAssertFalse(camera.canRequest)
     }
     
     func testThatWeCannotRequestIfCameraPermissionIsAlreadyAuthorized() {
-        let camera = Camera(.authorized, true)
+        let camera = CameraManager(.authorized, true)
         camera.resultHandler = emptyHandler
         XCTAssertFalse(camera.canRequest)
     }
     
     func testThatCameraReturnsAuthorizedCorrectly() {
-        var camera = Camera(.authorized, true)
+        var camera = CameraManager(.authorized, true)
         let exp = expectation(description: "Expectation")
-        camera.request { (result, error) in
+        camera.request { result in
             XCTAssertEqual(result, Please.Result.allowed)
             exp.fulfill()
         }
@@ -48,9 +48,9 @@ class CameraTests: XCTestCase {
     }
     
     func testThatCameraReturnsRestrictedCorrectly() {
-        var camera = Camera(.restricted, true)
+        var camera = CameraManager(.restricted, true)
         let exp = expectation(description: "Expectation")
-        camera.request { (result, error) in
+        camera.request { result in
             XCTAssertEqual(result, Please.Result.restricted)
             exp.fulfill()
         }
@@ -58,9 +58,9 @@ class CameraTests: XCTestCase {
     }
     
     func testThatCameraReturnsDeniedCorrectly() {
-        var camera = Camera(.denied, true)
+        var camera = CameraManager(.denied, true)
         let exp = expectation(description: "Expectation")
-        camera.request { (result, error) in
+        camera.request { result in
             XCTAssertEqual(result, Please.Result.hardDenial)
             exp.fulfill()
         }

@@ -12,33 +12,33 @@ import XCTest
 class photoLibraryTests: XCTestCase {
     
     func testThatWeCanRequestIfPhotoLibraryIsNotDetermined() {
-        let photoLibrary = PhotoLibrary(.notDetermined, true)
+        let photoLibrary = PhotoLibraryManager(.notDetermined, true)
         photoLibrary.resultHandler = emptyHandler
         XCTAssertTrue(photoLibrary.canRequest)
     }
     
     func testThatWeCannotRequestIfPhotoLibraryIsRestricted() {
-        let photoLibrary = PhotoLibrary(.restricted, true)
+        let photoLibrary = PhotoLibraryManager(.restricted, true)
         photoLibrary.resultHandler = emptyHandler
         XCTAssertFalse(photoLibrary.canRequest)
     }
     
     func testThatWeCannotRequestIfPhotoLibraryPermissionWasDenied() {
-        let photoLibrary = PhotoLibrary(.denied, true)
+        let photoLibrary = PhotoLibraryManager(.denied, true)
         photoLibrary.resultHandler = emptyHandler
         XCTAssertFalse(photoLibrary.canRequest)
     }
     
     func testThatWeCannotRequestIfPhotoLibraryPermissionIsAlreadyAuthorized() {
-        let photoLibrary = PhotoLibrary(.authorized, true)
+        let photoLibrary = PhotoLibraryManager(.authorized, true)
         photoLibrary.resultHandler = emptyHandler
         XCTAssertFalse(photoLibrary.canRequest)
     }
     
     func testThatPhotoLibraryReturnsAuthorizedCorrectly() {
-        var photoLibrary = PhotoLibrary(.authorized, true)
+        var photoLibrary = PhotoLibraryManager(.authorized, true)
         let exp = expectation(description: "Expectation")
-        photoLibrary.request { (result, error) in
+        photoLibrary.request { result in
             XCTAssertEqual(result, Please.Result.allowed)
             exp.fulfill()
         }
@@ -46,9 +46,9 @@ class photoLibraryTests: XCTestCase {
     }
     
     func testThatPhotoLibraryReturnsRestrictedCorrectly() {
-        var photoLibrary = PhotoLibrary(.restricted, true)
+        var photoLibrary = PhotoLibraryManager(.restricted, true)
         let exp = expectation(description: "Expectation")
-        photoLibrary.request { (result, error) in
+        photoLibrary.request { result in
             XCTAssertEqual(result, Please.Result.restricted)
             exp.fulfill()
         }
@@ -56,9 +56,9 @@ class photoLibraryTests: XCTestCase {
     }
     
     func testThatPhotoLibraryReturnsDeniedCorrectly() {
-        var photoLibrary = PhotoLibrary(.denied, true)
+        var photoLibrary = PhotoLibraryManager(.denied, true)
         let exp = expectation(description: "Expectation")
-        photoLibrary.request { (result, error) in
+        photoLibrary.request { result in
             XCTAssertEqual(result, Please.Result.hardDenial)
             exp.fulfill()
         }
