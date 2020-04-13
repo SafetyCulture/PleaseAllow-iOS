@@ -14,10 +14,10 @@ import Foundation
     /// Presents the iOS permission dialogue
     func requestHardPermission()
     
-    /// Called when the Allow button is tapped on the `SoftAskView`. Proceeds to present the iOS permission dialogue
+    /// Called when the Allow button is tapped on the `SoftAsk`. Proceeds to present the iOS permission dialogue
     @objc func softPermissionGranted()
     
-    /// Called whent he Deny button is tapped on the `SoftAskView`.
+    /// Called whent he Deny button is tapped on the `SoftAsk`.
     @objc func softPermissionDenied()
 }
 

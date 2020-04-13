@@ -31,7 +31,7 @@ internal class CameraManager: PermissionManager {
     var isAvailable: Bool {
         guard let handler = resultHandler else { return false }
         guard UIImagePickerController.isSourceTypeAvailable(.camera) || testing else {
-            handler(.unavailable, nil)
+            handler(.unavailable)
             return false
         }
         return true
@@ -57,7 +57,7 @@ internal class CameraManager: PermissionManager {
     
     //MARK:- Soft Ask View
     
-    var softAskView: SoftAskView?
+    var softAsk: SoftAsk?
     
     //MARK:- Denied Alert
     
@@ -69,16 +69,16 @@ internal class CameraManager: PermissionManager {
 extension CameraManager: RequestManager {
     @objc func softPermissionGranted() {
         eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskAllowed)
-        softAskView?.hide { [weak self] in
+        softAsk?.hide { [weak self] in
             self?.requestHardPermission()
         }
     }
     
     @objc func softPermissionDenied() {
         eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskDenied)
-        softAskView?.hide { [weak self] in
+        softAsk?.hide { [weak self] in
             guard let handler = self?.resultHandler else { return }
-            handler(.softDenial, nil)
+            handler(.softDenial)
         }
     }
     
@@ -92,12 +92,12 @@ extension CameraManager: RequestManager {
                 if granted {
                     self.eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskAllowed)
                     self.avAuthorizationStatus = .authorized
-                    handler(.allowed, nil)
+                    handler(.allowed)
                     
                 } else {
                     self.eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskDenied)
                     self.avAuthorizationStatus = .denied
-                    handler(.hardDenial, nil)
+                    handler(.hardDenial)
                 }
             }
         }

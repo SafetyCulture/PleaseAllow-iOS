@@ -26,13 +26,13 @@ extension Please {
         /// Called when a requested permission is already authorised.
         case alreadyAuthorized
         
-        /// Called when the *SoftAskView` is presented for a Permission Manager.
-        case softAskViewPresented
+        /// Called when the *SoftAsk` is presented for a Permission Manager.
+        case softAskPresented
         
-        /// Called when the Deny button is tapped on the *SoftAskView* for a Permission Manager.
+        /// Called when the Deny button is tapped on the *SoftAsk* for a Permission Manager.
         case softAskDenied
         
-        /// Called when the Allow button is tapped on the *SoftAskView* for a Permission Manager.
+        /// Called when the Allow button is tapped on the *SoftAsk* for a Permission Manager.
         case softAskAllowed
         
         /// Called when the iOS permission alert is presented for a Permission Manager.

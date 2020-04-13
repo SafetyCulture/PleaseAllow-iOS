@@ -1,5 +1,5 @@
 //
-//  SoftAskView.swift
+//  SoftAsk.swift
 //  PleaseAllow
 //
 //  Created by Gagandeep Singh on 22/3/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class DeniedAlert: SoftAskView { }
+public class DeniedAlert: SoftAsk { }
 
 /**
  
@@ -18,7 +18,7 @@ public class DeniedAlert: SoftAskView { }
 
 private var sharedWindow: UIWindow?
 
-open class SoftAskView {
+open class SoftAsk {
     struct ViewState {
         let title: String
         let description: String
@@ -60,8 +60,8 @@ open class SoftAskView {
         viewState = .init(title: title, description: description, image: image, allowButton: allowButton, denyButton: denyButton)
     }
     
-    lazy var viewController: SoftAskViewController = {
-        let viewController = SoftAskViewController()
+    lazy var viewController: SoftAskController = {
+        let viewController = SoftAskController()
         viewController.titleLabel.text = viewState.title
         viewController.descriptionLabel.text = viewState.description
         viewController.imageView.image = viewState.image
@@ -129,8 +129,8 @@ open class SoftAskView {
     }
 }
 
-extension SoftAskView: SoftAskViewControllerDelegate {
-    func softAskViewController(_ viewController: SoftAskViewController, didPerform action: Action) {
+extension SoftAsk: SoftAskControllerDelegate {
+    func softAskController(_ viewController: SoftAskController, didPerform action: Action) {
         if self is DeniedAlert {
             action == .allow ? redirectToSettings() : cancelRedirect()
         } else {

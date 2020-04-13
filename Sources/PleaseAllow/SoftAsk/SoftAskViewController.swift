@@ -1,5 +1,5 @@
 //
-//  SoftAskViewController.swift
+//  SoftAskController.swift
 //  PleaseAllow
 //
 //  Created by Gagandeep Singh on 22/3/18.
@@ -54,12 +54,12 @@ internal protocol StoryboardLoading: class {
     static var identifier: String { get }
 }
 
-internal protocol SoftAskViewControllerDelegate: class {
-    func softAskViewController(_ viewController: SoftAskViewController, didPerform action: SoftAskView.Action)
+internal protocol SoftAskControllerDelegate: class {
+    func softAskController(_ viewController: SoftAskController, didPerform action: SoftAsk.Action)
 }
 
-internal class SoftAskViewController: UIViewController {
-    weak var delegate: SoftAskViewControllerDelegate?
+internal class SoftAskController: UIViewController {
+    weak var delegate: SoftAskControllerDelegate?
     
     let blurView: UIVisualEffectView = {
         let view = UIVisualEffectView(frame: .zero)
@@ -193,11 +193,11 @@ internal class SoftAskViewController: UIViewController {
     }
     
     @IBAction func denyTapped(_ sender: UIButton) {
-        delegate?.softAskViewController(self, didPerform: .deny)
+        delegate?.softAskController(self, didPerform: .deny)
     }
     
     @IBAction func allowTapped(_ sender: UIButton) {
-        delegate?.softAskViewController(self, didPerform: .allow)
+        delegate?.softAskController(self, didPerform: .allow)
     }
     
     internal func toggleBlurView(shouldBlur: Bool) {

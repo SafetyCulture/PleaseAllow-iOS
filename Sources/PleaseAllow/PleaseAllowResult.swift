@@ -21,7 +21,7 @@ extension Please {
      
      - returns: void
      */
-    public typealias Reply = (_ reply: Please.Result, _ error: Error?) -> ()
+    public typealias Reply = (Please.Result) -> ()
 
     /**
      Returned in the Completion handler of the request for a Permission
@@ -31,7 +31,7 @@ extension Please {
         /// Returned when the user authorises usage for the requested permission.
         case allowed
         
-        /// Returned when the user taps on the Deny button on the `SoftAskView`
+        /// Returned when the user taps on the Deny button on the `SoftAsk`
         case softDenial
         
         /// Returned when the user taps on the Deny button on the iOS Permission alert.

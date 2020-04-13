@@ -22,13 +22,13 @@ public protocol PermissionManager {
     /// Returns if the `PermissionManager` is able to request authorization.
     var canRequest      : Bool             { get }
     
-    /// Use the properties of this `softAskView` for customization.
-    var softAskView     : SoftAskView?     { get set }
+    /// Use the properties of this `softAsk` for customization.
+    var softAsk     : SoftAsk?     { get set }
     
     /**
-     Uses the `softAskView` to show a `DeniedAlert` if the requestd permission was denied previosuly.
+     Uses the `softAsk` to show a `DeniedAlert` if the requestd permission was denied previosuly.
      - Customise the alert properties using this instance.
-     - Also set properties of the `softAskView` for further customization.
+     - Also set properties of the `softAsk` for further customization.
      */
     var deniedAlert     : DeniedAlert?     { get set }
     
@@ -48,7 +48,7 @@ extension PermissionManager {
         switch status {
         case .authorized:
             eventListener?.pleaseAllowPermissionManager(self, didPerform: .alreadyAuthorized)
-            handler(.allowed, nil)
+            handler(.allowed)
             
         case .denied:
             if let deniedAlert = deniedAlert {
@@ -56,13 +56,13 @@ extension PermissionManager {
                 deniedAlert.present(for: self)
             }
             
-            handler(.hardDenial, nil)
+            handler(.hardDenial)
             
         case .restricted:
-            handler(.restricted, nil)
+            handler(.restricted)
             
         case .unavailable:
-            handler(.unavailable, nil)
+            handler(.unavailable)
             
         case .notDetermined:
             return true
@@ -86,9 +86,9 @@ extension PermissionManager {
         guard isAvailable && canRequest else { return }
         
         eventListener?.pleaseAllowPermissionManager(self, didPerform: .beganRequest)
-        guard softAskView == nil else {
-            softAskView?.present(for: self)
-            eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskViewPresented)
+        guard softAsk == nil else {
+            softAsk?.present(for: self)
+            eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskPresented)
             return
         }
         
@@ -98,7 +98,7 @@ extension PermissionManager {
     }
     
     func redirectToSettings() {
-        resultHandler?(.redirectedToSettings, nil)
+        resultHandler?(.redirectedToSettings)
         if let url = URL(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.openURL(url)
         }

@@ -50,7 +50,7 @@ internal class ContactsManager: PermissionManager {
     
     //MARK:- Soft Ask View
     
-    var softAskView: SoftAskView?
+    var softAsk: SoftAsk?
     
     //MARK:- Denied Alert
     
@@ -67,16 +67,16 @@ extension ContactsManager: RequestManager {
     
     @objc func softPermissionGranted() {
         eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskAllowed)
-        softAskView?.hide { [weak self] in
+        softAsk?.hide { [weak self] in
             self?.requestHardPermission()
         }
     }
     
     @objc func softPermissionDenied() {
         eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskDenied)
-        softAskView?.hide { [weak self] in
+        softAsk?.hide { [weak self] in
             guard let handler = self?.resultHandler else { return }
-            handler(.softDenial, nil)
+            handler(.softDenial)
         }
     }
     
@@ -91,19 +91,19 @@ extension ContactsManager: RequestManager {
         contactStore.requestAccess(for: .contacts) { granted, error in
             DispatchQueue.main.async {
                 guard error == nil else {
-                    handler(.hardDenial, error)
+                    handler(.hardDenial)
                     return
                 }
                 
                 if granted {
                     self.eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskAllowed)
                     self.cnAuthorizationStatus = .authorized
-                    handler(.allowed, nil)
+                    handler(.allowed)
                     
                 } else {
                     self.eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskDenied)
                     self.cnAuthorizationStatus = .denied
-                    handler(.hardDenial, nil)
+                    handler(.hardDenial)
                 }
             }
         }

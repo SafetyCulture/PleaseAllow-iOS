@@ -18,7 +18,7 @@ internal class LocationManager: NSObject, PermissionManager {
     
     //MARK:- Type
     
-    var type: PermissionManagerType = .locationWhenInUse
+    var type: PermissionManagerType = .location(.whenInUse)
     
     //MARK:- Initializer
     
@@ -42,7 +42,7 @@ internal class LocationManager: NSObject, PermissionManager {
     var isAvailable: Bool {
         guard let handler = resultHandler else { return false }
         guard CLLocationManager.locationServicesEnabled() else {
-            handler(.unavailable, nil)
+            handler(.unavailable)
             return false
         }
         return true
@@ -70,7 +70,7 @@ internal class LocationManager: NSObject, PermissionManager {
     
     //MARK:- Soft Ask View
     
-    var softAskView: SoftAskView?
+    var softAsk: SoftAsk?
     
     //MARK:- Denied Alert
     
@@ -92,16 +92,16 @@ extension LocationManager: RequestManager {
     
     @objc func softPermissionGranted() {
         eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskAllowed)
-        softAskView?.hide { [weak self] in
+        softAsk?.hide { [weak self] in
             self?.requestHardPermission()
         }
     }
     
     @objc func softPermissionDenied() {
         eventListener?.pleaseAllowPermissionManager(self, didPerform: .softAskDenied)
-        softAskView?.hide { [weak self] in
+        softAsk?.hide { [weak self] in
             guard let handler = self?.resultHandler else { return }
-            handler(.softDenial, nil)
+            handler(.softDenial)
         }
     }
     
@@ -128,20 +128,20 @@ extension LocationManager: CLLocationManagerDelegate {
         guard let handler = resultHandler else { return }
         switch status {
         case .authorizedAlways:
-            handler(.allowed, nil)
+            handler(.allowed)
             
         case .authorizedWhenInUse:
             if locationType == .whenInUse {
                 eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskAllowed)
-                handler(.allowed, nil)
+                handler(.allowed)
             } else {
                 eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskDenied)
-                handler(.hardDenial, nil)
+                handler(.hardDenial)
             }
             
         case .denied:
             eventListener?.pleaseAllowPermissionManager(self, didPerform: .hardAskDenied)
-            handler(.hardDenial, nil)
+            handler(.hardDenial)
         default:
             break;
         }
