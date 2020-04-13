@@ -1,96 +1,43 @@
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+<p align="left">
+    <a href="https://swift.org/package-manager">
+        <img src="https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat" alt="Swift Package Manager" />
+    </a>
+</p>
 
 # PleaseAllow
 
 ## Usage
 
-#### Location
 ```swift
-Please.allow.location.always { result, error in
-    switch result {
-        case .allowed     : print("Authorized")
-        case .softDenial  : print("Denied Soft")
-        case .hardDenial  : print("Denied Hard")
-        case .restricted  : print("Restricted")
-        case .unavailable : print("Unavailable")
-    }
+extension Please.Location {
+    static let sitePicker = Self.init(
+        requestType: .whenInUse,
+        softAsk: .init(
+            title: "Allow Location Access",
+            description: "Allow location access to select a site",
+            image: sitePickerImage,
+            allowButton: .init(title: "Allow"),
+            denyButton: .init(title: "Don't Allow")
+        ),
+        deniedAlert: .init(
+            title: "Allow Location Access",
+            description: "Location access has been denied. Please open settings and turn on Location.",
+            image: sitePickerImage,
+            allowButton: .init(title: "Settings"),
+            denyButton: .init(title: "Cancel")
+        )
+    )
 }
-```
 
-#### Camera
-```swift
-Please.allow.camera { result, error in
-    switch result {
-        case .allowed     : print("Authorized")
-        case .softDenial  : print("Denied Soft")
-        case .hardDenial  : print("Denied Hard")
-        case .restricted  : print("Restricted")
-        case .unavailable : print("Unavailable")
-    }
-}
-```
-
-## Presenting a Soft Ask
-
-Display a Soft Ask before presenitng the default alert for a permission.
-Soft Ask can be presented either as a Modal or Full Screen. See example below.
-
-
-```swift
-let softAskView: SoftAskView = {
-    let view = SoftAskView(.fullScreen)
-    view.allowButtonTitle = "Allow"
-    view.denyButtonTitle = "Don't Allow"
-    view.title = "Allow Contacts"
-    view.description = "Please allow access to your contacts to invite people."
-    return view
-}()
-
-Please.allow.contacts(softAskView: softAskView) { result, error in
-    switch result {
-        case .allowed     : print("Authorized")
-        case .softDenial  : print("Denied Soft")
-        case .hardDenial  : print("Denied Hard")
-        case .restricted  : print("Restricted")
-        case .unavailable : print("Unavailable")
+Please.allow(.location(.sitePicker)) { result in
+    if result == .authorized {
+        self.presentSitePicker()
     }
 }
 ```
 
 ![alt text](/Screenshots/SoftAskView.png "")
 
-
-## Presenting a Denied Alert
-
-Display a Denied Alert if the permission has previously been denied. Denied alert can redirect user to App Settings.
-`DeniedAlert` is a subclass of `SoftAskView` and can be formatted in the same way. See example below.
-
-
-```swift
-let deniedAlert: DeniedAlert = {
-DeniedAlert is a subclass if SoftAskView and can be formatted in the same way.
-
-let deniedAlert = {
-    let view = DeniedAlert(.modal)
-    view.allowButtonTitle = "Settings"
-    view.denyButtonTitle = "Cancel"
-    view.title = "Contacts Denied"
-    view.description = "Contact Permission has been denied. Please open Settings and allow access to your contacts to invite people."
-    return view
-}()
-
-Please.allow.contacts(softAskView: softAskView, deniedAlert: deniedAlert) { result, error in
-    switch result {
-        case .allowed     : print("Authorized")
-        case .softDenial  : print("Denied Soft")
-        case .hardDenial  : print("Denied Hard")
-        case .restricted  : print("Restricted")
-        case .unavailable : print("Unavailable")
-    }
-}
-```
-
-![alt text](/Screenshots/DeniedAlert.png "")
 
 
 ## Tracking
@@ -111,14 +58,8 @@ let tracker = PermissionTracker()
 
 #### Provide an instance of the tracker to the permission request
 ```swift
-Please.allow.photoLibrary(softAskView: softAskView, deniedAlert: deniedAlert, tracker: tracker) { result, error in
-    switch result {
-        case .allowed     : print("Authorized")
-        case .softDenial  : print("Denied Soft")
-        case .hardDenial  : print("Denied Hard")
-        case .restricted  : print("Restricted")
-        case .unavailable : print("Unavailable")
-    }
+Please.allow(.location(.sitePicker), eventListener: tracker) { result in
+    handle(result)
 }
 ```
 
@@ -126,5 +67,5 @@ Please.allow.photoLibrary(softAskView: softAskView, deniedAlert: deniedAlert, tr
 - Camera
 - Photo Library
 - Contacts
-- Push Notifications
 - Location
+- Push Notifications
