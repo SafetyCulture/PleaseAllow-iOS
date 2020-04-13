@@ -160,7 +160,7 @@ internal class SoftAskController: UIViewController {
             containerTrailing,
             container.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             container.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            container.widthAnchor.constraint(lessThanOrEqualToConstant: 320),
+            container.widthAnchor.constraint(equalToConstant: 320),
             
             imageView.topAnchor.constraint(equalTo: container.topAnchor, constant: 48),
             imageView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
