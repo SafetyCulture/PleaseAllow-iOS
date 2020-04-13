@@ -9,87 +9,40 @@
 import Foundation
 import UserNotifications
 
-
-/**
- An iOS permissions framework with built-in soft ask.
+/// An iOS permissions framework with built-in contextual soft ask
  
- ### Usage: ###
- 
- ```
- PleaseAllow.location.always { result, eror in
-    switch result {
-    case .allowed:
-        print("Authorized")
-    case .softDenial:
-        print("Denied Soft")
-    case .hardDenial:
-        print("Denied Hard")
-    case .restricted:
-        print("Restricted")
-    case .unavailable:
-        print("Unavailable")
-     }
- }
- ```
-  
- */
-
-public enum PermissionRequestType {
-    case camera(Please.Camera)
-    case contacts(Please.Contacts)
-    case photoLibrary(Please.PhotoLibrary)
-    case location(Please.Location)
-    case notifications(Please.Notifications)
-}
-
-extension PermissionRequestType {
-    var context: PermissionContext {
-        switch self {
-        case .camera(let context):
-            return context
-        case .contacts(let context):
-            return context
-        case .photoLibrary(let context):
-            return context
-        case .location(let context):
-            return context
-        case .notifications(let context):
-            return context
-        }
-    }
-    
-    var manager: PermissionManager {
-        var activeManager: PermissionManager
-        switch self {
-        case .camera:
-            activeManager = CameraManager()
-        case .photoLibrary:
-            activeManager = PhotoLibraryManager()
-        case .contacts:
-            activeManager = ContactsManager()
-        case .location(let locationContext):
-            let locationManager = LocationManager()
-            locationManager.locationType = locationContext.requestType
-            activeManager = locationManager
-        case .notifications(let notificationContext):
-            let notificationsManager = NotificationsManager()
-            notificationsManager.requestOptions = notificationContext.options
-            activeManager = notificationsManager
-        }
-        
-        activeManager.softAsk = context.softAsk
-        activeManager.deniedAlert = context.deniedAlert
-        return activeManager
-    }
-}
-
-public protocol PermissionContext {
-    var softAsk: SoftAsk? { get }
-    var deniedAlert: DeniedAlert? { get }
-}
+/// ```
+/// Please.allow(.location(.sitePicker)) { result in
+///    switch result {
+///    case .allowed:
+///        print("Authorized")
+///    case .softDenial:
+///        print("Denied Soft")
+///    case .hardDenial:
+///        print("Denied Hard")
+///    case .restricted:
+///        print("Restricted")
+///    case .unavailable:
+///        print("Unavailable")
+///     }
+ /// }
+ /// ```
 
 open class Please: NSObject {
-    /// Shared Instance to be used for all permission requests.
+    
+    /// Requet a permission
+    /// - parameter type: The type of permission you require
+    /// - parameter eventListener: optional - An event tracker that can be used for analytics
+    /// - parameter handler: optional - Handler for the permission request result
+    
+    public static func allow(_ type: PermissionRequestType, eventListener: PleaseAllowEventListener? = nil, handler: Please.Reply?) {
+        var manager = type.manager
+        manager.eventListener = eventListener
+        manager.request(handler: handler)
+    }
+    
+    /// Check permission status for a permission manager
+    /// - parameter managerType: Permission manager for which you want to check the permission
     
     public static func status(for managerType: PermissionManagerType) -> PermissionStatus {
         let manager: PermissionManager
@@ -119,15 +72,18 @@ open class Please: NSObject {
     }
 }
 
-extension Please {
-    public static func allow(_ type: PermissionRequestType, eventListener: PleaseAllowEventListener? = nil, handler: Please.Reply?) {
-        var manager = type.manager
-        manager.eventListener = eventListener
-        manager.request(handler: handler)
-    }
+/// Context Provider for permission managers
+/// Extend this to add contexts with different messaging
+/// for different parts of the app that require the same permission
+
+public protocol PermissionContext {
+    var softAsk: SoftAsk? { get }
+    var deniedAlert: DeniedAlert? { get }
 }
 
 extension Please {
+    /// Context Provider for Camera permission
+    
     public struct Camera: PermissionContext {
         public let softAsk: SoftAsk?
         public let deniedAlert: DeniedAlert?
@@ -137,8 +93,10 @@ extension Please {
             self.deniedAlert = deniedAlert
         }
         
-        public static let `default` = Camera(softAsk: .init(title: "Allow Camera"), deniedAlert: nil)
+        public static let `default` = Camera(softAsk: .init(title: "Allow Camera Access"), deniedAlert: nil)
     }
+    
+    /// Context Provider for Photo Library permission
     
     public struct PhotoLibrary: PermissionContext {
         public let softAsk: SoftAsk?
@@ -149,8 +107,10 @@ extension Please {
             self.deniedAlert = deniedAlert
         }
 
-        public static let `default` = PhotoLibrary(softAsk: .init(title: "Allow Photo Library"), deniedAlert: nil)
+        public static let `default` = PhotoLibrary(softAsk: .init(title: "Allow Photo Library Access"), deniedAlert: nil)
     }
+    
+    /// Context Provider for Contacts permission
     
     public struct Contacts: PermissionContext {
         public let softAsk: SoftAsk?
@@ -161,8 +121,10 @@ extension Please {
             self.deniedAlert = deniedAlert
         }
 
-        public static let `default` = Contacts(softAsk: .init(title: "Allow Contact"), deniedAlert: nil)
+        public static let `default` = Contacts(softAsk: .init(title: "Allow Contacts Access"), deniedAlert: nil)
     }
+    
+    /// Context Provider for Location permission
     
     public struct Location: PermissionContext {
         public let requestType: LocationRequestType
@@ -175,8 +137,10 @@ extension Please {
             self.deniedAlert = deniedAlert
         }
 
-        public static let `default` = Location(requestType: .whenInUse, softAsk: .init(title: "Allow Contact"), deniedAlert: nil)
+        public static let `default` = Location(requestType: .whenInUse, softAsk: .init(title: "Allow Location Access"), deniedAlert: nil)
     }
+    
+    /// Context Provider for Notifications permission
     
     public struct Notifications: PermissionContext {
         public let options: UNAuthorizationOptions
@@ -189,6 +153,6 @@ extension Please {
             self.deniedAlert = deniedAlert
         }
 
-        public static let `default` = Notifications(options: [.alert, .sound], softAsk: .init(title: "Allow Notifications"), deniedAlert: nil)
+        public static let `default` = Notifications(options: [.alert, .sound], softAsk: .init(title: "Allow Push Notifications"), deniedAlert: nil)
     }
 }

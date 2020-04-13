@@ -9,44 +9,14 @@
 import UIKit
 
 public class DeniedAlert: SoftAsk { }
-
-/**
- 
-    View generator for a soft ask.
- 
- */
-
 private var sharedWindow: UIWindow?
 
 open class SoftAsk {
-    struct ViewState {
-        let title: String
-        let description: String
-        let image: UIImage?
-        let allowButton: Button
-        let denyButton: Button
-    }
-    
-    internal enum Action {
-        case allow
-        case deny
-    }
-    
     private var manager: PermissionManager?
     
     internal func present(for manager: PermissionManager) {
         self.manager = manager
         show()
-    }
-    
-    public struct Button {
-        let title: String
-        let font: UIFont
-        
-        public init(title: String, font: UIFont = .preferredFont(forTextStyle: .body)) {
-            self.title = title
-            self.font = font
-        }
     }
     
     private let viewState: ViewState
@@ -140,3 +110,30 @@ extension SoftAsk: SoftAskControllerDelegate {
     }
 }
 
+
+extension SoftAsk {
+    enum Action {
+        case allow
+        case deny
+    }
+    
+    struct ViewState {
+        let title: String
+        let description: String
+        let image: UIImage?
+        let allowButton: Button
+        let denyButton: Button
+    }
+}
+
+public extension SoftAsk {
+    public struct Button {
+        let title: String
+        let font: UIFont
+        
+        public init(title: String, font: UIFont = .preferredFont(forTextStyle: .body)) {
+            self.title = title
+            self.font = font
+        }
+    }
+}
