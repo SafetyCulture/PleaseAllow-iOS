@@ -52,6 +52,7 @@ internal class PhotoLibrary: PermissionManager {
         case .denied:        return .denied
         case .restricted:    return .restricted
         case .notDetermined: return .notDetermined
+        case .limited:       return .limited
         }
     }
     

@@ -61,6 +61,9 @@ extension PermissionManager {
         case .restricted:
             handler(.restricted, nil)
             
+        case .limited:
+            handler(.limited, nil)
+            
         case .unavailable:
             handler(.unavailable, nil)
             

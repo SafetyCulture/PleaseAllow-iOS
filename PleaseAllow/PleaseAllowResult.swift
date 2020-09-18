@@ -45,6 +45,9 @@ extension Please {
         
         /// Returned when the denied alert is shown and the user chose to open Settings.
         case redirectedToSettings
+        
+        /// Returned when the user taps on "Select some photos"
+        case limited
     }
 }
 
