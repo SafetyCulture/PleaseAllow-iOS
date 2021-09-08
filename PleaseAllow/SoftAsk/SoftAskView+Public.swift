@@ -99,6 +99,15 @@ extension SoftAskView {
         }
     }
     
+    open var allowButtonHidden: Bool {
+        get {
+            return softAskViewController.allowButton.isHidden
+        }
+        set {
+            softAskViewController.allowButton.isHidden = newValue
+        }
+    }
+    
     /// Title for Deny button.
     open var denyButtonTitle: String? {
         get {
