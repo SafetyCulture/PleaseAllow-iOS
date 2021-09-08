@@ -48,11 +48,18 @@ internal class PhotoLibrary: PermissionManager {
     var status: PermissionStatus {
         let status = testing ? phAuthorizationStatus : PHPhotoLibrary.authorizationStatus()
         switch status {
-        case .authorized:    return .authorized
-        case .denied:        return .denied
-        case .restricted:    return .restricted
-        case .notDetermined: return .notDetermined
-        case .limited:       return .limited
+        case .authorized:
+            return .authorized
+        case .limited:
+            return .limited
+        case .denied:
+            return .denied
+        case .restricted:
+            return .restricted
+        case .notDetermined:
+            return .notDetermined
+        @unknown default:
+            return .notDetermined
         }
     }
     

@@ -46,7 +46,7 @@ extension PermissionManager {
         guard let handler = resultHandler else { return false }
         
         switch status {
-        case .authorized:
+        case .authorized, .limited:
             eventListener?.pleaseAllowPermissionManager(self, didPerformAction: .alreadyAuthorized)
             handler(.allowed, nil)
             

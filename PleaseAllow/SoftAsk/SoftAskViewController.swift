@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal protocol StoryboardLoading: class {
+internal protocol StoryboardLoading: AnyObject {
     static var identifier: String { get }
 }
 
@@ -20,7 +20,7 @@ extension StoryboardLoading {
     }
 }
 
-internal protocol SoftAskViewControllerDelegate: class {
+internal protocol SoftAskViewControllerDelegate: AnyObject {
     func softAskViewController(_ viewController: SoftAskViewController, didSelectAction action: SoftAskView.Action)
 }
 
