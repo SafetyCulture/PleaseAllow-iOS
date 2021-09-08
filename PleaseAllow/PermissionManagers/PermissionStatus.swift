@@ -15,4 +15,5 @@ public enum PermissionStatus: String {
     case denied
     case restricted
     case unavailable
+    case limited
 }

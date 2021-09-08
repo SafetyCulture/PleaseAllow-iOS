@@ -6,7 +6,16 @@
 //  Copyright © 2018 Gagandeep Singh. All rights reserved.
 //
 
-open class DeniedAlert: SoftAskView { }
+open class DeniedAlert: SoftAskView {
+    let enableAllowAction: Bool
+
+    public init(_ display: DisplayType, enableAllowAction: Bool = false) {
+        self.enableAllowAction = enableAllowAction
+        super.init(display)
+
+        allowButtonHidden = !enableAllowAction
+    }
+}
 
 /**
  
@@ -96,8 +105,19 @@ open class SoftAskView {
 
 extension SoftAskView: SoftAskViewControllerDelegate {
     func softAskViewController(_ viewController: SoftAskViewController, didSelectAction action: SoftAskView.Action) {
-        if self is DeniedAlert {
-            action == .allow ? redirectToSettings() : cancelRedirect()
+        if let deniedAlert = self as? DeniedAlert {
+            switch action {
+            case .allow:
+                guard deniedAlert.enableAllowAction else {
+                    assertionFailure("Allow action is not expected as the settings feature is disabled")
+                    cancelRedirect()
+                    return
+                }
+
+                redirectToSettings()
+            case .deny:
+                cancelRedirect()
+            }
         } else {
             guard let requestManager = self.manager as? RequestManager else { return }
             action == .allow ? requestManager.softPermissionGranted() : requestManager.softPermissionDenied()
