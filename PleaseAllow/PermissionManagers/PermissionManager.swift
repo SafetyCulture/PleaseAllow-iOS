@@ -9,7 +9,7 @@
 import Foundation
 
 /// Common Protocol for all Permissions
-public protocol PermissionManager {
+public protocol PermissionManager: AnyObject {
     /// Returns the `MangerType` for the current Permission Manager
     var type            : PermissionManagerType      { get }
     
@@ -84,7 +84,7 @@ extension PermissionManager {
      The completion to be called when the request manager is finished with the request
      */
     
-    internal mutating func request(handler: Please.Reply? = nil) {
+  internal func request(handler: Please.Reply? = nil) {
         resultHandler = handler
         guard isAvailable && canRequest else { return }
         
