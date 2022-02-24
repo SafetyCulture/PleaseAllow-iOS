@@ -26,7 +26,8 @@ open class DeniedAlert: SoftAskView {
 private var sharedWindow: UIWindow?
 
 open class SoftAskView {
-    private var manager: PermissionManager?
+
+    private weak var manager: PermissionManager?
     
     internal var softAskViewController: SoftAskViewController!
     
