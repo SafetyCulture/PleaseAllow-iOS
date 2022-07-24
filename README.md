@@ -3,7 +3,7 @@
 >
 > After a careful consideration we have made a difficult decision to no longer maintain this project.
 > Our efforts are concentrated in different areas of our scaling business and, unfortunately, it meant that we could not provide the love and care that this project deserves.
-> We are aiming to archive the project by 30/09/2022.
+> We are aiming to archive the project by 31/12/2022.
 > Please consider creating a fork if you would like to continue using this project in your codebase.
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
